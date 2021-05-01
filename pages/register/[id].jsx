@@ -5,10 +5,58 @@ import Footer from 'components/Footer'
 
 import styles from 'styles/Home.module.scss'
 import { useRouter } from 'next/router'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { auth } from '../../firebase'
+
+import firebase from 'firebase/app'
+import 'firebase/firestore'
+import 'firebase/auth'
+import 'firebase/functions'
+import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
+
+let app
+if (!firebase.apps.length) {
+  app = firebase.initializeApp({
+    apiKey: 'AIzaSyAmkO_iB6iyitJerKu4L_88VpALwi3r2oE',
+    authDomain: 'loca8me.firebaseapp.com',
+    projectId: 'loca8me',
+    storageBucket: 'loca8me.appspot.com',
+    messagingSenderId: '977760864834',
+    appId: '1:977760864834:web:a7ad767300509a31b3bbdb',
+  })
+}
+let USER_UID = null
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+    USER_UID = user.uid
+  } else {
+    return null
+  }
+})
+
+// Configure FirebaseUI.
+const uiConfig = {
+  // Popup signin flow rather than redirect flow.
+  signInFlow: 'popup',
+  // We will display Google and Facebook as auth providers.
+  signInOptions: [
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+    // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    // firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
+  ],
+  // credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,
+  callbacks: {
+    // Avoid redirects after sign-in.
+    signInSuccessWithAuthResult: () => false,
+  },
+}
 
 export default function Register() {
   const router = useRouter()
   const id = router.query.id
+  // const [user, loading, error] = useAuthState(app.auth())
+
   return (
     <>
       <Head>
@@ -38,11 +86,12 @@ export default function Register() {
 
           <div>
             <h2>Step 1: Create an account</h2>
-            <div className={styles.card}>Login</div>
+            {/* <div className={styles.card}>Login --{JSON.stringify(user)}--</div> */}
+            <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
 
             <h2>Step 2: Add some details</h2>
             <p>So we can contact you in case of a lost & found situation. This will NOT leave our system!</p>
-            <form>
+            <form className="form">
               {!id && (
                 <fieldset>
                   <label htmlFor="tag">Tag ID:</label>
@@ -70,7 +119,9 @@ export default function Register() {
                 <input id="notes"></input>
                 <span className="helperText">Example: My second set of keys for apartment</span>
               </fieldset>
-              <button type="submit">Save Details</button>
+              <button type="submit" className="cta">
+                Save Details
+              </button>
             </form>
           </div>
         </main>

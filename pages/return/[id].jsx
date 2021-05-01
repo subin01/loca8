@@ -39,7 +39,7 @@ export default function Return() {
           <div>
             <h2>Just provide your details to reach you.</h2>
             <h3></h3>
-            <form>
+            <form className="form">
               {!id && (
                 <fieldset>
                   <label htmlFor="tag">Tag ID:</label>
@@ -66,7 +66,9 @@ export default function Return() {
                 </label>
                 <textarea id="notes"></textarea>
               </fieldset>
-              <button type="submit">Notify the Owner</button>
+              <button type="submit" className="cta">
+                Notify the Owner
+              </button>
             </form>
           </div>
         </main>

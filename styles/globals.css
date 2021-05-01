@@ -56,6 +56,10 @@ footer .logo {
   margin-top: 0.25rem;
 }
 
+footer img {
+  height: 1.5rem;
+}
+
 footer a {
   display: flex;
   justify-content: center;
@@ -75,11 +79,11 @@ pre {
   margin: 0;
 }
 
-form {
+.form {
   margin: 3rem 0;
 }
 
-fieldset {
+.form fieldset {
   border: none;
   margin: 0;
   margin-bottom: 2rem;
@@ -95,19 +99,19 @@ fieldset {
   color: rgba(0, 0, 0, 0.4);
 }
 
-label {
+.form label {
   display: block;
   margin-bottom: 0.75rem;
   font-size: 1.2rem;
 }
 
-label span {
+.form label span {
   color: rgba(0, 0, 0, 0.4);
 }
 
-input,
-select,
-textarea {
+.form input,
+.form select,
+.form textarea {
   font-size: 2rem;
   padding: 0.5rem 1rem;
   border-radius: 0.5rem;
@@ -119,36 +123,35 @@ textarea {
   transition: all 400ms ease-out;
 }
 
-textarea {
+.form textarea {
   font-family: 'Nunito', -apple-system, Roboto, Ubuntu, Helvetica Neue, sans-serif;
   height: 9.5rem;
 }
 
-input:hover,
-select:hover,
-textarea:hover {
+.form input:hover,
+.form select:hover,
+.form textarea:hover {
   border: 2px solid rgba(18, 139, 219, 0.5);
 }
 
-input:focus,
-select:focus,
-textarea:focus {
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
   border: 2px solid rgba(18, 139, 219, 0.5);
   box-shadow: 0 0 0 0.5rem rgba(18, 139, 219, 0.1);
 }
 
-button {
+.cta {
   font-size: 1.75rem;
   padding: 1rem 2rem;
   border-radius: 0.5rem;
   outline: 0;
   background: transparent;
   cursor: pointer;
-  border: 2px solid rgba(0, 0, 0, 0.5);
   transition: all 400ms ease-out;
 }
 
-button:hover {
+.cta:hover {
   border: 2px solid rgba(18, 139, 219, 0.5);
   box-shadow: 0 0 0 0.5rem rgba(18, 139, 219, 0.1);
 }
