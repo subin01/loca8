@@ -30,6 +30,19 @@ a {
   margin: 0 auto;
 }
 
+.box {
+  width: 100%;
+  padding: 0.5rem 2rem 1rem 2rem;
+  margin-bottom: 2rem;
+  /* border: 1px solid rgba(0, 0, 0, 0.5); */
+  box-shadow: 0 0 0.5rem 0.25rem rgba(0, 0, 0, 0.05);
+  border-radius: 1rem;
+}
+
+.box h2 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
 main {
   padding: 5rem 0;
   max-width: 800px;
@@ -80,16 +93,38 @@ pre {
 }
 
 .form {
-  margin: 3rem 0;
+  width: 100%;
 }
 
 .form fieldset {
   border: none;
   margin: 0;
-  margin-bottom: 2rem;
+  margin-bottom: 0.75rem;
   padding: 0;
+  width: 22rem;
   display: flex;
   flex-direction: column;
+}
+
+.form fieldset.note {
+  width: 100%;
+}
+
+.form .inline-error {
+  color: red;
+  padding-top: 0.5rem;
+  min-height: 2em;
+  padding-left: 0.5rem;
+}
+
+.form .inline {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form .inline fieldset {
+  max-width: 350px;
+  width: 100%;
 }
 
 .helperText {
@@ -101,7 +136,7 @@ pre {
 
 .form label {
   display: block;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.25rem;
   font-size: 1.2rem;
 }
 
@@ -111,16 +146,21 @@ pre {
 
 .form input,
 .form select,
-.form textarea {
-  font-size: 2rem;
-  padding: 0.5rem 1rem;
+.form textarea,
+.form .tagId {
+  font-size: 1.5rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 0.5rem;
   border: 2px solid rgba(165, 165, 165, 0.5);
-  width: 30rem;
+  width: 100%;
   outline: none;
   font-family: 'Nunito', -apple-system, Roboto, Ubuntu, Helvetica Neue, sans-serif;
   font-weight: 800;
   transition: all 400ms ease-out;
+}
+
+.form .tagId {
+  border-color: transparent;
 }
 
 .form textarea {
@@ -142,11 +182,13 @@ pre {
 }
 
 .cta {
-  font-size: 1.75rem;
-  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  padding: 0.75rem 2rem;
   border-radius: 0.5rem;
   outline: 0;
-  background: transparent;
+  border: 2px solid transparent;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
   cursor: pointer;
   transition: all 400ms ease-out;
 }
@@ -170,5 +212,5 @@ h2 {
 }
 
 h3 {
-  letter-spacing: -0.2em;
+  letter-spacing: -0.02em;
 }

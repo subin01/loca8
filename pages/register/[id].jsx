@@ -3,17 +3,21 @@ import Head from 'next/head'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import User from 'components/User'
+import RegisterForm from 'components/RegisterForm'
 
 import styles from 'styles/Home.module.scss'
 import { useRouter } from 'next/router'
 // import { useAuthState } from 'react-firebase-hooks/auth'
 // import { firebase } from 'firebase'
-// import { useAuth } from 'contexts/AuthContext'
+import { useAuth } from 'contexts/AuthContext'
+import { getUser } from 'fire'
 
 export default function Register() {
   const router = useRouter()
   const id = router.query.id
-  // const { user, loading, signout } = useAuth()
+  const { currentUser } = useAuth()
+  const [user, loadingUser, errorUser] = getUser(currentUser?.uid)
+
   return (
     <>
       <Head>
@@ -41,47 +45,12 @@ export default function Register() {
           )}
           <hr></hr>
 
-          <div>
-            <h2>Step 1: Create an account</h2>
+          <div className="box">
+            <h2>Step 1: Sign in</h2>
             {/* <div style={{ overflow: 'hidden', maxWidth: '50rem' }}>Logged in as: {JSON.stringify(user)}</div> */}
-
             <User />
-
-            <h2>Step 2: Add some details</h2>
-            <p>So we can contact you in case of a lost & found situation. This will NOT leave our system!</p>
-            <form className="form">
-              {!id && (
-                <fieldset>
-                  <label htmlFor="tag">Tag ID:</label>
-                  <input id="tag" value={id}></input>
-                </fieldset>
-              )}
-              <fieldset>
-                <label htmlFor="mobile">Mobile</label>
-                <input id="mobile" type="tel"></input>
-              </fieldset>
-              <fieldset>
-                <label htmlFor="email">Email</label>
-                <input id="email" type="email"></input>
-              </fieldset>
-              <fieldset>
-                <label htmlFor="name">
-                  Your name <span>(optional)</span>
-                </label>
-                <input id="name"></input>
-              </fieldset>
-              <fieldset>
-                <label htmlFor="notes">
-                  Notes <span>(optional)</span>
-                </label>
-                <input id="notes"></input>
-                <span className="helperText">Example: My second set of keys for apartment</span>
-              </fieldset>
-              <button type="submit" className="cta">
-                Save Details
-              </button>
-            </form>
           </div>
+          <RegisterForm tid={id} user={user} />
         </main>
         <Footer></Footer>
       </div>

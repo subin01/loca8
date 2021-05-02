@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getUser, signOut, createGameProfile } from 'fire'
+import { getUser, signOut, createUserProfile } from 'fire'
 import { firebase, useAuth } from 'contexts/AuthContext'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import Link from 'next/link'
@@ -54,7 +54,7 @@ export default function User() {
     if (!currentUser) {
       return (
         <div>
-          <h1>Please sign in!</h1>
+          <h3>Please sign in!</h3>
           <p>Use one of the Sign in methods</p>
           <hr />
           <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
@@ -63,12 +63,14 @@ export default function User() {
     }
     return (
       <div>
-        <h1>Welcome! </h1>
-        <button onClick={(e) => handleLogout(e)}>Logout</button>
-        <p>{firebase.auth().currentUser?.email} You are now signed-in!</p>
+        <p>
+          You are now signed-in with {firebase.auth().currentUser?.email}{' '}
+          <button onClick={(e) => handleLogout(e)}>Sign out</button>
+        </p>
+
         {loadingUser && (
           <Loading>
-            <h1>Loading Your Profile...</h1>
+            <h3>Loading Your Profile...</h3>
           </Loading>
         )}
       </div>
@@ -79,55 +81,32 @@ export default function User() {
     if (loadingUser) {
       return (
         <Loading>
-          <h1>Loading Your Profile...</h1>
+          <h3>Loading Your Profile...</h3>
         </Loading>
       )
     }
     if (errorUser) {
       return (
         <Loading>
-          <h1>Error Loading Your Profile, Please try again...</h1>
+          <h3>Error Loading Your Profile, Please try again...</h3>
         </Loading>
       )
     }
     if (!user) {
       return (
         <Card className="profile-not-found">
-          <h1>Game Profile not found!</h1>
-          <p>We cannot save your new game or fetch your past games without a Game Profile</p>
+          <hr></hr>
+          <h3>Loca8 Profile not found!</h3>
+          {/* <pre>{JSON.stringify(currentUser)}</pre> */}
+
+          <p>We cannot save your details without a profile</p>
           <br></br>
-          <button className="cta" onClick={() => createGameProfile(user.displayName)}>
+          <button
+            className="cta"
+            onClick={() => createUserProfile({ displayName: currentUser.displayName, email: currentUser.email })}
+          >
             Create a Profile
           </button>
-          <hr></hr>
-          <h3>What happened to my last profile?</h3>
-          <p>If you were using social media login then...</p>
-          <ul>
-            <li>Make sure you are using the same one as last time, and</li>
-            <li>Same account as last time</li>
-          </ul>
-          <p>If you were using an anonymous login then...</p>
-          <ul>
-            <li>You're in a new device or browser, or</li>
-            <li>You logged out from your session, or</li>
-            <li>Your session is timed out</li>
-          </ul>
-        </Card>
-      )
-    }
-    if (user) {
-      return (
-        <Card>
-          <h1>Your Profile is ready!</h1>
-          <br />
-          <div className="actions">
-            <Link href="/game" className="cta">
-              Start Playing!
-            </Link>
-            <Link href="/profile">View Profile</Link>
-            &bull;
-            <Link href="/">Homepage</Link>
-          </div>
         </Card>
       )
     }

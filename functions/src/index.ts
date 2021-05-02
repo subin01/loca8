@@ -1,9 +1,6 @@
-import * as functions from "firebase-functions";
+import * as functions from 'firebase-functions'
+import { createUserProfile, updateUserProfile } from './clientFunctions'
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+// Client Invoked functions
+exports.createUserProfile = functions.region('asia-south1').https.onCall(createUserProfile)
+exports.updateUserProfile = functions.region('asia-south1').https.onCall(updateUserProfile)

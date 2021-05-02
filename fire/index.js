@@ -27,7 +27,6 @@ const firestore = firebase.firestore()
 // }
 
 const usersRef = firestore.collection('users')
-const matchRef = firestore.collection('match')
 let USER_UID = null // 'bm6Hg4vWy0YO93KeuUeSXN0Gr4J2';
 
 firebase.auth().onAuthStateChanged((user) => {
@@ -38,43 +37,22 @@ firebase.auth().onAuthStateChanged((user) => {
   }
 })
 
-const createGameProfileAPI = functions.httpsCallable('createGameProfile')
-const createGameProfile = async (displayName) => createGameProfileAPI({ displayName })
-
-const joinWaitingRoomAPI = functions.httpsCallable('joinWaitingRoom')
-const joinWaitingRoom = async (matchId, matchType, multiplier) => joinWaitingRoomAPI({ matchId, matchType, multiplier })
-
-const chooseTossAPI = functions.httpsCallable('chooseToss')
-const chooseToss = async (gameroomId, team) => chooseTossAPI({ gameroomId, team })
-
-const syncTeamSelectionAPI = functions.httpsCallable('syncTeamSelection')
-const syncTeamSelection = async (gameroomId, selectedPlayer, teamId, timer) =>
-  syncTeamSelectionAPI({ gameroomId, selectedPlayer, teamId, timer })
-
-const syncTimerAPI = functions.httpsCallable('syncTimer')
-const syncTimer = async (gameroomId, timer) => syncTimerAPI({ gameroomId, timer })
-
-async function markHistoryAsSeen(USER_UID) {
-  try {
-    const res = await usersRef.doc(USER_UID).set({ gameHistoryToBeSeen: null }, { merge: true })
-    console.log('Marked the History as see: ', res)
-  } catch (err) {
-    console.log(err)
-  }
+const createUserProfileAPI = functions.httpsCallable('createUserProfile')
+const createUserProfile = async (data) => {
+  console.log('!!createUserProfile', data.displayName)
+  createUserProfileAPI(data)
 }
+
+const updateUserProfileAPI = functions.httpsCallable('updateUserProfile')
+const updateUserProfile = async (data) => updateUserProfileAPI(data)
 
 async function signOut(USER_UID) {
   console.log('signOut', USER_UID)
   try {
-    // const res = await usersRef.doc(USER_UID).set({ gameroomId: null }, { merge: true })
     console.log('signOut: ', res)
   } catch (err) {
     console.log(err)
   }
-}
-
-const getMatches = () => {
-  return useCollectionData(matchRef)
 }
 
 function getUser(USER_UID) {
@@ -82,23 +60,4 @@ function getUser(USER_UID) {
   return useDocumentData(firestore.doc(`users/${USER_UID}`))
 }
 
-function getGameroom(gameroomId) {
-  // console.log('getGameroom id:', gameroomId);
-  return useDocumentData(firestore.doc(`gameRooms/${gameroomId}`))
-}
-
-export {
-  app,
-  firebase,
-  auth,
-  createGameProfile,
-  getUser,
-  getMatches,
-  getGameroom,
-  joinWaitingRoom,
-  syncTeamSelection,
-  syncTimer,
-  markHistoryAsSeen,
-  signOut,
-  chooseToss,
-}
+export { app, firebase, auth, createUserProfile, updateUserProfile, getUser, signOut }
