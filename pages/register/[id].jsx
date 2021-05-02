@@ -2,17 +2,18 @@ import Head from 'next/head'
 
 import Header from 'components/Header'
 import Footer from 'components/Footer'
+import User from 'components/User'
 
 import styles from 'styles/Home.module.scss'
 import { useRouter } from 'next/router'
 // import { useAuthState } from 'react-firebase-hooks/auth'
-import { firebase } from 'firebase'
-import { useAuth } from 'contexts/AuthContext'
+// import { firebase } from 'firebase'
+// import { useAuth } from 'contexts/AuthContext'
 
 export default function Register() {
   const router = useRouter()
   const id = router.query.id
-  const { user, loading, signout } = useAuth()
+  // const { user, loading, signout } = useAuth()
   return (
     <>
       <Head>
@@ -42,7 +43,9 @@ export default function Register() {
 
           <div>
             <h2>Step 1: Create an account</h2>
-            <div style={{ overflow: 'hidden', maxWidth: '50rem' }}>Logged in as: {JSON.stringify(user.email)}</div>
+            {/* <div style={{ overflow: 'hidden', maxWidth: '50rem' }}>Logged in as: {JSON.stringify(user)}</div> */}
+
+            <User />
 
             <h2>Step 2: Add some details</h2>
             <p>So we can contact you in case of a lost & found situation. This will NOT leave our system!</p>
