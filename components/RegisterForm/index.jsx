@@ -15,7 +15,8 @@ export default function RegisterForm({ tid = '', user }) {
     const { displayName, newTag, phone, tags } = data
     setDisabled(true)
     console.log('Edit Profile ', data)
-    const response = await updateUserProfile({ displayName, newTag, phone, tags })
+    const email = user?.email || ''
+    const response = await updateUserProfile({ email, displayName, newTag, phone, tags })
     console.log('Edit Profile submit', response.data, response.data.error)
 
     // setTimeout(() => {
@@ -56,8 +57,8 @@ export default function RegisterForm({ tid = '', user }) {
           ></input>
           <span className="inline-error">
             {errors?.displayName?.type === 'required' && 'Name is required'}
-            {errors?.displayName?.type === 'minLength' && 'Name is required'}
-            {errors?.displayName?.type === 'maxLength' && 'Name is required to be under 20 chars'}
+            {errors?.displayName?.type === 'minLength' && 'Name is required, min 3 characters'}
+            {errors?.displayName?.type === 'maxLength' && 'Name is required to be under 20 characters'}
           </span>
         </fieldset>
         <br></br>
@@ -67,7 +68,6 @@ export default function RegisterForm({ tid = '', user }) {
           return (
             <div className="inline" key={tag.tid}>
               <fieldset>
-                <label htmlFor="tag">Tag ID:</label>
                 <span className="tagId">{tag.tid}</span>
               </fieldset>
               <fieldset className="note">
@@ -76,7 +76,6 @@ export default function RegisterForm({ tid = '', user }) {
                   defaultValue={tag.tid}
                   {...register(`${fieldName}.tid`, { required: true })}
                 ></input>
-                <label htmlFor="notes">Notes:</label>
                 <input
                   id="notes"
                   defaultValue={tag.notes}

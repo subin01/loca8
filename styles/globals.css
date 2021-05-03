@@ -32,7 +32,7 @@ a {
 
 .box {
   width: 100%;
-  padding: 0.5rem 2rem 1rem 2rem;
+  padding: 1.5rem 2rem 1rem 2rem;
   margin-bottom: 2rem;
   /* border: 1px solid rgba(0, 0, 0, 0.5); */
   box-shadow: 0 0 0.5rem 0.25rem rgba(0, 0, 0, 0.05);
@@ -40,6 +40,7 @@ a {
 }
 
 .box h2 {
+  padding-bottom: 0.5rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -208,7 +209,8 @@ h1 {
 
 h2 {
   letter-spacing: -0.03em;
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0 0 1rem 0;
 }
 
 h3 {
