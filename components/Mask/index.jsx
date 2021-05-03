@@ -1,6 +1,6 @@
 import React from 'react'
-// import styles from './index.scss'
+import styles from '@components/Mask/index.module.scss'
 
 export default function Mask({ children }) {
-  return <div className="mask">{children}</div>
+  return <div className={styles.mask}>{children}</div>
 }

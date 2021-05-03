@@ -8,7 +8,7 @@ export default function Header() {
         <div className={styles.inner}>
           <Link href="/">
             <a className={styles.logo}>
-              <img src="/loca8-logo.png" alt="Loca8 Logo" width={200} height={80} />
+              <img src="/loca8-logo.png" alt="Loca8 Logo" width={100} height={40} />
             </a>
           </Link>
 
@@ -19,7 +19,7 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/register/0">
+              <Link href="/register/12345678">
                 <a>Register</a>
               </Link>
             </li>

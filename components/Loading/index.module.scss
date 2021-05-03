@@ -1,0 +1,10 @@
+.loading {
+  background: white;
+  // border: 1px solid gray;
+  min-height: 50vh;
+  width: var(--grid-width);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 5rem 0.25rem rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
