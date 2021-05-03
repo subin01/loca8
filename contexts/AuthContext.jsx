@@ -29,7 +29,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState()
-  const [loading, setMask] = useState(false)
+  const [loading, setLoading] = useState(true)
 
   function logout() {
     return auth.signOut()
@@ -50,7 +50,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = auth?.onAuthStateChanged((user) => {
       setCurrentUser(user)
-      // setMask(false)
+      setLoading(false)
     })
 
     return unsubscribe

@@ -28,6 +28,11 @@ export default function Header() {
                 <a>About</a>
               </Link>
             </li>
+            <li>
+              <Link href="/profile/">
+                <a>Account</a>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
