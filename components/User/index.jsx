@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { firebase, getUser, createUserProfile } from 'db'
+import { firebase, GetUser, createUserProfile } from 'db'
 import { useAuth } from 'contexts/AuthContext'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import Loading from '@components/Loading'
@@ -28,7 +28,7 @@ export default function User() {
 
   const USER_UID = currentUser?.uid
   console.log('USER_UID', USER_UID)
-  const [user, loadingUser, errorUser] = getUser(USER_UID)
+  const [user, loadingUser, errorUser] = GetUser(USER_UID)
 
   async function handleLogout(e) {
     e.preventDefault()

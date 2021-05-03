@@ -10,13 +10,14 @@ import { useRouter } from 'next/router'
 // import { useAuthState } from 'react-firebase-hooks/auth'
 // import { firebase } from 'db'
 import { useAuth } from 'contexts/AuthContext'
-import { getUser } from 'db'
+import { GetUser } from 'db'
 
 export default function Register() {
   const router = useRouter()
   const id = router.query.id
   const { currentUser } = useAuth()
-  const [user, loadingUser, errorUser] = getUser(currentUser?.uid)
+  // TODO: Replcae GetUser with callable
+  const [user, loadingUser, errorUser] = GetUser(currentUser?.uid)
 
   return (
     <>

@@ -2,7 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/functions'
-import { useCollectionData, useDocumentData } from 'react-firebase-hooks/firestore'
+import { useDocumentData } from 'react-firebase-hooks/firestore'
 
 let app, auth
 if (!firebase.apps.length) {
@@ -34,9 +34,9 @@ const createUserProfile = async (data) => {
 const updateUserProfileAPI = functions.httpsCallable('updateUserProfile')
 const updateUserProfile = async (data) => updateUserProfileAPI(data)
 
-function getUser(USER_UID) {
-  // console.log('getUser id:', USER_UID);
+function GetUser(USER_UID) {
+  // console.log('GetUser id:', USER_UID);
   return useDocumentData(firestore.doc(`users/${USER_UID}`))
 }
 
-export { firebase, createUserProfile, updateUserProfile, getUser }
+export { firebase, createUserProfile, updateUserProfile, GetUser }

@@ -8,7 +8,7 @@ export default function RegisterForm({ tid = '', user }) {
     handleSubmit,
     formState: { errors },
   } = useForm()
-  // console.log('ERRPRS', errors)
+  console.log('ERRORS', errors)
   const [disabled, setDisabled] = useState(false)
 
   const onSubmit = async (data) => {
