@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { updateUserProfile } from 'fire'
+import { updateUserProfile } from 'db'
 
 export default function RegisterForm({ tid = '', user }) {
   const {

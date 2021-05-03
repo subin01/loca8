@@ -1,25 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import firebase from 'firebase/app'
-import 'firebase/firestore'
-import 'firebase/auth'
-import 'firebase/functions'
-
-let app, auth
-if (!firebase.apps.length) {
-  app = firebase.initializeApp({
-    apiKey: 'AIzaSyAmkO_iB6iyitJerKu4L_88VpALwi3r2oE',
-    authDomain: 'loca8me.firebaseapp.com',
-    projectId: 'loca8me',
-    storageBucket: 'loca8me.appspot.com',
-    messagingSenderId: '977760864834',
-    appId: '1:977760864834:web:a7ad767300509a31b3bbdb',
-  })
-  auth = app.auth()
-}
-
-export { auth, firebase }
-
-const functions = firebase.app().functions('asia-south1')
+import { firebase } from 'db'
 
 const AuthContext = React.createContext()
 
@@ -32,11 +12,11 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
 
   function logout() {
-    return auth.signOut()
+    return firebase.auth().signOut()
   }
 
   function resetPassword(email) {
-    return auth.sendPasswordResetEmail(email)
+    return firebase.auth().sendPasswordResetEmail(email)
   }
 
   function updateEmail(email) {
@@ -48,7 +28,7 @@ export function AuthProvider({ children }) {
   }
 
   useEffect(() => {
-    const unsubscribe = auth?.onAuthStateChanged((user) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       setCurrentUser(user)
       setLoading(false)
     })

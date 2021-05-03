@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { getUser, signOut, createUserProfile } from 'fire'
-import { firebase, useAuth } from 'contexts/AuthContext'
+import { firebase, getUser, createUserProfile } from 'db'
+import { useAuth } from 'contexts/AuthContext'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
-import Link from 'next/link'
-import Loading from 'components/Loading'
-import Card from 'components/Card'
+import Loading from '@components/Loading'
+import Card from '@components/Card'
 // import './index.scss'
 
 // Configure FirebaseUI.
 const uiConfig = {
-  // Popup signin flow rather than redirect flow.
   signInFlow: 'popup',
-  // We will display Google and Facebook as auth providers.
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
     // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
@@ -32,14 +29,6 @@ export default function User() {
   const USER_UID = currentUser?.uid
   console.log('USER_UID', USER_UID)
   const [user, loadingUser, errorUser] = getUser(USER_UID)
-
-  // // Listen to the Firebase Auth state and set the local state.
-  // useEffect(() => {
-  //   const unsubscribe = firebase.auth().onAuthStateChanged((currUser) => {
-  //     // setCurrentUser(currUser)
-  //   })
-  //   return () => unsubscribe() // Make sure we un-register Firebase observers when the component unmounts.
-  // }, [])
 
   async function handleLogout(e) {
     e.preventDefault()
@@ -98,7 +87,6 @@ export default function User() {
           <hr></hr>
           <h3>Loca8 Profile not found!</h3>
           {/* <pre>{JSON.stringify(currentUser)}</pre> */}
-
           <p>We cannot save your details without a profile</p>
           <br></br>
           <button

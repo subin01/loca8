@@ -1,16 +1,16 @@
 import Head from 'next/head'
 
-import Header from 'components/Header'
-import Footer from 'components/Footer'
-import User from 'components/User'
-import RegisterForm from 'components/RegisterForm'
+import Header from '@components/Header'
+import Footer from '@components/Footer'
+import User from '@components/User'
+import RegisterForm from '@components/RegisterForm'
 
 import styles from 'styles/Home.module.scss'
 import { useRouter } from 'next/router'
 // import { useAuthState } from 'react-firebase-hooks/auth'
-// import { firebase } from 'firebase'
+// import { firebase } from 'db'
 import { useAuth } from 'contexts/AuthContext'
-import { getUser } from 'fire'
+import { getUser } from 'db'
 
 export default function Register() {
   const router = useRouter()

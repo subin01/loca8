@@ -14,7 +14,6 @@ if (!firebase.apps.length) {
     messagingSenderId: '977760864834',
     appId: '1:977760864834:web:a7ad767300509a31b3bbdb',
   })
-  auth = app.auth()
 }
 
 const functions = firebase.app().functions('asia-south1')
@@ -26,17 +25,6 @@ const firestore = firebase.firestore()
 //   firestore.useEmulator('localhost', 9090);
 // }
 
-const usersRef = firestore.collection('users')
-let USER_UID = null // 'bm6Hg4vWy0YO93KeuUeSXN0Gr4J2';
-
-firebase.auth().onAuthStateChanged((user) => {
-  if (user) {
-    USER_UID = user.uid
-  } else {
-    return null
-  }
-})
-
 const createUserProfileAPI = functions.httpsCallable('createUserProfile')
 const createUserProfile = async (data) => {
   console.log('!!createUserProfile', data.displayName)
@@ -46,18 +34,9 @@ const createUserProfile = async (data) => {
 const updateUserProfileAPI = functions.httpsCallable('updateUserProfile')
 const updateUserProfile = async (data) => updateUserProfileAPI(data)
 
-async function signOut(USER_UID) {
-  console.log('signOut', USER_UID)
-  try {
-    console.log('signOut: ', res)
-  } catch (err) {
-    console.log(err)
-  }
-}
-
 function getUser(USER_UID) {
   // console.log('getUser id:', USER_UID);
   return useDocumentData(firestore.doc(`users/${USER_UID}`))
 }
 
-export { app, firebase, auth, createUserProfile, updateUserProfile, getUser, signOut }
+export { firebase, createUserProfile, updateUserProfile, getUser }
