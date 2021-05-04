@@ -72,26 +72,38 @@ async function activateTag(
   uid: string
 ): Promise<{ error: boolean; message: string; errorField?: string }> {
   try {
-    const tagsRef = db.collection('tags').doc(tid)
+    const tagsRef = db.collection('tags').doc(tid.trim())
     const tdoc = await tagsRef.get()
 
     if (!tdoc.exists) {
-      functions.logger.log('Invalid Tag TID: ', tid)
+      functions.logger.log(`Invalid Tag TID: --${tid}--`)
       return { error: true, message: 'Invalid Tag!', errorField: 'tid' }
     }
 
-    const keysRef = db.collection('keys').doc(key)
+    const tagData = tdoc.data()
+    const tagStatus = tagData?.status || ''
+    const tagUid = tagData?.uid || ''
+
+    if (tagStatus === TAG_STATUS_REGISTERED) {
+      functions.logger.log('Tag already active: ', tagData)
+      if (tagUid === uid) {
+        return { error: true, message: 'Tag already registered to this Profile!', errorField: 'tid' }
+      }
+      return { error: true, message: 'Tag already in use!', errorField: 'tid' }
+    }
+
+    const keysRef = db.collection('keys').doc(key.trim())
     const kdoc = await keysRef.get()
 
     if (!kdoc.exists) {
-      functions.logger.log('Invalid Activation Key: ', key)
+      functions.logger.log(`Invalid Activation Key: --${key}--`)
       return { error: true, message: 'Invalid Activation Key!', errorField: 'key' }
     }
 
-    const tagsData = { status: TAG_STATUS_REGISTERED, uid, key }
+    const updatedTagsData = { status: TAG_STATUS_REGISTERED, uid, key }
 
     const res = await db.runTransaction(async (transaction) => {
-      transaction.set(tagsRef, tagsData, { merge: true })
+      transaction.set(tagsRef, updatedTagsData, { merge: true })
       transaction.delete(keysRef)
     })
 
