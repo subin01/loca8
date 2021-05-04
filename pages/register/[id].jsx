@@ -21,17 +21,7 @@ export default function Register() {
 
   return (
     <>
-      <Head>
-        <title>Loca8 | Locate the owner</title>
-        <meta name="description" content="Locate the owner" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,700;1,300&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-
+      <Head></Head>
       <Header></Header>
 
       <div className={styles.container}>
