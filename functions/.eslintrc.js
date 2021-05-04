@@ -28,5 +28,6 @@ module.exports = {
     'max-len': ['error', { code: 120 }],
     'require-jsdoc': ['off', {}],
     'valid-jsdoc': ['off', {}],
+    indent: ['error', 2],
   },
 }
