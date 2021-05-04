@@ -38,14 +38,14 @@ export default function RegisterForm({ tid = '', user }) {
       if (profileRes.data.activation.errorField === 'key') {
         setError('newTag.key', {
           type: 'invalid',
-          message: 'Invalid Activation Key!',
+          message: profileRes.data.activation.message,
         })
       }
 
       if (profileRes.data.activation.errorField === 'tid') {
         setError('newTag.tid', {
           type: 'invalid',
-          message: 'Invalid Tag ID!',
+          message: profileRes.data.activation.message,
         })
       }
     } else {
@@ -135,7 +135,7 @@ export default function RegisterForm({ tid = '', user }) {
           <p>So we can contact you in case of a lost & found situation. This will NOT leave our system!</p>
 
           {response?.activation?.error && (
-            <div className="message">Oops! There was some problem with the Tag details, Please check</div>
+            <div className="message">Sorry, There was some problem! Please check the details and try again!</div>
           )}
 
           <div className="inline">
@@ -190,7 +190,7 @@ export default function RegisterForm({ tid = '', user }) {
           <h3>You have successfully activated your new Tag</h3>
           <hr></hr>
           <h2>All your registered Tags</h2>
-          <div className="form">
+          <div className="form tag-list">
             {user?.tags?.map((tag, i) => {
               const fieldName = `tags[${i}]`
               return (
@@ -220,11 +220,11 @@ export default function RegisterForm({ tid = '', user }) {
                 </div>
               )
             })}
-            <hr></hr>
-            <Link href="/">
-              <a className="cta">Go to home page</a>
-            </Link>
           </div>
+          <hr></hr>
+          <Link href="/">
+            <a className="cta">Go to home page</a>
+          </Link>
         </Loading>
       )}
     </div>
