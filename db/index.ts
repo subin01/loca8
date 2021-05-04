@@ -24,17 +24,35 @@ const firestore = firebase.firestore()
 //   auth.useEmulator('http://localhost:9099/');
 //   firestore.useEmulator('localhost', 9090);
 // }
-
+interface UserProfile {
+  displayName: string
+  email: string
+}
 const createUserProfileAPI = functions.httpsCallable('createUserProfile')
-const createUserProfile = async (data) => {
-  console.log('!!createUserProfile', data.displayName)
-  createUserProfileAPI(data)
+const createUserProfile = async (data: UserProfile) => createUserProfileAPI(data)
+
+interface Tag {
+  tid: string
+  notes: string
 }
 
+interface NewTag {
+  key: string
+  code: string
+  notes: string
+}
+interface UpdateProfile {
+  displayName: string
+  email: string
+  phone: number
+  tags: [Tag]
+  newTag: NewTag
+}
 const updateUserProfileAPI = functions.httpsCallable('updateUserProfile')
-const updateUserProfile = async (data) => updateUserProfileAPI(data)
+const updateUserProfile = async (data: UpdateProfile) => updateUserProfileAPI(data)
 
-function GetUser(USER_UID) {
+// TODO: Replace with callable
+function GetUser(USER_UID: string) {
   // console.log('GetUser id:', USER_UID);
   return useDocumentData(firestore.doc(`users/${USER_UID}`))
 }
