@@ -35,10 +35,17 @@ export default function RegisterForm({ tid = '', user }) {
       setResponse(profileRes.data)
       setIsSubmitting(false)
 
-      if (profileRes.data.activation.error) {
-        setError('newTag.code', {
+      if (profileRes.data.activation.errorField === 'key') {
+        setError('newTag.key', {
           type: 'invalid',
-          message: 'Invalid Activation Code!',
+          message: 'Invalid Activation Key!',
+        })
+      }
+
+      if (profileRes.data.activation.errorField === 'tid') {
+        setError('newTag.tid', {
+          type: 'invalid',
+          message: 'Invalid Tag ID!',
         })
       }
     } else {
@@ -127,7 +134,9 @@ export default function RegisterForm({ tid = '', user }) {
           <h2>Step 3: New Tag details</h2>
           <p>So we can contact you in case of a lost & found situation. This will NOT leave our system!</p>
 
-          {response?.activation?.error && <div className="message">{response.activation.message}</div>}
+          {response?.activation?.error && (
+            <div className="message">Oops! There was some problem with the Tag details, Please check</div>
+          )}
 
           <div className="inline">
             <fieldset>
@@ -145,16 +154,16 @@ export default function RegisterForm({ tid = '', user }) {
               </span>
             </fieldset>
             <fieldset>
-              <label htmlFor="code">Activation Code:</label>
+              <label htmlFor="key">Activation Key:</label>
               <input
-                id="code"
-                {...register('newTag.code', {
-                  required: { value: true, message: 'Activation code is required' },
-                  minLength: { value: 4, message: 'Activation code format is incorrect!' },
+                id="key"
+                {...register('newTag.key', {
+                  required: { value: true, message: 'Activation key is required' },
+                  minLength: { value: 4, message: 'Activation key format is incorrect!' },
                 })}
               ></input>
               <span className="inline-error">
-                <ErrorMessage errors={errors} name="newTag.code" />
+                <ErrorMessage errors={errors} name="newTag.key" />
               </span>
             </fieldset>
           </div>
