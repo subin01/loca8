@@ -189,12 +189,15 @@ export async function updateUserProfile(data: any, context: any) {
 }
 
 /**
- * validateTag
+ * verifyTag
  * Check if the Tag ID  provided is valid or not
  * If valid, Show if there's any public message associated to it.
  * @param tid
  */
-export async function validateTag(tid: string): Promise<{ error: boolean; message: string; errorType?: string }> {
+export async function verifyTag(data: any, context: any) {
+  const tid = data?.tid
+  if (!tid) return { error: true, message: 'Invalid Tag ID!', errorType: TAG_INVALID }
+
   try {
     const tagsRef = db.collection('tags').doc(tid.trim())
     const tdoc = await tagsRef.get()
