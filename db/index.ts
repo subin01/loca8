@@ -4,6 +4,8 @@ import 'firebase/auth'
 import 'firebase/functions'
 import { useDocumentData } from 'react-firebase-hooks/firestore'
 
+import constants from './constants'
+
 let app, auth
 if (!firebase.apps.length) {
   app = firebase.initializeApp({
@@ -51,10 +53,13 @@ interface UpdateProfile {
 const updateUserProfileAPI = functions.httpsCallable('updateUserProfile')
 const updateUserProfile = async (data: UpdateProfile) => updateUserProfileAPI(data)
 
+const verifyTagAPI = functions.httpsCallable('verifyTag')
+const verifyTag = async (tid: string) => verifyTagAPI(tid)
+
 // TODO: Replace with callable
 function GetUser(USER_UID: string) {
   // console.log('GetUser id:', USER_UID);
   return useDocumentData(firestore.doc(`users/${USER_UID}`))
 }
 
-export { firebase, createUserProfile, updateUserProfile, GetUser }
+export { firebase, createUserProfile, updateUserProfile, verifyTag, GetUser, constants }

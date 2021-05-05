@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { firebase, GetUser, createUserProfile } from 'db'
 import { useAuth } from 'contexts/AuthContext'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
-import Loading from '@components/Loading'
+import LoadingInline from '@components/LoadingInline'
 import Card from '@components/Card'
 // import './index.scss'
 
@@ -51,16 +51,16 @@ export default function User() {
       )
     }
     return (
-      <div>
+      <div className="loadingContainer">
         <p>
           You are now signed-in with {firebase.auth().currentUser?.email}{' '}
           <button onClick={(e) => handleLogout(e)}>Sign out</button>
         </p>
 
         {loadingUser && (
-          <Loading>
-            <h3>Loading Your Profile...</h3>
-          </Loading>
+          <LoadingInline>
+            <span>Loading Your Profile...</span>
+          </LoadingInline>
         )}
       </div>
     )
@@ -69,16 +69,16 @@ export default function User() {
   const renderProfile = () => {
     if (loadingUser) {
       return (
-        <Loading>
-          <h3>Loading Your Profile...</h3>
-        </Loading>
+        <LoadingInline>
+          <span>Verifying Your Sign-In...</span>
+        </LoadingInline>
       )
     }
     if (errorUser) {
       return (
-        <Loading>
-          <h3>Error Loading Your Profile, Please try again...</h3>
-        </Loading>
+        <LoadingInline>
+          <span>Error Loading Your Profile, Please try again...</span>
+        </LoadingInline>
       )
     }
     if (!user) {
@@ -102,7 +102,7 @@ export default function User() {
 
   return (
     <div className="">
-      <section className="user-profile">
+      <section className="loadingContainer">
         {renderLogin()}
         {currentUser && renderProfile()}
       </section>

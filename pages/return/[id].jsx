@@ -2,6 +2,8 @@ import Head from 'next/head'
 
 import Header from '@components/Header'
 import Footer from '@components/Footer'
+import ReturnForm from '@components/ReturnForm'
+import VerifyTagForm from '@components/VerifyTagForm'
 
 import styles from 'styles/Home.module.scss'
 import { useRouter } from 'next/router'
@@ -27,41 +29,8 @@ export default function Return() {
           )}
           <hr></hr>
 
-          <div>
-            <h2>Just provide your details to reach you.</h2>
-            <h3></h3>
-            <form className="form">
-              {!id && (
-                <fieldset>
-                  <label htmlFor="tag">Tag ID:</label>
-                  <input id="tag" value={id}></input>
-                </fieldset>
-              )}
-              <fieldset>
-                <label htmlFor="mobile">Phone/Mobile</label>
-                <input id="mobile" type="tel"></input>
-              </fieldset>
-              <fieldset>
-                <label htmlFor="email">Email</label>
-                <input id="email" type="email"></input>
-              </fieldset>
-              <fieldset>
-                <label htmlFor="name">
-                  Your name <span>(optional)</span>
-                </label>
-                <input id="name"></input>
-              </fieldset>
-              <fieldset>
-                <label htmlFor="notes">
-                  Notes <span>(optional)</span>
-                </label>
-                <textarea id="notes"></textarea>
-              </fieldset>
-              <button type="submit" className="cta">
-                Notify the Owner
-              </button>
-            </form>
-          </div>
+          <VerifyTagForm tid={id} />
+          {/* <ReturnForm tid={id} /> */}
         </main>
         <Footer></Footer>
       </div>

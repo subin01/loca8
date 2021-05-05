@@ -14,7 +14,7 @@ export default function Header() {
 
           <ul className={styles.links}>
             <li>
-              <Link href="/return/0">
+              <Link href="/return/12345678">
                 <a>Return</a>
               </Link>
             </li>
