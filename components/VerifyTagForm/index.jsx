@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { updateUserProfile, verifyTag, constants } from 'db'
+import { verifyTag, constants } from 'db'
 import Link from 'next/link'
 import { ErrorMessage } from '@hookform/error-message'
 
@@ -15,8 +15,9 @@ export default function VerifyTagForm({ tid = '' }) {
   } = useForm({ mode: 'onChange' })
 
   console.log('ERRORS', errors)
+  const [tagNumber, setTagNumber] = useState(tid)
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isVarified, setIsVarified] = useState(false)
+  const [isVerified, setIsVerified] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [response, setResponse] = useState({})
 
@@ -36,11 +37,15 @@ export default function VerifyTagForm({ tid = '' }) {
   // }, [tid])
 
   const onSubmit = async (data) => {
-    const { displayName, newTag, phone, tags, email } = data
+    const { tagid } = data
     setIsSubmitting(true)
+    setTagNumber(tagid)
+
+    console.log('tagid', tagid)
 
     // // Call DB API
-    const tagRes = await verifyTag(tid)
+    // const tagRes = await verifyTag(tid)
+    const tagRes = await verifyTag({ tid: tagid })
     // const tagRes = await updateUserProfile(tid)
     console.log('checkTag', tagRes.data, tagRes.data.error)
 
@@ -54,10 +59,14 @@ export default function VerifyTagForm({ tid = '' }) {
 
       if (tagRes.data.errorType === constants.TAG_INVALID) {
         console.log('Invalid Tag, Please double check!')
+        setError('tagid', {
+          type: 'invalid',
+          message: 'Invalid Tag, Please try again',
+        })
       }
     } else {
       setTimeout(() => {
-        setIsSuccess(true)
+        // setIsSuccess(true)
       }, 500)
     }
   }
@@ -74,24 +83,88 @@ export default function VerifyTagForm({ tid = '' }) {
 
           <div className="inline">
             <fieldset>
-              <label htmlFor="newTag.tid">Tag ID:</label>
+              <label htmlFor="tagid">Tag ID:</label>
               <input
-                id="newTag.tid"
+                id="tagid"
                 defaultValue={tid}
-                {...register('newTag.tid', {
+                {...register('tagid', {
                   required: { value: true, message: 'Tag ID is required!' },
                   minLength: { value: 6, message: 'Tag ID format is incorrect!' },
                 })}
               ></input>
               <span className="inline-error">
-                <ErrorMessage errors={errors} name="newTag.tid" />
+                <ErrorMessage errors={errors} name="tagid" />
               </span>
             </fieldset>
 
             <button type="submit" className="cta" disabled={isSubmitting}>
-              {isSubmitting ? 'Saving Details...' : 'Varify'}
+              {isSubmitting ? 'Verifying...' : 'Verify'}
             </button>
           </div>
+          {response.error && response.errorType === constants.TAG_STATUS_UNREGISTERED && (
+            <div>
+              <hr></hr>
+              <h3>This is an unregistered Tag, Do you want to register?</h3>
+              <p>Note: You would need an Activation Key, to complete the process </p>
+              <div className="buttons-container">
+                <Link href={`/register/${tagNumber}`}>
+                  <a className="cta">Continue to Registration</a>
+                </Link>
+              </div>
+            </div>
+          )}
+          {!response.error && (
+            <div>
+              <hr></hr>
+              <h2>Awesome! Let's add some details</h2>
+              <fieldset>
+                <label htmlFor="tagid">Your name:</label>
+                <input
+                  id="name"
+                  defaultValue={''}
+                  {...register('name', {
+                    required: { value: true, message: 'Tag ID is required!' },
+                    minLength: { value: 6, message: 'Tag ID format is incorrect!' },
+                  })}
+                ></input>
+                <span className="inline-error">
+                  <ErrorMessage errors={errors} name="name" />
+                </span>
+              </fieldset>
+              <fieldset>
+                <label htmlFor="tagid">Phone:</label>
+                <input
+                  id="phone"
+                  defaultValue={''}
+                  {...register('phone', {
+                    required: { value: true, message: 'Tag ID is required!' },
+                    minLength: { value: 6, message: 'Tag ID format is incorrect!' },
+                  })}
+                ></input>
+                <span className="inline-error">
+                  <ErrorMessage errors={errors} name="phone" />
+                </span>
+              </fieldset>
+              <fieldset>
+                <label htmlFor="tagid">Message:</label>
+                <input
+                  id="message"
+                  defaultValue={''}
+                  {...register('message', {
+                    required: { value: true, message: 'Tag ID is required!' },
+                    minLength: { value: 6, message: 'Tag ID format is incorrect!' },
+                  })}
+                ></input>
+                <span className="inline-error">
+                  <ErrorMessage errors={errors} name="message" />
+                </span>
+              </fieldset>
+
+              <div className="buttons-container">
+                <a className="cta">Notify the Owner</a> (NOTE: Won't work now)
+              </div>
+            </div>
+          )}
         </div>
       </form>
 

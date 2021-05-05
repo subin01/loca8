@@ -53,8 +53,11 @@ interface UpdateProfile {
 const updateUserProfileAPI = functions.httpsCallable('updateUserProfile')
 const updateUserProfile = async (data: UpdateProfile) => updateUserProfileAPI(data)
 
+interface ValidateTag {
+  tid: string
+}
 const verifyTagAPI = functions.httpsCallable('verifyTag')
-const verifyTag = async (tid: string) => verifyTagAPI(tid)
+const verifyTag = async (data: ValidateTag) => verifyTagAPI(data)
 
 // TODO: Replace with callable
 function GetUser(USER_UID: string) {
