@@ -1,7 +1,10 @@
 import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
 
+const SERVER_ERROR = 'server_error'
+const TAG_INVALID = 'invalid'
 const TAG_STATUS_REGISTERED = 'registered'
+const TAG_STATUS_UNREGISTERED = 'unregistered'
 
 !admin.apps.length ? admin.initializeApp() : admin.app()
 const db = admin.firestore()
@@ -182,5 +185,36 @@ export async function updateUserProfile(data: any, context: any) {
   } catch (err) {
     functions.logger.log(err)
     return profileError()
+  }
+}
+
+/**
+ * validateTag
+ * Check if the Tag ID  provided is valid or not
+ * If valid, Show if there's any public message associated to it.
+ * @param tid
+ */
+export async function validateTag(tid: string): Promise<{ error: boolean; message: string; errorType?: string }> {
+  try {
+    const tagsRef = db.collection('tags').doc(tid.trim())
+    const tdoc = await tagsRef.get()
+
+    if (!tdoc.exists) {
+      functions.logger.log(`Invalid Tag TID: --${tid}--`)
+      return { error: true, message: 'Invalid Tag!', errorType: TAG_INVALID }
+    }
+
+    const tagData = tdoc.data()
+    const tagStatus = tagData?.status || ''
+    const tagMessage = tagData?.message || ''
+
+    if (tagStatus !== TAG_STATUS_REGISTERED) {
+      return { error: true, message: 'Unregistered Tag!', errorType: TAG_STATUS_UNREGISTERED }
+    }
+    // Valid Tag!
+    return { error: false, message: tagMessage }
+  } catch (err) {
+    functions.logger.log(err)
+    return { error: true, message: err, errorType: SERVER_ERROR }
   }
 }
