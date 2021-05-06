@@ -24,122 +24,55 @@ export default function ReturnForm({ tid = '' }) {
     const { displayName, newTag, phone, tags, email } = data
     setIsSubmitting(true)
     console.log('Edit Profile ', data)
-
-    // // Call DB API
-    // const profileRes = await updateUserProfile({ email, displayName, newTag, phone, tags })
-    // console.log('Edit Profile submit', profileRes.data, profileRes.data.error)
-
-    // if (profileRes.data.error || profileRes.data.activation.error) {
-    //   setResponse(profileRes.data)
-    //   setIsSubmitting(false)
-
-    //   if (profileRes.data.activation.errorField === 'key') {
-    //     setError('newTag.key', {
-    //       type: 'invalid',
-    //       message: profileRes.data.activation.message,
-    //     })
-    //   }
-
-    //   if (profileRes.data.activation.errorField === 'tid') {
-    //     setError('newTag.tid', {
-    //       type: 'invalid',
-    //       message: profileRes.data.activation.message,
-    //     })
-    //   }
-    // } else {
-    //   setTimeout(() => {
-    //     setIsSuccess(true)
-    //   }, 500)
-    // }
   }
 
   return (
-    <div className="form-wrap">
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="box">
-          <h2>Please verify tag details</h2>
+    <div className="box">
+      <div className="form-wrap">
+        <form className="form">
+          {!response.error && (
+            <>
+              <h2>Let's add some details</h2>
+              <fieldset>
+                <label htmlFor="name">Your name:</label>
+                <input
+                  id="name"
+                  defaultValue={''}
+                  {...register('name', {
+                    required: { value: true, message: 'Name is required!' },
+                    minLength: { value: 6, message: 'Name format is incorrect!' },
+                  })}
+                ></input>
+                <span className="inline-error">
+                  <ErrorMessage errors={errors} name="name" />
+                </span>
+              </fieldset>
+              <fieldset>
+                <label htmlFor="phone">Phone:</label>
+                <input
+                  id="phone"
+                  defaultValue={''}
+                  {...register('phone', {
+                    required: { value: true, message: 'phone is required!' },
+                    minLength: { value: 6, message: 'phone format is incorrect!' },
+                  })}
+                ></input>
+                <span className="inline-error">
+                  <ErrorMessage errors={errors} name="phone" />
+                </span>
+              </fieldset>
+              <fieldset>
+                <label htmlFor="message">Message:</label>
+                <input id="message" defaultValue={''} {...register('message', {})}></input>
+              </fieldset>
 
-          {response?.activation?.error && (
-            <div className="message">Sorry, There was some problem! Please check the details and try again!</div>
+              <div className="buttons-container">
+                <a className="cta">Notify the Owner</a> (NOTE: Won't work now)
+              </div>
+            </>
           )}
-
-          <div className="inline">
-            <fieldset>
-              <label htmlFor="newTag.tid">Tag ID:</label>
-              <input
-                id="newTag.tid"
-                defaultValue={tid}
-                {...register('newTag.tid', {
-                  required: { value: true, message: 'Tag ID is required!' },
-                  minLength: { value: 6, message: 'Tag ID format is incorrect!' },
-                })}
-              ></input>
-              <span className="inline-error">
-                <ErrorMessage errors={errors} name="newTag.tid" />
-              </span>
-            </fieldset>
-          </div>
-        </div>
-
-        {isVarified && (
-          <div className="box">
-            <h2>Your Details</h2>
-            <p>Please add some details for the owner to contact you.</p>
-            <fieldset>
-              <label htmlFor="phone">
-                Mobile <span>(without country code, 10 digits)</span>
-              </label>
-              <input
-                id="phone"
-                type="tel"
-                defaultValue=""
-                {...register('phone', {
-                  required: { value: true, message: 'Mobile number is required!' },
-                  pattern: { value: /^[789]\d{9}$/, message: 'Mobile number format is incorrect!' },
-                })}
-              ></input>
-              <span className="inline-error">
-                <ErrorMessage errors={errors} name="phone" />
-              </span>
-            </fieldset>
-            {/* <fieldset>
-          <label htmlFor="email">Email</label>
-          <input id="email" type="email" defaultValue={user?.email}></input>
-        </fieldset> */}
-            <fieldset>
-              <label htmlFor="displayName">Your name</label>
-              <input
-                id="displayName"
-                defaultValue=""
-                {...register('displayName', {
-                  required: { value: true, message: 'Name is required!' },
-                  minLength: { value: 3, message: 'Name is required, min 3 characters!' },
-                  maxLength: { value: 20, message: 'Name is required to be under 20 characters!' },
-                })}
-              ></input>
-              <span className="inline-error">
-                <ErrorMessage errors={errors} name="displayName" />
-              </span>
-            </fieldset>
-
-            <fieldset className="note">
-              <label htmlFor="newTag.notes">
-                Notes: <span>(Example: My apartment keys)</span>
-              </label>
-              <input id="newTag.notes" {...register('newTag.notes', { required: true, minLength: 3 })}></input>
-              <span className="inline-error">
-                {errors?.newTag?.notes?.type === 'required' && 'Notes is required!'}
-                {errors?.newTag?.notes?.type === 'minLength' && 'Notes is required!'}
-              </span>
-            </fieldset>
-          </div>
-        )}
-
-        <button type="submit" className="cta" disabled={isSubmitting}>
-          {isSubmitting ? 'Saving Details...' : 'Notify the Owner'}
-        </button>
-      </form>
-
+        </form>
+      </div>
       {isSuccess && (
         <Loading>
           <h1>Congratulations!</h1>

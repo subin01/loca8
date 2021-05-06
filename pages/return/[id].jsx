@@ -2,8 +2,7 @@ import Head from 'next/head'
 
 import Header from '@components/Header'
 import Footer from '@components/Footer'
-import ReturnForm from '@components/ReturnForm'
-import VerifyTagForm from '@components/VerifyTagForm'
+import ReturnFlow from '@components/ReturnFlow'
 
 import styles from 'styles/Home.module.scss'
 import { useRouter } from 'next/router'
@@ -28,9 +27,7 @@ export default function Return() {
             </div>
           )}
           <hr></hr>
-
-          <VerifyTagForm tid={id} />
-          {/* <ReturnForm tid={id} /> */}
+          <ReturnFlow tid={id} />
         </main>
         <Footer></Footer>
       </div>

@@ -4,7 +4,7 @@ import 'firebase/auth'
 import 'firebase/functions'
 import { useDocumentData } from 'react-firebase-hooks/firestore'
 
-import constants from './constants'
+import { TagID, ITagVerifyResponse } from 'types'
 
 let app, auth
 if (!firebase.apps.length) {
@@ -34,7 +34,7 @@ const createUserProfileAPI = functions.httpsCallable('createUserProfile')
 const createUserProfile = async (data: UserProfile) => createUserProfileAPI(data)
 
 interface Tag {
-  tid: string
+  tid: TagID
   notes: string
 }
 
@@ -54,7 +54,7 @@ const updateUserProfileAPI = functions.httpsCallable('updateUserProfile')
 const updateUserProfile = async (data: UpdateProfile) => updateUserProfileAPI(data)
 
 interface ValidateTag {
-  tid: string
+  tid: TagID
 }
 const verifyTagAPI = functions.httpsCallable('verifyTag')
 const verifyTag = async (data: ValidateTag) => verifyTagAPI(data)
@@ -65,4 +65,4 @@ function GetUser(USER_UID: string) {
   return useDocumentData(firestore.doc(`users/${USER_UID}`))
 }
 
-export { firebase, createUserProfile, updateUserProfile, verifyTag, GetUser, constants }
+export { firebase, createUserProfile, updateUserProfile, verifyTag, GetUser }
