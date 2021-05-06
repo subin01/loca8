@@ -5,17 +5,17 @@ import Link from 'next/link'
 import { ErrorMessage } from '@hookform/error-message'
 import LoadingInline from '@components/LoadingInline'
 import TagID from '@components/TagID'
-import { ITagID, ITagVerifyResponse, TAG_INVALID, TAG_STATUS_UNREGISTERED } from 'types'
+import { iTagID, iTagVerifyResponse, TAG_INVALID, TAG_STATUS_UNREGISTERED } from 'types'
 import { validateTagFormat } from 'utils'
 
 interface IProps {
-  tid: ITagID
-  updateTid(tid: ITagID): void
+  tid: iTagID
+  updateTid(tid: iTagID): void
   updateStep(step: number): void
 }
 
 interface IForm {
-  tagId: ITagID
+  tagId: iTagID
 }
 
 export default function VerifyTagForm({ tid = '', updateTid, updateStep }: IProps) {
@@ -28,7 +28,7 @@ export default function VerifyTagForm({ tid = '', updateTid, updateStep }: IProp
   } = useForm<IForm>({ mode: 'onChange' })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [verifyRes, setVerifyRes] = useState<ITagVerifyResponse>({})
+  const [verifyRes, setVerifyRes] = useState<iTagVerifyResponse>({})
 
   const onSubmit = async (data: IForm) => {
     const { tagId } = data
@@ -38,18 +38,18 @@ export default function VerifyTagForm({ tid = '', updateTid, updateStep }: IProp
     updateTid(tagId)
 
     // Call DB API
-    const tagRes = await verifyTag({ tid: tagId })
+    const serverRes = await verifyTag({ tid: tagId })
 
-    setVerifyRes(tagRes?.data || {})
+    setVerifyRes(serverRes?.data || {})
     setIsSubmitting(false)
 
-    if (tagRes.data.error && tagRes.data.errorType === TAG_INVALID) {
+    if (serverRes.data.error && serverRes.data.errorType === TAG_INVALID) {
       console.log('InvalidTAG')
       setError('tagId', {
         type: 'invalid',
         message: 'Invalid Tag ID, Please check the Tag ID!',
       })
-    } else if (tagRes.data.error === false) {
+    } else if (serverRes.data.error === false) {
       updateStep(2)
     }
   }

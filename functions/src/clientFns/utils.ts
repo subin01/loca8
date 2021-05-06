@@ -1,4 +1,5 @@
-import { iTagID } from 'types'
+/* eslint-disable no-unused-vars */
+import { iTagID } from '../../../types'
 
 export function validateTagFormat(tid: iTagID) {
   const t = tid.trim()

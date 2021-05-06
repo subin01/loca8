@@ -4,7 +4,7 @@ import 'firebase/auth'
 import 'firebase/functions'
 import { useDocumentData } from 'react-firebase-hooks/firestore'
 
-import { TagID, ITagVerifyResponse } from 'types'
+import { iTagID, iReturnForm } from 'types'
 
 let app, auth
 if (!firebase.apps.length) {
@@ -34,7 +34,7 @@ const createUserProfileAPI = functions.httpsCallable('createUserProfile')
 const createUserProfile = async (data: UserProfile) => createUserProfileAPI(data)
 
 interface Tag {
-  tid: TagID
+  tid: iTagID
   notes: string
 }
 
@@ -43,7 +43,7 @@ interface NewTag {
   code: string
   notes: string
 }
-interface UpdateProfile {
+interface IUpdateProfile {
   displayName: string
   email: string
   phone: number
@@ -51,13 +51,21 @@ interface UpdateProfile {
   newTag: NewTag
 }
 const updateUserProfileAPI = functions.httpsCallable('updateUserProfile')
-const updateUserProfile = async (data: UpdateProfile) => updateUserProfileAPI(data)
+const updateUserProfile = async (data: IUpdateProfile) => updateUserProfileAPI(data)
 
-interface ValidateTag {
-  tid: TagID
+/* Validate if the Tag exist, registered */
+interface IVerifyTag {
+  tid: iTagID
 }
 const verifyTagAPI = functions.httpsCallable('verifyTag')
-const verifyTag = async (data: ValidateTag) => verifyTagAPI(data)
+const verifyTag = async (data: IVerifyTag) => verifyTagAPI(data)
+
+/* Validate if the Tag exist, registered */
+interface iNotifyOwner extends iReturnForm {
+  tid: iTagID
+}
+const notifyOwnerAPI = functions.httpsCallable('notifyOwner')
+const notifyOwner = async (data: iNotifyOwner) => notifyOwnerAPI(data)
 
 // TODO: Replace with callable
 function GetUser(USER_UID: string) {
@@ -65,4 +73,4 @@ function GetUser(USER_UID: string) {
   return useDocumentData(firestore.doc(`users/${USER_UID}`))
 }
 
-export { firebase, createUserProfile, updateUserProfile, verifyTag, GetUser }
+export { firebase, createUserProfile, updateUserProfile, verifyTag, notifyOwner, GetUser }

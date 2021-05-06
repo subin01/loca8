@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import VerifyTagForm from '@components/VerifyTagForm'
 import ReturnForm from '@components/ReturnForm'
-import { ITagID } from 'types'
+import { iTagID } from 'types'
 
 interface IProps {
-  id: ITagID
+  id: iTagID
 }
 
 export default function ReturnFlow({ id }: IProps) {
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(2)
   const [tid, setTid] = useState(id)
   return (
     <>

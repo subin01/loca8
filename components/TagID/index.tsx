@@ -1,10 +1,10 @@
 import { ErrorMessage } from '@hookform/error-message'
 
-import { ITagID } from 'types'
+import { iTagID } from 'types'
 import { validateTagFormat } from 'utils'
 
 interface IProps {
-  tid: ITagID
+  tid: iTagID
   errors: {}
   register: {}
 }
