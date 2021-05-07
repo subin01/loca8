@@ -132,6 +132,8 @@ export default function ReturnForm({ tid }: IProps) {
           <Link href="/about">
             <a className="cta">Yes, Show me options</a>
           </Link>
+          <br></br>
+          <br></br>
           <Link href="/">
             <a>No, am good!</a>
           </Link>
