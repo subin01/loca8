@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { ErrorMessage } from '@hookform/error-message'
 
 import { iTagID } from 'types'

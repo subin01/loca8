@@ -1,10 +1,7 @@
+/* eslint-disable no-unused-vars */
 import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
-
-const SERVER_ERROR = 'server_error'
-const TAG_INVALID = 'invalid'
-const TAG_STATUS_REGISTERED = 'registered'
-const TAG_STATUS_UNREGISTERED = 'unregistered'
+import { SERVER_ERROR, TAG_INVALID, TAG_STATUS_REGISTERED, TAG_STATUS_UNREGISTERED } from './global_constants'
 
 !admin.apps.length ? admin.initializeApp() : admin.app()
 const db = admin.firestore()

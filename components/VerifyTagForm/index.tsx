@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react'
+// @ts-nocheck
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { verifyTag } from 'db'
 import Link from 'next/link'
 import { ErrorMessage } from '@hookform/error-message'
 import LoadingInline from '@components/LoadingInline'
 import TagID from '@components/TagID'
-import { iTagID, iTagVerifyResponse, TAG_INVALID, TAG_STATUS_UNREGISTERED } from 'types'
+import { iTagID, iTagVerifyResponse } from 'types'
+import { TAG_INVALID, TAG_STATUS_UNREGISTERED } from 'global_constants'
 import { validateTagFormat } from 'utils'
 
 interface IProps {

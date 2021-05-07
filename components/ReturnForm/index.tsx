@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
@@ -5,16 +6,15 @@ import { ErrorMessage } from '@hookform/error-message'
 
 import { notifyOwner, verifyTag } from 'db'
 import { iTagID, iReturnForm } from 'types'
-import { TAG_INVALID, TAG_STATUS_UNREGISTERED } from 'constants'
+import { TAG_INVALID, TAG_STATUS_UNREGISTERED } from 'global_constants'
 import Loading from '@components/Loading'
 
 interface IProps {
   tid: iTagID
-  updateTid(tid: iTagID): void
   updateStep(step: number): void
 }
 
-export default function ReturnForm({ tid = '' }: IProps) {
+export default function ReturnForm({ tid }: IProps) {
   const {
     register,
     handleSubmit,
@@ -27,13 +27,13 @@ export default function ReturnForm({ tid = '' }: IProps) {
   const [notifyRes, setNotifyRes] = useState({})
 
   const onSubmit = async (data: iReturnForm) => {
-    console.log('Edit Profile ', data)
+    console.log('Edit Profile ', tid, data)
     const { name, phone, email, message } = data
     setNotifyRes({}) // clear previous res
     setIsSubmitting(true)
 
     // Call DB API
-    const serverRes = await notifyOwner({ tid: '111111111', name, phone, email, message })
+    const serverRes = await notifyOwner({ tid, name, phone, email, message })
 
     // const serverRes = await verifyTag({ tid })
 
@@ -120,14 +120,20 @@ export default function ReturnForm({ tid = '' }: IProps) {
       </div>
       {notifyRes.error === false && (
         <Loading>
-          <h1>Congratulations!</h1>
-          <h3>You have successfully activated your new Tag</h3>
+          <h1>All Done!</h1>
+          <h3>We've notified the owner</h3>
           <hr></hr>
-          <h2>All your registered Tags</h2>
-          <div className="form tag-list"></div>
+          <p>
+            Thank your your honesty, we've shared your contact information. Please keep a check on your phone for a call
+            or message
+          </p>
           <hr></hr>
+          <h3>Are you interested in getting Loca8 Tag for yourself?</h3>
+          <Link href="/about">
+            <a className="cta">Yes, Show me options</a>
+          </Link>
           <Link href="/">
-            <a className="cta">Go to home page</a>
+            <a>No, am good!</a>
           </Link>
         </Loading>
       )}

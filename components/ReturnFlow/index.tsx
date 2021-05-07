@@ -13,7 +13,7 @@ export default function ReturnFlow({ id }: IProps) {
   return (
     <>
       {step > 0 && <VerifyTagForm tid={tid} updateStep={setStep} updateTid={setTid} />}
-      {step > 1 && <ReturnForm tid={tid} />}
+      {step > 1 && <ReturnForm tid={tid} updateStep={setStep} />}
     </>
   )
 }

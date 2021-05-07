@@ -27,7 +27,7 @@ export default function Return() {
             </div>
           )}
           <hr></hr>
-          <ReturnFlow tid={id} />
+          <ReturnFlow id={id} />
         </main>
         <Footer></Footer>
       </div>

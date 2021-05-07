@@ -64,7 +64,7 @@ const verifyTag = async (data: IVerifyTag) => verifyTagAPI(data)
 interface iNotifyOwner extends iReturnForm {
   tid: iTagID
 }
-const notifyOwnerAPI = functions.httpsCallable('notifyOwner')
+const notifyOwnerAPI = functions.httpsCallable('notifyTagOwner')
 const notifyOwner = async (data: iNotifyOwner) => notifyOwnerAPI(data)
 
 // TODO: Replace with callable
