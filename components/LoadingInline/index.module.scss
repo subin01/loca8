@@ -6,22 +6,19 @@
   bottom: 0;
   z-index: 9;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   background: var(--color-bg-default);
-  // background: yellow;
-  .icon {
-    // background: url(loading-dot.svg) no-repeat;
-  }
-  span {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #e15b64;
-    padding-top: 0.5rem;
-  }
 
   svg {
     height: 2rem;
     width: 2rem;
+  }
+
+  .with-loader {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #e15b64;
+    padding-top: 0.5rem;
   }
 }

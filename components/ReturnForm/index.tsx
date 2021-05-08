@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 import { ErrorMessage } from '@hookform/error-message'
+import LoadingInline from '@components/LoadingInline'
 
 import { notifyOwner, verifyTag } from 'db'
 import { iTagID, iReturnForm } from 'types'
@@ -54,7 +55,7 @@ export default function ReturnForm({ tid }: IProps) {
   }
 
   return (
-    <div className="box">
+    <div className="box loadingContainer">
       <div className="form-wrap">
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
           <h2>Please add your details</h2>
@@ -117,28 +118,29 @@ export default function ReturnForm({ tid }: IProps) {
             </button>
           </div>
         </form>
+        {isSubmitting && <LoadingInline>Hold on! Notifying the Owner...</LoadingInline>}
+        {notifyRes.error === false && (
+          <LoadingInline showLoader={false}>
+            <h1>All Done!</h1>
+            <hr></hr>
+            <h3>We've notified the owner</h3>
+            <p>
+              Thank your your honesty, we've shared your contact information. Please keep a check on your phone for a
+              call or message
+            </p>
+            <hr></hr>
+            <h3>Are you interested in getting Loca8 Tag for yourself?</h3>
+            <Link href="/about">
+              <a className="cta">Yes, Show me options</a>
+            </Link>
+            <br></br>
+            <br></br>
+            <Link href="/">
+              <a>No, am good!</a>
+            </Link>
+          </LoadingInline>
+        )}
       </div>
-      {notifyRes.error === false && (
-        <Loading>
-          <h1>All Done!</h1>
-          <h3>We've notified the owner</h3>
-          <hr></hr>
-          <p>
-            Thank your your honesty, we've shared your contact information. Please keep a check on your phone for a call
-            or message
-          </p>
-          <hr></hr>
-          <h3>Are you interested in getting Loca8 Tag for yourself?</h3>
-          <Link href="/about">
-            <a className="cta">Yes, Show me options</a>
-          </Link>
-          <br></br>
-          <br></br>
-          <Link href="/">
-            <a>No, am good!</a>
-          </Link>
-        </Loading>
-      )}
     </div>
   )
 }

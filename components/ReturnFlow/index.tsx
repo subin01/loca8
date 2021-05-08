@@ -8,7 +8,7 @@ interface IProps {
 }
 
 export default function ReturnFlow({ id }: IProps) {
-  const [step, setStep] = useState(1)
+  const [step, setStep] = useState(2)
   const [tid, setTid] = useState(id)
   return (
     <>

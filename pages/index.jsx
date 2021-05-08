@@ -18,7 +18,11 @@ export default function Home() {
       <div className={styles.container}>
         <main>
           <h1 className={styles.title}>Welcome!</h1>
-
+          <h3>
+            <Link href="http://localhost:3000/x/12345678">
+              <a>Test</a>
+            </Link>
+          </h3>
           <div className={styles.grid}>
             <Link href="/register/1234567">
               <a className={styles.card}>

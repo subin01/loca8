@@ -3,12 +3,10 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { verifyTag } from 'db'
 import Link from 'next/link'
-import { ErrorMessage } from '@hookform/error-message'
 import LoadingInline from '@components/LoadingInline'
 import TagID from '@components/TagID'
 import { iTagID, iTagVerifyResponse } from 'types'
 import { TAG_INVALID, TAG_STATUS_UNREGISTERED } from 'global_constants'
-import { validateTagFormat } from 'utils'
 
 interface IProps {
   tid: iTagID
@@ -57,9 +55,9 @@ export default function VerifyTagForm({ tid = '', updateTid, updateStep }: IProp
   }
 
   return (
-    <div className="form-wrap">
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="box">
+    <div className="box">
+      <div className="form-wrap">
+        <form className="form" onSubmit={handleSubmit(onSubmit)}>
           <h2>Please verify tag details</h2>
           <div className="inline loadingContainer">
             <TagID tid={tid} register={register} errors={errors}></TagID>
@@ -69,13 +67,16 @@ export default function VerifyTagForm({ tid = '', updateTid, updateStep }: IProp
             {isSubmitting && <LoadingInline>Verifying Tag details...</LoadingInline>}
           </div>
 
-          {!verifyRes.error && verifyRes.message && (
+          {!verifyRes === {} && !verifyRes.error && <h2>Let's return this to the owner!</h2>}
+          {!verifyRes === {} && !verifyRes.error && verifyRes.message && (
             <div>
-              <h2>Here's some message from the owner</h2>"{verifyRes.message}"
+              <h4>Here's some message from the owner</h4>
+              <div>"{verifyRes.message}"</div>
             </div>
           )}
-        </div>
-      </form>
+        </form>
+      </div>
+
       {verifyRes.errorType === TAG_STATUS_UNREGISTERED && (
         <div className="box">
           <h3>This is an unregistered Tag, Do you want to register?</h3>
