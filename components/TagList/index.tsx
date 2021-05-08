@@ -4,7 +4,7 @@ interface IProps {
   tags: [{ tid: iTagID; notes: string }]
 }
 
-export default function TagList({ tags, errors, register }: IProps) {
+export default function TagList({ tags }: IProps) {
   return (
     <div className="form tag-list">
       <h2>All your registered Tags</h2>
