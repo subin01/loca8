@@ -219,9 +219,9 @@ pre {
 
 .cta {
   font-family: var(--font-family-default);
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: bold;
-  padding: 0.75rem 2rem;
+  padding: 0.5rem 1.5rem;
   max-height: 4rem;
   border-radius: 0.5rem;
   outline: 0;
@@ -270,4 +270,27 @@ h3 {
 
 .loadingContainer {
   position: relative;
+}
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table tr {
+  border: 1px solid #ddd;
+  border-left: 0;
+  border-right: 0;
+}
+
+table th {
+  text-align: left;
+  padding: 0.5rem 0;
+  font-size: 1.2rem;
+}
+
+table td {
+  padding: 0.5rem 0;
+  font-size: 1.2rem;
 }

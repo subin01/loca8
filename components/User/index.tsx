@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from 'react'
 import { firebase, GetUser, createUserProfile } from 'db'
 import { useAuth } from 'contexts/AuthContext'
@@ -10,8 +11,8 @@ const uiConfig = {
   signInFlow: 'popup',
   signInOptions: [
     firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    // firebase.auth.EmailAuthProvider.PROVIDER_ID,
     // firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID,
   ],
   // credentialHelper: firebaseui.auth.CredentialHelper.GOOGLE_YOLO,
@@ -55,10 +56,21 @@ export default function User({ updateStep }: IProps) {
     }
     return (
       <div className="loadingContainer">
-        <p>
-          You are now signed-in with {firebase.auth().currentUser?.email}{' '}
-          <button onClick={(e) => handleLogout(e)}>Sign out</button>
-        </p>
+        <div>
+          <span>
+            {user?.displayName && (
+              <strong>
+                Welcome {user?.displayName}!
+                <br />
+              </strong>
+            )}
+            You are now signed-in as {firebase.auth().currentUser?.email}
+          </span>
+          &nbsp; &nbsp;
+          <button className="cta" onClick={(e) => handleLogout(e)}>
+            Sign out
+          </button>
+        </div>
 
         {loadingUser && (
           <LoadingInline>

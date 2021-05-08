@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useAuth } from 'contexts/AuthContext'
 import { useRouter } from 'next/router'
 
@@ -11,7 +10,7 @@ const withAuth = (WrappedComponent) => {
       const { currentUser } = useAuth()
       // If there is no access token we redirect to "Login" page.
       if (!currentUser) {
-        Router.replace('/login')
+        Router.replace('/')
         return <h1>Loading...</h1>
       }
 

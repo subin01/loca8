@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import styles from './Header.module.scss'
+import { useAuth } from 'contexts/AuthContext'
 
 export default function Header() {
   return (
@@ -19,12 +20,12 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/about/">
+              <Link href="/about">
                 <a>About</a>
               </Link>
             </li>
             <li>
-              <Link href="/profile/">
+              <Link href="/account">
                 <a>Account</a>
               </Link>
             </li>
