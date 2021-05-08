@@ -20,7 +20,6 @@ export default function TagFlow({ id }: IProps) {
   const [tid, setTid] = useState(id)
   return (
     <>
-      <h2>Step:{step}</h2>
       {step >= 1 && <VerifyTagForm tid={tid} updateStep={setStep} updateTid={setTid} />}
       {step === 2 && <ReturnForm tid={tid} updateStep={setStep} />}
       {step === 3 && <User updateStep={setStep} />}

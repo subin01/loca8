@@ -32,8 +32,9 @@ export default function VerifyTagForm({ tid = '', updateTid, updateStep }: IProp
   console.log('verifyRes', verifyRes)
 
   const onSubmit = async (data: IForm) => {
-    updateStep(1)
     const { tagId } = data
+
+    updateStep(1)
     setVerifyRes(null) // clear previous res
     setIsSubmitting(true)
     setTagNumber(tagId)

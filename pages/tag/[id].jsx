@@ -18,7 +18,8 @@ export default function Return() {
 
       <div className={styles.container}>
         <main>
-          <h1>Tag: {id}</h1>
+          <h1>Return or Register a Tag</h1>
+          <hr></hr>
           <TagFlow id={id} />
         </main>
         <Footer></Footer>
