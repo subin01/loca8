@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { ErrorMessage } from '@hookform/error-message'
 
-import Loading from '@components/Loading'
+import LoadingInline from '@components/LoadingInline'
 
 export default function RegisterForm({ tid = '', user }) {
   const Router = useRouter()
@@ -56,177 +56,180 @@ export default function RegisterForm({ tid = '', user }) {
   }
 
   return (
-    <div className="form-wrap">
-      <form className="form" onSubmit={handleSubmit(onSubmit)}>
-        <div className="box">
-          <h2>Step 2: Your details</h2>
-          <p>So we can contact you in case of a lost & found situation. This will NOT leave our system!</p>
-          <fieldset>
-            <label htmlFor="phone">
-              Mobile <span>(without country code, 10 digits)</span>
-            </label>
-            <input
-              id="phone"
-              type="tel"
-              defaultValue={user?.phone}
-              {...register('phone', {
-                required: { value: true, message: 'Mobile number is required!' },
-                pattern: { value: /^[789]\d{9}$/, message: 'Mobile number format is incorrect!' },
-              })}
-            ></input>
-            <span className="inline-error">
-              <ErrorMessage errors={errors} name="phone" />
-            </span>
-          </fieldset>
-          {/* <fieldset>
-          <label htmlFor="email">Email</label>
-          <input id="email" type="email" defaultValue={user?.email}></input>
-        </fieldset> */}
-          <fieldset>
-            <label htmlFor="displayName">Your name</label>
-            <input
-              id="displayName"
-              defaultValue={user?.displayName}
-              {...register('displayName', {
-                required: { value: true, message: 'Name is required!' },
-                minLength: { value: 3, message: 'Name is required, min 3 characters!' },
-                maxLength: { value: 20, message: 'Name is required to be under 20 characters!' },
-              })}
-            ></input>
-            <span className="inline-error">
-              <ErrorMessage errors={errors} name="displayName" />
-            </span>
-          </fieldset>
-          <br></br>
-          <div style={{ display: 'none' }}>
-            {user?.tags?.length > 0 && <h2>Your existing Tags</h2>}
-            {user?.tags?.map((tag, i) => {
-              const fieldName = `tags[${i}]`
-              return (
-                <div className="inline" key={tag.tid}>
-                  <fieldset>
-                    <span className="tagId">{tag.tid}</span>
-                  </fieldset>
-                  <fieldset className="note">
-                    <input
-                      type="hidden"
-                      defaultValue={tag.tid}
-                      {...register(`${fieldName}.tid`, { required: true })}
-                    ></input>
-                    <input
-                      id="notes"
-                      defaultValue={tag.notes}
-                      {...register(`${fieldName}.notes`, {
-                        required: { value: true, message: 'Note is required!' },
-                        minLength: { value: 3, message: 'Note is required!' },
-                      })}
-                    ></input>
-                    <span className="inline-error">
-                      <ErrorMessage errors={errors} name={`${fieldName}.notes`} />
-                    </span>
-                  </fieldset>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-        <div className="box">
-          <h2>Step 3: New Tag details</h2>
-          <p>So we can contact you in case of a lost & found situation. This will NOT leave our system!</p>
-
-          {response?.activation?.error && (
-            <div className="message">Sorry, There was some problem! Please check the details and try again!</div>
-          )}
-
-          <div className="inline">
+    <div className="box">
+      <div className="form-wrap">
+        <form className="form" onSubmit={handleSubmit(onSubmit)}>
+          <div>
+            <h2>Your details</h2>
+            <p>So we can contact you in case of a lost & found situation. This will NOT leave our system!</p>
             <fieldset>
-              <label htmlFor="newTag.tid">Tag ID:</label>
+              <label htmlFor="phone">
+                Mobile <span>(without country code, 10 digits)</span>
+              </label>
               <input
-                id="newTag.tid"
-                defaultValue={tid}
-                {...register('newTag.tid', {
-                  required: { value: true, message: 'Tag ID is required!' },
-                  minLength: { value: 6, message: 'Tag ID format is incorrect!' },
+                id="phone"
+                type="tel"
+                defaultValue={user?.phone}
+                {...register('phone', {
+                  required: { value: true, message: 'Mobile number is required!' },
+                  pattern: { value: /^[789]\d{9}$/, message: 'Mobile number format is incorrect!' },
                 })}
               ></input>
               <span className="inline-error">
-                <ErrorMessage errors={errors} name="newTag.tid" />
+                <ErrorMessage errors={errors} name="phone" />
               </span>
             </fieldset>
+            {/* <fieldset>
+                <label htmlFor="email">Email</label>
+                <input id="email" type="email" defaultValue={user?.email}></input>
+              </fieldset> */}
             <fieldset>
-              <label htmlFor="key">Activation Key:</label>
+              <label htmlFor="displayName">Your name</label>
               <input
-                id="key"
-                {...register('newTag.key', {
-                  required: { value: true, message: 'Activation key is required' },
-                  minLength: { value: 4, message: 'Activation key format is incorrect!' },
+                id="displayName"
+                defaultValue={user?.displayName}
+                {...register('displayName', {
+                  required: { value: true, message: 'Name is required!' },
+                  minLength: { value: 3, message: 'Name is required, min 3 characters!' },
+                  maxLength: { value: 20, message: 'Name is required to be under 20 characters!' },
                 })}
               ></input>
               <span className="inline-error">
-                <ErrorMessage errors={errors} name="newTag.key" />
+                <ErrorMessage errors={errors} name="displayName" />
+              </span>
+            </fieldset>
+            <br></br>
+            <div style={{ display: 'none' }}>
+              {user?.tags?.length > 0 && <h2>Your existing Tags</h2>}
+              {user?.tags?.map((tag, i) => {
+                const fieldName = `tags[${i}]`
+                return (
+                  <div className="inline" key={tag.tid}>
+                    <fieldset>
+                      <span className="tagId">{tag.tid}</span>
+                    </fieldset>
+                    <fieldset className="note">
+                      <input
+                        type="hidden"
+                        defaultValue={tag.tid}
+                        {...register(`${fieldName}.tid`, { required: true })}
+                      ></input>
+                      <input
+                        id="notes"
+                        defaultValue={tag.notes}
+                        {...register(`${fieldName}.notes`, {
+                          required: { value: true, message: 'Note is required!' },
+                          minLength: { value: 3, message: 'Note is required!' },
+                        })}
+                      ></input>
+                      <span className="inline-error">
+                        <ErrorMessage errors={errors} name={`${fieldName}.notes`} />
+                      </span>
+                    </fieldset>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+          <hr></hr>
+          <div>
+            <h2>New Tag details</h2>
+            <p>So we can contact you in case of a lost & found situation. This will NOT leave our system!</p>
+
+            {response?.activation?.error && (
+              <div className="message">Sorry, There was some problem! Please check the details and try again!</div>
+            )}
+
+            <div className="inline">
+              <fieldset>
+                <label htmlFor="newTag.tid">Tag ID:</label>
+                <input
+                  id="newTag.tid"
+                  defaultValue={tid}
+                  {...register('newTag.tid', {
+                    required: { value: true, message: 'Tag ID is required!' },
+                    minLength: { value: 6, message: 'Tag ID format is incorrect!' },
+                  })}
+                ></input>
+                <span className="inline-error">
+                  <ErrorMessage errors={errors} name="newTag.tid" />
+                </span>
+              </fieldset>
+              <fieldset>
+                <label htmlFor="key">Activation Key:</label>
+                <input
+                  id="key"
+                  {...register('newTag.key', {
+                    required: { value: true, message: 'Activation key is required' },
+                    minLength: { value: 4, message: 'Activation key format is incorrect!' },
+                  })}
+                ></input>
+                <span className="inline-error">
+                  <ErrorMessage errors={errors} name="newTag.key" />
+                </span>
+              </fieldset>
+            </div>
+            <fieldset className="note">
+              <label htmlFor="newTag.notes">
+                Notes: <span>(Example: My apartment keys)</span>
+              </label>
+              <input id="newTag.notes" {...register('newTag.notes', { required: true, minLength: 3 })}></input>
+              <span className="inline-error">
+                {errors?.newTag?.notes?.type === 'required' && 'Notes is required!'}
+                {errors?.newTag?.notes?.type === 'minLength' && 'Notes is required!'}
               </span>
             </fieldset>
           </div>
-          <fieldset className="note">
-            <label htmlFor="newTag.notes">
-              Notes: <span>(Example: My apartment keys)</span>
-            </label>
-            <input id="newTag.notes" {...register('newTag.notes', { required: true, minLength: 3 })}></input>
-            <span className="inline-error">
-              {errors?.newTag?.notes?.type === 'required' && 'Notes is required!'}
-              {errors?.newTag?.notes?.type === 'minLength' && 'Notes is required!'}
-            </span>
-          </fieldset>
-        </div>
 
-        <button type="submit" className="cta" disabled={isSubmitting}>
-          {isSubmitting ? 'Saving Details...' : 'Save Details'}
-        </button>
-      </form>
+          <button type="submit" className="cta" disabled={isSubmitting}>
+            {isSubmitting ? 'Saving Details...' : 'Save Details'}
+          </button>
+        </form>
 
-      {isSuccess && (
-        <Loading>
-          <h1>Congratulations!</h1>
-          <h3>You have successfully activated your new Tag</h3>
-          <hr></hr>
-          <h2>All your registered Tags</h2>
-          <div className="form tag-list">
-            {user?.tags?.map((tag, i) => {
-              const fieldName = `tags[${i}]`
-              return (
-                <div className="inline" key={tag.tid}>
-                  <fieldset>
-                    <span className="tagId">{tag.tid}</span>
-                  </fieldset>
-                  <fieldset className="note">
-                    <input
-                      type="hidden"
-                      defaultValue={tag.tid}
-                      {...register(`${fieldName}.tid`, { required: true })}
-                    ></input>
-                    <input
-                      id="notes"
-                      disabled
-                      defaultValue={tag.notes}
-                      {...register(`${fieldName}.notes`, {
-                        required: { value: true, message: 'Note is required!' },
-                        minLength: { value: 3, message: 'Note is required!' },
-                      })}
-                    ></input>
-                    <span className="inline-error">
-                      <ErrorMessage errors={errors} name={`${fieldName}.notes`} />
-                    </span>
-                  </fieldset>
-                </div>
-              )
-            })}
-          </div>
-          <hr></hr>
-          <Link href="/">
-            <a className="cta">Go to home page</a>
-          </Link>
-        </Loading>
-      )}
+        {isSuccess && (
+          <LoadingInline showLoader={false}>
+            <h1>Congratulations!</h1>
+            <h3>You have successfully activated your new Tag</h3>
+            <hr></hr>
+            <h2>All your registered Tags</h2>
+            <div className="form tag-list">
+              {user?.tags?.map((tag, i) => {
+                const fieldName = `tags[${i}]`
+                return (
+                  <div className="inline" key={tag.tid}>
+                    <fieldset>
+                      <span className="tagId">{tag.tid}</span>
+                    </fieldset>
+                    <fieldset className="note">
+                      <input
+                        type="hidden"
+                        defaultValue={tag.tid}
+                        {...register(`${fieldName}.tid`, { required: true })}
+                      ></input>
+                      <input
+                        id="notes"
+                        disabled
+                        defaultValue={tag.notes}
+                        {...register(`${fieldName}.notes`, {
+                          required: { value: true, message: 'Note is required!' },
+                          minLength: { value: 3, message: 'Note is required!' },
+                        })}
+                      ></input>
+                      <span className="inline-error">
+                        <ErrorMessage errors={errors} name={`${fieldName}.notes`} />
+                      </span>
+                    </fieldset>
+                  </div>
+                )
+              })}
+            </div>
+            <hr></hr>
+            <Link href="/">
+              <a className="cta">Go to home page</a>
+            </Link>
+          </LoadingInline>
+        )}
+      </div>
     </div>
   )
 }

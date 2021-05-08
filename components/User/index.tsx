@@ -3,7 +3,6 @@ import { firebase, GetUser, createUserProfile } from 'db'
 import { useAuth } from 'contexts/AuthContext'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import LoadingInline from '@components/LoadingInline'
-import Card from '@components/Card'
 // import './index.scss'
 
 // Configure FirebaseUI.
@@ -22,7 +21,11 @@ const uiConfig = {
   },
 }
 
-export default function User() {
+interface IProps {
+  updateStep(step: number): void
+}
+
+export default function User({ updateStep }: IProps) {
   // const [currentUser, setCurrentUser] = useState({}) // Local signed-in state.
   const { currentUser, logout, auth } = useAuth()
 
@@ -83,7 +86,7 @@ export default function User() {
     }
     if (!user) {
       return (
-        <Card className="profile-not-found">
+        <div className="profile-not-found">
           <hr></hr>
           <h3>Loca8 Profile not found!</h3>
           {/* <pre>{JSON.stringify(currentUser)}</pre> */}
@@ -95,17 +98,15 @@ export default function User() {
           >
             Create a Profile
           </button>
-        </Card>
+        </div>
       )
     }
   }
 
   return (
-    <div className="">
-      <section className="loadingContainer">
-        {renderLogin()}
-        {currentUser && renderProfile()}
-      </section>
-    </div>
+    <section className="box">
+      {renderLogin()}
+      {currentUser && renderProfile()}
+    </section>
   )
 }
