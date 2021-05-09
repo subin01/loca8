@@ -43,7 +43,7 @@ export default function VerifyTagForm({ tid = '', updateTid, updateStep }: IProp
     // Call DB API
     const serverRes = await verifyTag({ tid: tagId })
 
-    setVerifyRes(serverRes?.data || null)
+    setVerifyRes(serverRes.data || null)
     setIsSubmitting(false)
 
     if (serverRes.data.error && serverRes.data.errorType === TAG_INVALID) {
@@ -61,34 +61,35 @@ export default function VerifyTagForm({ tid = '', updateTid, updateStep }: IProp
   }
 
   return (
-    <div className="box">
+    <section>
+      <h1>
+        Return <i>or</i> <br />
+        Register a Tag
+      </h1>
       <div className="form-wrap loadingContainer">
-        <form className="form" onSubmit={handleSubmit(onSubmit)}>
-          <h2>Please verify tag details</h2>
-          <div className="inline">
-            <TagID tid={tid} register={register} errors={errors}></TagID>
-            <button type="submit" className="cta" disabled={isSubmitting}>
-              {isSubmitting ? 'Verifying...' : 'Verify'}
-            </button>
-          </div>
-
-          {verifyRes !== null && !verifyRes.error && <h2>Let's return this to the owner!</h2>}
-          {verifyRes !== null && !verifyRes.error && verifyRes.message && (
-            <div>
-              <h4>Here's some message from the owner</h4>
-              <div>"{verifyRes.message}"</div>
-            </div>
-          )}
-
-          {verifyRes !== null && verifyRes.errorType === TAG_STATUS_UNREGISTERED && (
-            <div>
-              <h3>This is an unregistered Tag, Do you want to register?</h3>
-              <p>Note: You would need an Activation Key, to complete the process </p>
-            </div>
-          )}
-          {isSubmitting && <LoadingInline>Verifying Tag details...</LoadingInline>}
+        <form className="form  tag-field-with-cta" onSubmit={handleSubmit(onSubmit)}>
+          <TagID tid={tid} register={register} errors={errors}></TagID>
+          <button type="submit" className="cta" disabled={isSubmitting}>
+            {isSubmitting ? 'Verifying...' : 'Verify'}
+          </button>
         </form>
+
+        {verifyRes !== null && !verifyRes.error && <h2>Let's return this to the owner!</h2>}
+        {verifyRes !== null && !verifyRes.error && verifyRes.message && (
+          <div>
+            <h4>Here's some message from the owner</h4>
+            <div>"{verifyRes.message}"</div>
+          </div>
+        )}
+
+        {verifyRes !== null && verifyRes.errorType === TAG_STATUS_UNREGISTERED && (
+          <div>
+            <h3>This is an unregistered Tag, Do you want to register?</h3>
+            <p>Note: You would need an Activation Key, to complete the process </p>
+          </div>
+        )}
+        {isSubmitting && <LoadingInline>Verifying Tag details...</LoadingInline>}
       </div>
-    </div>
+    </section>
   )
 }

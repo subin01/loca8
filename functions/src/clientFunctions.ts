@@ -34,6 +34,7 @@ export async function createUserProfile(data: any, context: any) {
     uid: uid,
     displayName,
     email,
+    tags: [],
   }
 
   try {
@@ -41,7 +42,7 @@ export async function createUserProfile(data: any, context: any) {
     const doc = await usersRef.get()
     if (doc.exists) {
       const userData = doc.data()
-      return profileError(`User profile exists as: ${userData?.displayName}!`)
+      return profileError(`User profile exists with: ${userData?.displayName} - ${userData?.email}!`)
     }
     const newUsersRef = db.collection('users')
     const res = await newUsersRef.doc(uid).set(newUserObj, { merge: true })
@@ -100,7 +101,12 @@ async function activateTag(
       return { error: true, message: 'Invalid Activation Key!', errorField: 'key' }
     }
 
-    const updatedTagsData = { status: TAG_STATUS_REGISTERED, uid, key }
+    const updatedTagsData = {
+      status: TAG_STATUS_REGISTERED,
+      uid,
+      key,
+      activatedOn: admin.firestore.FieldValue.serverTimestamp(),
+    }
 
     const res = await db.runTransaction(async (transaction) => {
       transaction.set(tagsRef, updatedTagsData, { merge: true })
@@ -135,7 +141,7 @@ export async function updateUserProfile(data: any, context: any) {
   const displayName = data?.displayName || 'no name'
   const phone = data?.phone
   const newTag = data?.newTag
-  const tags = data?.tags
+  const tags = data?.tags || []
 
   functions.logger.log(':::::updateProfile::v1:: ', displayName, uid, data)
 
@@ -181,7 +187,7 @@ export async function updateUserProfile(data: any, context: any) {
     }
   } catch (err) {
     functions.logger.log(err)
-    return profileError()
+    return profileError(err)
   }
 }
 

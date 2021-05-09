@@ -7,7 +7,9 @@ import Account from '@components/Account'
 function AccountPage() {
   return (
     <>
-      <Head></Head>
+      <Head>
+        <title>Loca8 | Locate the owner | Your Account</title>
+      </Head>
       <Header></Header>
       <main>
         <Account />

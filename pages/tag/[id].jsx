@@ -4,7 +4,6 @@ import Header from '@components/Header'
 import Footer from '@components/Footer'
 import TagFlow from '@components/TagFlow'
 
-import styles from 'styles/Home.module.scss'
 import { useRouter } from 'next/router'
 
 export default function Return() {
@@ -12,14 +11,14 @@ export default function Return() {
   const id = router.query.id
   return (
     <>
-      <Head></Head>
+      <Head>
+        <title>Loca8 | Locate the owner | Return or Register a Tag</title>
+      </Head>
 
       <Header></Header>
 
-      <div className={styles.container}>
+      <div className="page-tag">
         <main>
-          <h1>Return or Register a Tag</h1>
-          <hr></hr>
           <TagFlow id={id} />
         </main>
         <Footer></Footer>

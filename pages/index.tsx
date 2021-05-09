@@ -7,7 +7,6 @@ import { useRouter } from 'next/router'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
 import TagID from '@components/TagID'
-import styles from 'styles/Home.module.scss'
 import { iTagID } from 'types'
 
 interface IForm {
@@ -36,35 +35,32 @@ export default function Home() {
 
       <Header></Header>
 
-      <div className={styles.container}>
-        <main>
-          <h1 className={styles.title}>Welcome to Loca8!</h1>
-          <hr></hr>
+      <div>
+        <main className="page-home">
+          <section className="hero">
+            <h1>Welcome to Loca8!</h1>
+            <div className="intro">
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun.</p>
+            </div>
+          </section>
+          <form className="form tag-field-with-cta" onSubmit={handleSubmit(onSubmit)}>
+            <TagID tid={''} register={register} errors={errors} />
+            <button className="cta" type="submit">
+              Let's Go!
+            </button>
+          </form>
 
-          <div>
-            <form className="form" onSubmit={handleSubmit(onSubmit)}>
-              <div className="inline">
-                <TagID tid={''} register={register} errors={errors} />
-                &nbsp;
-                <button className="cta" type="submit">
-                  Go!
-                </button>
-              </div>
-            </form>
-          </div>
-          <hr></hr>
-
-          <div className={styles.grid}>
+          <div className="grid">
             <Link href="/faq">
-              <a className={styles.card}>
+              <a className="card">
                 <h2>FAQ &rarr;</h2>
                 <p>Discover and deploy boilerplate example Next.js projects.</p>
               </a>
             </Link>
 
-            <Link href="/about">
-              <a className={styles.card}>
-                <h2>About &rarr;</h2>
+            <Link href="/product">
+              <a className="card">
+                <h2>About the Product &rarr;</h2>
                 <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
               </a>
             </Link>

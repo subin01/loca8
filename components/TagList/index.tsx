@@ -7,23 +7,30 @@ interface IProps {
 export default function TagList({ tags }: IProps) {
   return (
     <div className="form tag-list">
-      <h2>All your registered Tags</h2>
-      <table>
-        <tr>
-          <th>Tag ID</th>
-          <th>Notes</th>
-          {/* <th>Activated On</th> */}
-        </tr>
-        {tags?.map((tag, i) => {
-          return (
-            <tr key={tag.tid}>
-              <td>{tag.tid}</td>
-              <td>{tag.notes}</td>
-              {/* <td>{tag.tid}</td> */}
+      <div className="list-table">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Tag ID</th>
+              <th>Notes</th>
+              {/* <th>Activated On</th> */}
             </tr>
-          )
-        })}
-      </table>
+          </thead>
+          <tbody>
+            {tags?.map((tag, i) => {
+              return (
+                <tr key={tag.tid}>
+                  <td>{i + 1}.</td>
+                  <td>{tag.tid}</td>
+                  <td>{tag.notes}</td>
+                  {/* <td>{tag.tid}</td> */}
+                </tr>
+              )
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }

@@ -6,19 +6,18 @@
   bottom: 0;
   z-index: 9;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background: var(--color-bg-default);
 
   svg {
-    height: 2rem;
-    width: 2rem;
+    height: 3rem;
+    width: 3rem;
   }
 
-  .with-loader {
-    font-size: 1.2rem;
+  .withLoader {
+    font-size: var(--font-l);
     font-weight: bold;
-    color: #e15b64;
     padding-top: 0.5rem;
   }
 }

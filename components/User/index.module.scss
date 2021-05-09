@@ -8,7 +8,7 @@
     padding: var(--spacing-m);
     font-size: var(--font-m);
     color: var(--color-text0);
-    background: var(--color-hilight) !important;
+    background: var(--color-highlight) !important;
     outline: none;
     border-radius: var(--radius-m);
     border: 2px solid var(--color-light-trans2);
@@ -26,7 +26,7 @@
     }
 
     &:hover {
-      border: 2px solid var(--color-hilight);
+      border: 2px solid var(--color-highlight);
     }
   }
 

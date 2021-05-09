@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import styles from './Header.module.scss'
-import { useAuth } from 'contexts/AuthContext'
 
 export default function Header() {
   return (
@@ -9,7 +8,7 @@ export default function Header() {
         <div className={styles.inner}>
           <Link href="/">
             <a className={styles.logo}>
-              <img src="/loca8-logo.png" alt="Loca8 Logo" width={100} height={40} />
+              <img src="/loca8-logo-light.svg" alt="Loca8 Logo" width={100} height={50} />
             </a>
           </Link>
 
@@ -20,8 +19,8 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <Link href="/about">
-                <a>About</a>
+              <Link href="/product">
+                <a>Product</a>
               </Link>
             </li>
             <li>

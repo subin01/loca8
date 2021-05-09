@@ -19,7 +19,7 @@ export default function LoadingInline({ children, showLoader = true }) {
           </circle>
         </svg>
       )}
-      {showLoader ? <div className="with-loader">{children}</div> : <div>{children}</div>}
+      {showLoader ? <div className={styles.withLoader}>{children}</div> : <div>{children}</div>}
     </div>
   )
 }

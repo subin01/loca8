@@ -20,9 +20,14 @@ export default function TagFlow({ id }: IProps) {
   const [tid, setTid] = useState(id)
   return (
     <>
-      {step >= 1 && <VerifyTagForm tid={tid} updateStep={setStep} updateTid={setTid} />}
+      {step === 1 && <VerifyTagForm tid={tid} updateStep={setStep} updateTid={setTid} />}
       {step === 2 && <ReturnForm tid={tid} updateStep={setStep} />}
-      {step === 3 && <User updateStep={setStep} />}
+      {step === 3 && !user && (
+        <section className="slide-user">
+          <h4>Register a Tag:</h4>
+          <User updateStep={setStep} />
+        </section>
+      )}
       {step === 3 && user && <RegisterForm tid={tid} user={user} />}
     </>
   )
