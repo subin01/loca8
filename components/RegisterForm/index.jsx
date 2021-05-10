@@ -78,7 +78,10 @@ export default function RegisterForm({ tid = '', user }) {
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
           {subStep === '3A' && (
             <>
-              <h4>Register a Tag:</h4>
+              <h4>
+                Register Tag
+                <TagID tid={tid} readOnly register={register} errors={errors} />
+              </h4>
               <h1>Make sure your details are correct</h1>
               <p className="marginBottom2">
                 So we can contact you in case of a lost & found situation. <br></br>Don't worry, it will NOT leave our
@@ -130,11 +133,14 @@ export default function RegisterForm({ tid = '', user }) {
 
           {subStep === '3B' && (
             <div className="loadingContainer">
-              <h4>Register a Tag:</h4>
+              <h4>
+                Register Tag
+                <TagID tid={tid} readOnly register={register} errors={errors} />
+              </h4>
               <h1>New Tag details</h1>
               <p>You need an Activation key to register this Tag to your account.</p>
               <div>
-                <TagID tid={tid} readOnly register={register} errors={errors} />
+                {/* <TagID tid={tid} readOnly register={register} errors={errors} /> */}
                 <input type="hidden" defaultValue={tid} {...register('newTag.tid', {})} />
                 <fieldset>
                   <label htmlFor="key">Activation Key:</label>

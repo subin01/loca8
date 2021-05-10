@@ -140,8 +140,7 @@ export async function updateUserProfile(data: any, context: any) {
   const email = data?.email
   const displayName = data?.displayName || 'no name'
   const phone = data?.phone
-  const newTag = data?.newTag
-  const tags = data?.tags || []
+  const newTag = data?.newTag || {}
 
   functions.logger.log(':::::updateProfile::v1:: ', displayName, uid, data)
 
@@ -159,19 +158,24 @@ export async function updateUserProfile(data: any, context: any) {
       displayName,
       phone,
       email,
-      tags,
+      tags: {},
     }
 
-    const activationRes = await activateTag(newTag?.tid, newTag?.key, uid)
-    if (!activationRes.error) {
-      // ie. Tag & Activation key was valid
-      newUserObj = {
-        uid,
-        displayName,
-        phone,
-        email,
-        tags: [...tags, newTag], // merge the new Tag
+    let activationResponse
+    if (newTag !== {}) {
+      const activateFnRes = await activateTag(newTag.tid, newTag.key, uid)
+      if (!activateFnRes?.error) {
+        // ie. Tag & Activation key was valid
+        const newTagObj = { [newTag.tid]: { ...newTag, activatedOn: admin.firestore.FieldValue.serverTimestamp() } }
+        newUserObj = {
+          uid,
+          displayName,
+          phone,
+          email,
+          tags: newTagObj, // merge = true
+        }
       }
+      activationResponse = activateFnRes
     }
 
     const res = await usersRef.set(newUserObj, { merge: true })
@@ -182,7 +186,7 @@ export async function updateUserProfile(data: any, context: any) {
       message: 'Success!',
       details: 'User profile updated!',
       activation: {
-        ...activationRes,
+        ...activationResponse,
       },
     }
   } catch (err) {

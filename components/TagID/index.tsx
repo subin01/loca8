@@ -6,16 +6,16 @@ import { validateTagFormat } from 'utils'
 
 interface IProps {
   tid: iTagID
-  errors: {}
-  register: {}
+  errors?: {}
+  register?: {}
   readOnly: boolean
 }
 
 export default function TagID({ tid, readOnly = false, errors, register }: IProps) {
   return (
-    <fieldset>
+    <>
       {!readOnly ? (
-        <>
+        <fieldset>
           <label htmlFor="tagId">Tag ID:</label>
           <input
             id="tagId"
@@ -30,19 +30,18 @@ export default function TagID({ tid, readOnly = false, errors, register }: IProp
             <ErrorMessage errors={errors} name="tagId" />
             {errors.tagId?.type === 'validate' && 'Tag ID format is incorrect!'}
           </span>
-        </>
+        </fieldset>
       ) : (
-        <>
-          <div className="tagIdReadOnly">
-            Tag ID
-            <span>{tid}</span>
-          </div>
-          <span className="inline-error">
-            <ErrorMessage errors={errors} name="tagId" />
-            {errors.tagId?.type === 'validate' && 'Tag ID format is incorrect!'}
-          </span>
-        </>
+        <div className="tag-inline">
+          <span className="tid">{tid}</span>
+          {errors && (
+            <span className="inline-error">
+              <ErrorMessage errors={errors} name="tagId" />
+              {errors.tagId?.type === 'validate' && 'Tag ID format is incorrect!'}
+            </span>
+          )}
+        </div>
       )}
-    </fieldset>
+    </>
   )
 }

@@ -4,7 +4,7 @@
   viewBox="0 0 100 100"
   preserveAspectRatio="xMidYMid"
 >
-  <circle cx="50" cy="23" r="13" fill="#e15b64">
+  <circle cx="50" cy="23" r="13" fill="#791aff">
     <animate
       attributeName="cy"
       dur="1s"

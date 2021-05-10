@@ -18,7 +18,6 @@ interface IForm {
 }
 
 export default function VerifyTagForm({ tid = '', updateTid, updateStep }: IProps) {
-  const [tagNumber, setTagNumber] = useState(tid)
   const {
     register,
     handleSubmit,
@@ -37,7 +36,6 @@ export default function VerifyTagForm({ tid = '', updateTid, updateStep }: IProp
     updateStep(1)
     setVerifyRes(null) // clear previous res
     setIsSubmitting(true)
-    setTagNumber(tagId)
     updateTid(tagId)
 
     // Call DB API

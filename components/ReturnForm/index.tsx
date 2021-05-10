@@ -17,7 +17,6 @@ export default function ReturnForm({ tid }: IProps) {
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
   } = useForm<iReturnForm>({ mode: 'onChange' })
 
@@ -34,32 +33,23 @@ export default function ReturnForm({ tid }: IProps) {
     // Call DB API
     const serverRes = await notifyOwner({ tid, name, phone, email, message })
 
-    // const serverRes = await verifyTag({ tid })
-
-    console.log('serverRes ', serverRes)
-
     setNotifyRes(serverRes?.data || null)
     setIsSubmitting(false)
-
-    // if (serverRes?.data?.error && serverRes?.data?.errorType === TAG_INVALID) {
-    //   console.log('InvalidTAG')
-    //   setError('tagId', {
-    //     type: 'invalid',
-    //     message: 'Invalid Tag ID, Please check the Tag ID!',
-    //   })
-    // } else if (serverRes.data.error === false) {
-    //   updateStep(2)
-    // }
   }
 
   return (
-    <div className="loadingContainer">
+    <>
       {notifyRes === null && (
         <section className="slide-return-form">
-          <h1>You found a tag!</h1>
-          <h2>Let's return it to the rightful owner, Please add your details</h2>
-          <div className="form-wrap">
+          <div className="form-wrap loadingContainer">
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
+              <h4>
+                Return Tag
+                <TagID tid={tid} readOnly register={register} errors={errors} />
+              </h4>
+              <h1>You found a tag!</h1>
+              <p className="marginBottom2">Let's return it to the rightful owner, Please add your details</p>
+
               <fieldset>
                 <label htmlFor="name">Your name:</label>
                 <input
@@ -155,6 +145,6 @@ export default function ReturnForm({ tid }: IProps) {
       )}
 
       {isSubmitting && <LoadingInline>Hold on! Notifying the Owner...</LoadingInline>}
-    </div>
+    </>
   )
 }
