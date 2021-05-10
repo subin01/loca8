@@ -89,6 +89,9 @@
 html {
   font-size: 8.5px;
   user-select: none;
+  background: url('./bg-pattern2.svg') no-repeat;
+  background-position: right bottom;
+  background-size: 55vh;
 }
 
 body {
@@ -105,6 +108,7 @@ body {
 @media only screen and (min-width: 768px) and (min-height: 1024px) {
   html {
     font-size: 14px;
+    background-size: 95vw;
   }
 }
 
@@ -122,6 +126,12 @@ body {
 @media only screen and (min-width: 1024px) and (min-height: 1366px) {
   html {
     font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  html {
+    background-size: 95vh;
   }
 }
 
@@ -237,6 +247,8 @@ footer {
   width: 100%;
   height: var(--header-height);
   border-top: 1px solid var(--color-dark-trans0);
+  background: var(--color-light-trans3);
+  backdrop-filter: blur(2px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -297,6 +309,7 @@ pre {
     border-spacing: 0;
     border-collapse: collapse;
     width: 100%;
+    margin-top: var(--spacing-m);
 
     tbody {
       width: 100%;
@@ -314,7 +327,7 @@ pre {
     th,
     td {
       text-align: left;
-      padding: var(--spacing-s) 0;
+      padding: var(--spacing-m) 0;
     }
   }
 }
@@ -336,6 +349,8 @@ textarea,
   display: inline-flex;
   align-items: center;
   transition: all 400ms ease-out;
+  background: var(--color-light-trans3);
+  backdrop-filter: blur(2px);
 
   &:disabled {
     opacity: 0.1;
@@ -598,6 +613,8 @@ textarea,
   border-radius: var(--radius-s);
   transition: color 0.15s ease, border-color 0.15s ease;
   width: 100%;
+  background: var(--color-light-trans3);
+  backdrop-filter: blur(2px);
 
   @media only screen and (min-width: 1024px) {
     width: calc(50% - var(--spacing-l));
