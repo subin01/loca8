@@ -25,5 +25,6 @@ typings/
 # Next.js build output
 .next
 out
+build
 
 .firebase

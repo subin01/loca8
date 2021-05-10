@@ -41,9 +41,9 @@
   --color-light-trans4: hsla(0, 0%, 100%, 80%);
 
   // Major Third Scale
-  --font-xs: 0.8rem;
-  --font-s: 1.2rem;
-  --font-m: 1.5rem;
+  --font-xs: 1rem;
+  --font-s: 1.4rem;
+  --font-m: 1.6rem;
   --font-l: 1.75rem;
   --font-xl: 2rem;
   --font-xxl: 3rem;
@@ -87,7 +87,7 @@
 }
 
 html {
-  font-size: 8.5px;
+  font-size: 9px;
   user-select: none;
   background: url('./bg-pattern2.svg') no-repeat;
   background-position: right bottom;
@@ -167,7 +167,6 @@ main,
 
 main {
   padding-top: var(--header-height-offset);
-  // padding-bottom: var(--header-height-offset);
   padding-bottom: var(--spacing-l);
   flex: 1;
   display: flex;
@@ -541,10 +540,11 @@ textarea,
     display: flex;
     align-items: flex-start;
     font-size: var(--font-s);
-  }
 
-  label span {
-    color: rgba(0, 0, 0, 0.4);
+    span {
+      color: rgba(0, 0, 0, 0.4);
+      margin-left: var(--spacing-s);
+    }
   }
 
   input,
@@ -655,7 +655,7 @@ textarea,
 }
 
 .signin-buttons {
-  margin: var(--spacing-xl) 0;
+  margin: var(--spacing-xxl) 0;
   max-width: 265px;
 }
 
