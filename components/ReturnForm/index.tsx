@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 import { ErrorMessage } from '@hookform/error-message'
 import LoadingInline from '@components/LoadingInline'
+import TagID from '@components/TagID'
 
 import { notifyOwner } from 'db'
 import { iTagID, iReturnForm } from 'types'
@@ -38,7 +39,7 @@ export default function ReturnForm({ tid }: IProps) {
   }
 
   return (
-    <>
+    <div className="loadingContainer">
       {notifyRes === null && (
         <section className="slide-return-form">
           <div className="form-wrap loadingContainer">
@@ -145,6 +146,6 @@ export default function ReturnForm({ tid }: IProps) {
       )}
 
       {isSubmitting && <LoadingInline>Hold on! Notifying the Owner...</LoadingInline>}
-    </>
+    </div>
   )
 }
