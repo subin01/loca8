@@ -15,13 +15,13 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    "redirects": [
+      {
+        "regex": "/(\\d{4}\\-\\d{4})", // redirect with QueryString /XXXX-XXXX => /tag?id=XXXX-XXXX
+        "destination": "/tag?id=:1",
+        "type": 301
+      }
     ]
-    // ,
-    // "rewrites": [
-    //   {
-    //     "source": "**",
-    //     "destination": "/index.html"
-    //   }
-    // ]
   }
 }
