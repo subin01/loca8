@@ -1,4 +1,4 @@
-import { iTagID } from 'types'
+import { iTagID } from '../../types'
 
 interface IProps {
   tags: [{ tid: iTagID; notes: string; activatedOn: { seconds: number; nanoseconds: number } }]

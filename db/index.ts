@@ -4,7 +4,7 @@ import 'firebase/auth'
 import 'firebase/functions'
 import { useDocumentData } from 'react-firebase-hooks/firestore'
 
-import { iTagID, iReturnForm } from 'types'
+import { iTagID, iReturnForm } from '../types'
 
 let app, auth
 if (!firebase.apps.length) {

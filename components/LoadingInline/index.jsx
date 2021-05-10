@@ -1,12 +1,12 @@
 import React from 'react'
-import styles from '@components/LoadingInline/index.module.scss'
+import styles from './index.module.scss'
 
 export default function LoadingInline({ children, showLoader = true }) {
   return (
     <div className={styles.loadingInline}>
       {showLoader && (
         <svg width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-          <circle cx={50} cy={23} r={13} fill="#e15b64">
+          <circle cx={50} cy={23} r={13} fill="#791aff">
             <animate
               attributeName="cy"
               dur="1s"

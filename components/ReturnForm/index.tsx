@@ -3,11 +3,11 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import Link from 'next/link'
 import { ErrorMessage } from '@hookform/error-message'
-import LoadingInline from '@components/LoadingInline'
-import TagID from '@components/TagID'
 
-import { notifyOwner } from 'db'
-import { iTagID, iReturnForm } from 'types'
+import LoadingInline from '../LoadingInline'
+import TagID from '../TagID'
+import { notifyOwner } from '../../db'
+import { iTagID, iReturnForm } from '../../types'
 
 interface IProps {
   tid: iTagID
@@ -72,10 +72,11 @@ export default function ReturnForm({ tid }: IProps) {
                 <input
                   id="phone"
                   className="field-phone"
+                  type="tel"
                   defaultValue={''}
                   {...register('phone', {
-                    required: { value: true, message: 'phone is required!' },
-                    minLength: { value: 3, message: 'phone format is incorrect!' },
+                    required: { value: true, message: 'Phone number is required!' },
+                    pattern: { value: /^[789]\d{9}$/, message: 'Phone number format is incorrect!' },
                   })}
                 ></input>
                 <span className="inline-error">
@@ -89,9 +90,14 @@ export default function ReturnForm({ tid }: IProps) {
                 </label>
                 <input
                   id="email"
+                  type="email"
                   defaultValue={''}
                   {...register('email', {
-                    minLength: { value: 3, message: 'email format is incorrect!' },
+                    minLength: { value: 3, message: 'Email format is incorrect!' },
+                    pattern: {
+                      value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                      message: 'Email format is incorrect!',
+                    },
                   })}
                 ></input>
                 <span className="inline-error">
@@ -103,7 +109,13 @@ export default function ReturnForm({ tid }: IProps) {
                 <label htmlFor="message">
                   Message: <span>(Optional)</span>
                 </label>
-                <textarea id="message" defaultValue={''} {...register('message', {})}></textarea>
+                <textarea
+                  id="message"
+                  defaultValue={''}
+                  {...register('message', {
+                    maxLength: { value: 200, message: 'Keep the message under 200 characters!' },
+                  })}
+                ></textarea>
                 <span className="inline-error">
                   <ErrorMessage errors={errors} name="message" />
                 </span>

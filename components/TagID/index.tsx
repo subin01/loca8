@@ -1,8 +1,8 @@
 // @ts-nocheck
 import { ErrorMessage } from '@hookform/error-message'
 
-import { iTagID } from 'types'
-import { validateTagFormat } from 'utils'
+import { iTagID } from '../../types'
+import { validateTagFormat } from '../../utils'
 
 interface IProps {
   tid: iTagID
@@ -21,6 +21,7 @@ export default function TagID({ tid, readOnly = false, errors, register }: IProp
             id="tagId"
             defaultValue={tid}
             maxLength="8"
+            type="number"
             {...register('tagId', {
               required: { value: true, message: 'Tag ID is required!' },
               validate: validateTagFormat,

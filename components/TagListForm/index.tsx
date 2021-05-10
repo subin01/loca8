@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { iTagID } from 'types'
+import { iTagID } from '../../types'
 import { ErrorMessage } from '@hookform/error-message'
 
 interface IProps {

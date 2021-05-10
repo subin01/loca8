@@ -4,14 +4,16 @@ import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 
-import Header from '@components/Header'
-import Footer from '@components/Footer'
-import TagID from '@components/TagID'
-import { iTagID } from 'types'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import TagID from '../components/TagID'
+import { iTagID } from '../types'
 
 interface IForm {
   tagId: iTagID
 }
+
+// export const config = { amp: true }
 
 export default function Home() {
   const {
@@ -24,7 +26,7 @@ export default function Home() {
   const onSubmit = async (data: IForm) => {
     const { tagId } = data
     console.log('Submit', tagId, errors)
-    Router.replace(`/tag/${tagId}`)
+    Router.replace(`/tag/?id=${tagId}`)
   }
 
   return (
@@ -50,6 +52,10 @@ export default function Home() {
             </button>
           </form>
 
+          <Link href="/tag/?id=12345678">
+            <a>Test tag</a>
+          </Link>
+
           <div className="grid">
             <Link href="/faq">
               <a className="card">
@@ -72,3 +78,11 @@ export default function Home() {
     </>
   )
 }
+
+// export const getStaticProps = () => {
+//   return {
+//     props: {
+//       buildTimestamp: Date.now(),
+//     },
+//   }
+// }

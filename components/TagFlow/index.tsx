@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import VerifyTagForm from '@components/VerifyTagForm'
-import ReturnForm from '@components/ReturnForm'
-import User from '@components/User'
-import TagID from '@components/TagID'
-import RegisterForm from '@components/RegisterForm'
-import { iTagID } from 'types'
-import { useAuth } from 'contexts/AuthContext'
-import { GetUser } from 'db'
+import VerifyTagForm from '../VerifyTagForm'
+import ReturnForm from '../ReturnForm'
+import User from '../User'
+import TagID from '../TagID'
+import RegisterForm from '../RegisterForm'
+import { iTagID } from '../../types'
+import { useAuth } from '../../contexts/AuthContext'
+import { GetUser } from '../../db'
 
 interface IProps {
   id: iTagID

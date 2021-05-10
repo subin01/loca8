@@ -1,8 +1,7 @@
-import User from '@components/User'
-// import withAuth from 'HOC/withAuth'
-import { useAuth } from 'contexts/AuthContext'
-import { GetUser } from 'db'
-import TagList from '@components/TagList'
+import { GetUser } from '../../db'
+import { useAuth } from '../../contexts/AuthContext'
+import User from '../../components/User'
+import TagList from '../../components/TagList'
 
 function Account() {
   const { currentUser } = useAuth()

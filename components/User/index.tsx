@@ -1,9 +1,9 @@
 // @ts-nocheck
 import React, { useState } from 'react'
-import { firebase, GetUser, createUserProfile } from 'db'
-import { useAuth } from 'contexts/AuthContext'
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
-import LoadingInline from '@components/LoadingInline'
+import { firebase, GetUser, createUserProfile } from '../../db'
+import { useAuth } from '../../contexts/AuthContext'
+import LoadingInline from '../LoadingInline'
 
 // Configure FirebaseUI.
 const uiConfig = {

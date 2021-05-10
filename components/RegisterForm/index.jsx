@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { updateUserProfile } from 'db'
-import Link from 'next/link'
 import { ErrorMessage } from '@hookform/error-message'
-import TagID from '@components/TagID'
-import LoadingInline from '@components/LoadingInline'
+
+import { updateUserProfile } from '../../db'
+import Link from 'next/link'
+import TagID from '../TagID'
+import LoadingInline from '../LoadingInline'
 
 export default function RegisterForm({ tid = '', user }) {
   const [subStep, setSubStep] = useState('3A')
@@ -95,8 +96,8 @@ export default function RegisterForm({ tid = '', user }) {
                   type="tel"
                   defaultValue={user?.phone}
                   {...register('phone', {
-                    required: { value: true, message: 'Mobile number is required!' },
-                    pattern: { value: /^[789]\d{9}$/, message: 'Mobile number format is incorrect!' },
+                    required: { value: true, message: 'Phone number is required!' },
+                    pattern: { value: /^[789]\d{9}$/, message: 'Phone number format is incorrect!' },
                   })}
                 ></input>
                 <span className="inline-error">
@@ -147,6 +148,7 @@ export default function RegisterForm({ tid = '', user }) {
                   <input
                     id="key"
                     maxLength="6"
+                    type="number"
                     className="field-key"
                     {...register('newTag.key', {
                       required: { value: true, message: 'Activation key is required' },

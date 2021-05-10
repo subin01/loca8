@@ -1,11 +1,12 @@
 // @ts-nocheck
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { verifyTag } from 'db'
-import LoadingInline from '@components/LoadingInline'
-import TagID from '@components/TagID'
-import { iTagID, iTagVerifyResponse } from 'types'
-import { TAG_INVALID, TAG_STATUS_UNREGISTERED } from 'global_constants'
+
+import { verifyTag } from '../../db'
+import LoadingInline from '../LoadingInline'
+import TagID from '../TagID'
+import { iTagID, iTagVerifyResponse } from '../../types'
+import { TAG_INVALID, TAG_STATUS_UNREGISTERED } from '../../global_constants'
 
 interface IProps {
   tid: iTagID
