@@ -60,7 +60,7 @@ export default function User({ updateStep }: IProps) {
           <div className="signin-buttons">
             <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
           </div>
-          <p>Don't worry, we don't gather any information from your account</p>
+          <p>Don't worry, we will not gather any private information from your account</p>
         </div>
       )
     }

@@ -5,6 +5,7 @@ import * as admin from 'firebase-admin'
 import { validateTagFormat } from '../utils'
 import { iNotifyOwnerErrorTypes } from '../types'
 import { SERVER_ERROR, TAG_INVALID, TAG_STATUS_REGISTERED, TAG_STATUS_UNREGISTERED } from '../global_constants'
+import { htmlEmail } from '../templates'
 
 !admin.apps.length ? admin.initializeApp() : admin.app()
 const db = admin.firestore()
@@ -81,6 +82,21 @@ export async function notifyTagOwner(data: any, context: any) {
 
     // TODO: Trigger Email to Owner & Admin, SMS, Message, Push notification
     const res = await usersRef.set(newNotificationObj, { merge: true })
+
+    /* Email Notification     */
+    const mailRef = db.collection('mail')
+    const newMailRef = mailRef.doc()
+    const emailData = {
+      to: email,
+      message: {
+        subject: 'LOCA8 | Your Tag is found!',
+        html: htmlEmail({ template: 'return', displayName, name, email, phone, message, tid }),
+        text: `Hello! Your tag (${tid}) is reported to be found!`,
+      },
+      uid, // Not needed for email, only for linking
+    }
+    await newMailRef.set(emailData, { merge: true })
+
     functions.logger.log(res)
 
     return {

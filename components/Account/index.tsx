@@ -24,7 +24,7 @@ function Account() {
           {user.tags && Object.values(user.tags).length > 0 ? (
             <TagList tags={user.tags} />
           ) : (
-            <div className="message-box">There are no Tags registered to this account!</div>
+            <div className="message-box marginTop1">There are no Tags registered to this account!</div>
           )}
         </section>
       )}

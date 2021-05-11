@@ -1,6 +1,7 @@
 import * as functions from 'firebase-functions'
-import { createUserProfile, updateUserProfile, verifyTag } from './clientFunctions'
+import { createUserProfile, updateUserProfile } from './clientFns/userProfile'
 import { notifyTagOwner } from './clientFns/notifyTagOwner'
+import { verifyTag } from './clientFns/verifyTag'
 
 // Client Invoked functions
 exports.createUserProfile = functions.region('asia-south1').https.onCall(createUserProfile)

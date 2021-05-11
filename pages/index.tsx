@@ -52,10 +52,6 @@ export default function Home() {
             </button>
           </form>
 
-          <Link href="/tag/?id=12345678">
-            <a>Test tag</a>
-          </Link>
-
           <div className="grid">
             <Link href="/faq">
               <a className="card">
