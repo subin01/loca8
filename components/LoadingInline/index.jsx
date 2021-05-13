@@ -6,7 +6,7 @@ export default function LoadingInline({ children, showLoader = true }) {
     <div className={styles.loadingInline}>
       {showLoader && (
         <svg width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-          <circle cx={50} cy={23} r={13} fill="#791aff">
+          <circle cx={50} cy={23} r={13} fill="#4bbebc">
             <animate
               attributeName="cy"
               dur="1s"

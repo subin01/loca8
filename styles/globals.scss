@@ -1,17 +1,19 @@
 :root {
-  --font-family-default: 'Quicksand', 'Nunito', -apple-system, Roboto, Ubuntu, Helvetica Neue, sans-serif;
+  --font-family-default: 'Nunito', 'Quicksand', -apple-system, Roboto, Ubuntu, Helvetica Neue, sans-serif;
   --font-family-heading: var(--font-family-default);
 
   --color-primary: hsl(248, 100%, 63%);
   --color-primary: hsl(265, 100%, 55%);
-  // --color-primary: hsl(273, 94%, 35%);
-  // --color-primary: hsl(277, 84%, 50%);
+  --color-primary: hsl(0, 0%, 0%);
+  --color-primary: hsl(179, 47%, 52%);
+
   --color-highlight: var(--color-primary);
-  --color-highlight-dark: hsl(265, 100%, 40%);
-  --color-highlight-shadow: hsl(248, 100%, 63%, 0.8);
-  --color-highlight-shadow: hsl(265, 100%, 55%, 0.8);
-  --color-error: #ff3300;
-  --color-info: #0660b4;
+  --color-highlight-dark: hsl(0, 0%, 0%);
+  --color-highlight-shadow: hsl(0, 0%, 0%, 0.8);
+  --color-input-border: #609f9e26;
+
+  --color-error: #cb132d;
+  --color-info: #067db4;
 
   --color-text1: hsl(220, 60%, 98%);
   --color-text2: hsl(228, 52%, 90%);
@@ -21,18 +23,18 @@
   --color-text6: hsl(228, 25%, 40%);
 
   --color-dark: #131519;
-  --color-dark-trans0: hsla(265, 11%, 40%, 0.07);
-  --color-dark-trans1: hsla(265, 30%, 40%, 0.2);
-  --color-dark-trans2: hsla(265, 30%, 40%, 0.3);
-  --color-dark-trans3: hsla(0, 0%, 0%, 0.5);
+  --color-dark-trans0: hsla(179, 11%, 40%, 0.07);
+  --color-dark-trans1: hsla(179, 30%, 40%, 0.2);
+  --color-dark-trans2: hsla(179, 30%, 40%, 0.3);
+  --color-dark-trans3: hsla(179, 30%, 0%, 0.5);
   --color-dark-trans4: hsla(0, 0%, 0%, 0.7);
   --color-dark-trans5: hsla(0, 0%, 0%, 0.9);
 
   --color-bg-default: #fff;
-  --color-bg-light1: hsl(228, 37%, 20%);
-  --color-bg-light2: hsl(228, 38%, 25%);
-  --color-bg-light3: hsl(228, 38%, 30%);
-  --color-bg-dark1: hsl(228, 21%, 9%);
+  --color-bg-light1: hsl(179, 37%, 20%);
+  --color-bg-light2: hsl(179, 38%, 25%);
+  --color-bg-light3: hsl(179, 38%, 30%);
+  --color-bg-dark1: hsl(179, 21%, 9%);
 
   --color-light-trans0: hsla(0, 0%, 100%, 10%);
   --color-light-trans1: hsla(0, 0%, 100%, 20%);
@@ -50,6 +52,9 @@
   --font-input1: 1.8rem;
   --font-input2: 2.2rem;
   --font-tagId: 3rem;
+
+  --weight-light: 200;
+  --weight-bold: 700;
 
   --spacing-xs: 0.5rem;
   --spacing-s: 0.5rem;
@@ -110,6 +115,7 @@ body {
   margin: 0;
   font-family: var(--font-family-default);
   font-size: var(--font-m);
+  font-weight: var(--weight-light);
   line-height: 1.4;
   color: var(--color-dark);
   overflow-y: scroll;
@@ -195,11 +201,11 @@ section {
 a {
   color: var(--color-dark);
   text-decoration: none;
-  font-weight: 700;
+  font-weight: var(--weight-bold);
   border-bottom: 3px solid var(--color-dark-trans1);
 
   p {
-    font-weight: normal;
+    font-weight: var(--weight-light);
   }
 
   &:hover {
@@ -214,10 +220,10 @@ h1 {
   text-align: left;
   width: 100%;
   letter-spacing: -0.04em;
-  font-weight: 700;
+  font-weight: var(--weight-bold);
 
   i {
-    font-weight: 300;
+    font-weight: var(--weight-light);
     font-style: normal;
   }
 }
@@ -228,7 +234,7 @@ h2 {
   margin-bottom: var(--spacing-m);
   color: var(--color-dark-trans4);
   margin: 0 0 var(--spacing-s) 0;
-  font-weight: 700;
+  font-weight: var(--weight-bold);
 }
 
 h3 {
@@ -350,15 +356,17 @@ textarea,
   font-family: var(--font-family-default);
   height: var(--form-field-height);
   font-size: var(--font-input1);
-  font-weight: 700;
+  font-weight: var(--weight-bold);
   border-radius: var(--radius-s);
-  border: 2px solid var(--color-dark-trans2);
+  border: 2px solid var(--color-input-border);
   padding-left: var(--spacing-m);
   padding-right: var(--spacing-m);
   outline: 0;
   display: inline-flex;
   align-items: center;
   transition: all 400ms ease-out;
+  caret-color: var(--color-highlight);
+  color: var(--color-highlight);
   background: var(--color-light-trans3);
   backdrop-filter: blur(2px);
 
@@ -369,19 +377,20 @@ textarea,
   }
 
   &:hover {
-    border: 2px solid var(--color-highlight);
+    border: 2px solid var(--color-dark);
+    background: white;
   }
 
   &:focus {
     border: 2px solid var(--color-highlight);
-    // box-shadow: 0 0 0.7rem 0 var(--color-highlight-shadow);
+    background: white;
   }
 }
 
 #tagId {
   font-size: var(--font-tagId);
   letter-spacing: 0.18em;
-  width: 7.5em;
+  width: 8em;
   padding-left: var(--spacing-l);
   padding-right: var(--spacing-l);
 }
@@ -419,9 +428,9 @@ textarea,
   width: 12em;
 
   span {
-    font-weight: normal;
+    font-weight: var(--weight-light);
     font-size: var(--font-m);
-    font-weight: 700;
+    font-weight: var(--weight-bold);
     letter-spacing: 0.18em;
   }
 }
@@ -440,6 +449,7 @@ textarea,
   &:hover,
   &:focus {
     background: var(--color-highlight-dark);
+    border: 2px solid transparent;
     // box-shadow: 0 0 0.7rem 0 var(--color-highlight-shadow);
   }
 }

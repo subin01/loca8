@@ -17,7 +17,7 @@
 
   .withLoader {
     font-size: var(--font-l);
-    font-weight: bold;
-    padding-top: 0.5rem;
+    font-weight: var(--weight-bold);
+    padding-top: var(--spacing-m);
   }
 }
