@@ -174,11 +174,9 @@ const header = `
 
 													<img alt="LOCA8 Logo"
 													border="0" class="left autowidth"
-													src="https://loca8.me/loca8-logo-dark.svg"
+													src="http://cdn.mcauto-images-production.sendgrid.net/423a92dded79d29d/aeb70fe4-7a82-436c-a2be-e38edaae39f9/400x160.png"
 													style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 100px; display: block;"
 													title="LOCA8 Logo" width="100"/>
-
-
 												</div>
 											</div>
 											<!--[if mso]></td></tr></table><![endif]-->
@@ -254,7 +252,7 @@ const footer = `
 
 													<img alt="LOCA8 Logo"
 													border="0"
-													src="https://loca8.me/loca8-logo-dark.svg"
+													src="http://cdn.mcauto-images-production.sendgrid.net/423a92dded79d29d/aeb70fe4-7a82-436c-a2be-e38edaae39f9/400x160.png"
 													style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 100px; display: block;"
 													title="LOCA8 Logo" width="100"/>
 

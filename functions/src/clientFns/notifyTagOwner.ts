@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
+/* @ts-nocheck */
 import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
+import { v4 as uuidv4 } from 'uuid'
 
 import { validateTagFormat } from '../utils'
 import { iNotifyOwnerErrorTypes } from '../types'
@@ -70,32 +72,49 @@ export async function notifyTagOwner(data: any, context: any) {
       return notifyError(true, TAG_STATUS_UNREGISTERED, 'Owner details unavailable!')
     }
 
-    const newNotificationObj = {
-      foundNotification: {
+    /* Notification Data */
+    const ownerData = doc.data()
+    const ownerEmail = ownerData?.email
+    const displayName = ownerData?.displayName
+    const returns = ownerData?.returns || {}
+
+    const objId = uuidv4()
+    const newReturn = {
+      [objId]: {
         tid,
         name,
         phone,
         email,
         message,
+        timestamp: admin.firestore.FieldValue.serverTimestamp(),
       },
     }
+    const updatedNotifications = {
+      returns: { ...returns, ...newReturn },
+    }
 
-    // TODO: Trigger Email to Owner & Admin, SMS, Message, Push notification
-    const res = await usersRef.set(newNotificationObj, { merge: true })
-
-    /* Email Notification     */
+    /* Email Data */
     const mailRef = db.collection('mail')
     const newMailRef = mailRef.doc()
+    const mailType = 'return'
     const emailData = {
-      to: email,
+      to: ownerEmail,
       message: {
         subject: 'LOCA8 | Your Tag is found!',
-        html: htmlEmail({ template: 'return', displayName, name, email, phone, message, tid }),
+        html: htmlEmail({ template: mailType, tid, displayName, name, email, phone, message }),
         text: `Hello! Your tag (${tid}) is reported to be found!`,
       },
+      type: mailType,
       uid, // Not needed for email, only for linking
+      timestamp: admin.firestore.FieldValue.serverTimestamp(), // Not needed for email, only for sorting
     }
-    await newMailRef.set(emailData, { merge: true })
+
+    /* All DB Operations */
+    const res = await db.runTransaction(async (transaction) => {
+      transaction.set(newMailRef, emailData, { merge: true })
+      // TODO: Trigger Email Admin, SMS, Message, Push notification
+      transaction.set(usersRef, updatedNotifications, { merge: true })
+    })
 
     functions.logger.log(res)
 

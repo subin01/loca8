@@ -62,14 +62,17 @@ export async function activateTag(
     /* Email Notification     */
     const mailRef = db.collection('mail')
     const newMailRef = mailRef.doc()
+    const mailType = 'activation'
     const emailData = {
       to: email,
       message: {
         subject: 'LOCA8 | Tag activated!',
-        html: htmlEmail({ template: 'welcome', displayName, tid, key }),
+        html: htmlEmail({ template: mailType, displayName, tid, key }),
         text: `Hello ${displayName}! Your tag (${tid}) is successfully activated!`,
       },
       uid, // Not needed for email, only for linking
+      type: mailType,
+      timestamp: admin.firestore.FieldValue.serverTimestamp(), // Not needed for email, only for sorting
     }
 
     /* All DB Operations */
