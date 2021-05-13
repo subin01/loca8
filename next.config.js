@@ -1,5 +1,5 @@
 module.exports = {
   compress: false,
   // distDir: 'build',
-  // trailingSlash: true,
+  trailingSlash: true,
 }

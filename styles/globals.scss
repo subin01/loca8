@@ -2,15 +2,11 @@
   --font-family-default: 'Nunito', 'Quicksand', -apple-system, Roboto, Ubuntu, Helvetica Neue, sans-serif;
   --font-family-heading: var(--font-family-default);
 
-  --color-primary: hsl(248, 100%, 63%);
-  --color-primary: hsl(265, 100%, 55%);
-  --color-primary: hsl(0, 0%, 0%);
-  --color-primary: hsl(179, 47%, 52%);
-
+  --color-primary: hsl(145, 37%, 62%);
   --color-highlight: var(--color-primary);
   --color-highlight-dark: hsl(0, 0%, 0%);
   --color-highlight-shadow: hsl(0, 0%, 0%, 0.8);
-  --color-input-border: #609f9e26;
+  --color-input-border: hsla(142, 5%, 50%, 0.15);
 
   --color-error: #cb132d;
   --color-info: #067db4;
@@ -98,6 +94,13 @@ input[type='number'] {
   -moz-appearance: textfield;
 }
 
+/* Mobile Safari */
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -105,9 +108,9 @@ input[type='number'] {
 html {
   font-size: 9px;
   user-select: none;
-  background: url('./bg-pattern2.svg') no-repeat;
-  background-position: right bottom;
-  background-size: 55vh;
+  // background: url('./bg-pattern2.svg') no-repeat;
+  // background-position: right bottom;
+  // background-size: 55vh;
 }
 
 body {
@@ -247,8 +250,8 @@ h3 {
 h4 {
   margin: 0;
   color: var(--color-dark-trans2);
-  color: white;
   color: var(--color-dark-trans3);
+  font-size: 1.2rem;
   // background: var(--color-dark-trans2);
   display: inline-block;
   // padding: 0 var(--spacing-s);
@@ -359,6 +362,7 @@ textarea,
   font-weight: var(--weight-bold);
   border-radius: var(--radius-s);
   border: 2px solid var(--color-input-border);
+  padding: 0;
   padding-left: var(--spacing-m);
   padding-right: var(--spacing-m);
   outline: 0;
@@ -390,6 +394,7 @@ textarea,
 #tagId {
   font-size: var(--font-tagId);
   letter-spacing: 0.18em;
+  line-height: 1;
   width: 8em;
   padding-left: var(--spacing-l);
   padding-right: var(--spacing-l);
