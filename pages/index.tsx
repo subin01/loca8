@@ -42,7 +42,10 @@ export default function Home() {
           <section className="hero">
             <h1>Welcome to Loca8!</h1>
             <div className="intro">
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididun.</p>
+              <p>
+                Hey, thank for trusting and adding me to your closest friend list. I can stand by you and make your
+                search one step forward. A little concern from Loca8 locket may bring a smile on your face.{' '}
+              </p>
             </div>
           </section>
           <form className="form tag-field-with-cta" onSubmit={handleSubmit(onSubmit)}>
@@ -53,17 +56,17 @@ export default function Home() {
           </form>
 
           <div className="grid">
-            <Link href="/faq">
+            <Link href="/faq/">
               <a className="card">
-                <h2>FAQ &rarr;</h2>
-                <p>Discover and deploy boilerplate example Next.js projects.</p>
+                <h2>Got Questions?</h2>
+                <p>Know more about me which will make our journey easier and faster, just like me.</p>
               </a>
             </Link>
 
-            <Link href="/product">
+            <Link href="/product/">
               <a className="card">
-                <h2>About the Product &rarr;</h2>
-                <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
+                <h2>More about Product</h2>
+                <p>A simple locket comes to save your lost asset at pocket friendly and with smart persona </p>
               </a>
             </Link>
           </div>
