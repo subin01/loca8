@@ -14,9 +14,8 @@ class MyDocument extends Document {
           <meta name="theme-color" content="#791aff"></meta>
           <link rel="icon" href="/favicon.ico" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
-          <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;700&display=swap" rel="stylesheet" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,700;1,300&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,700;1,200&display=swap"
             rel="stylesheet"
           />
         </Head>

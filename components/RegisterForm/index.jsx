@@ -213,7 +213,7 @@ export default function RegisterForm({ tid = '', user }) {
               <Link href="/">
                 <a>No, Am good</a>
               </Link>
-              <Link href="/account">
+              <Link href="/account/">
                 <a className="cta">Yes, Show me</a>
               </Link>
             </div>

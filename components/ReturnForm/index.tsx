@@ -149,7 +149,7 @@ export default function ReturnForm({ tid }: IProps) {
               <Link href="/">
                 <a>No, am good!</a>
               </Link>
-              <Link href="/product">
+              <Link href="/product/">
                 <a className="cta">Yes, Show me options</a>
               </Link>
             </div>
