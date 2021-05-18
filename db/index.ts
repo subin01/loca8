@@ -67,10 +67,18 @@ interface iNotifyOwner extends iReturnForm {
 const notifyOwnerAPI = functions.httpsCallable('notifyTagOwner')
 const notifyOwner = async (data: iNotifyOwner) => notifyOwnerAPI(data)
 
+interface iGenerateTags {
+  series: number
+  start: number
+  count: number
+}
+const generateTagsAPI = functions.httpsCallable('generateTags')
+const generateTags = async (data: iGenerateTags) => generateTagsAPI(data)
+
 // TODO: Replace with callable
 function GetUser(USER_UID: string) {
   // console.log('GetUser id:', USER_UID);
   return useDocumentData(firestore.doc(`users/${USER_UID}`))
 }
 
-export { firebase, createUserProfile, updateUserProfile, verifyTag, notifyOwner, GetUser }
+export { firebase, createUserProfile, updateUserProfile, verifyTag, notifyOwner, generateTags, GetUser }
