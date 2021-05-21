@@ -3,6 +3,7 @@ import { createUserProfile, updateUserProfile } from './clientFns/userProfile'
 import { notifyTagOwner } from './clientFns/notifyTagOwner'
 import { verifyTag } from './clientFns/verifyTag'
 import { generateTags } from './adminFns/generateTags'
+import { listAllTags } from './adminFns/listTags'
 
 // Client Invoked functions
 exports.createUserProfile = functions.region('asia-south1').https.onCall(createUserProfile)
@@ -12,3 +13,4 @@ exports.notifyTagOwner = functions.region('asia-south1').https.onCall(notifyTagO
 
 // Admin Invoked functions
 exports.generateTags = functions.region('asia-south1').https.onCall(generateTags)
+exports.listAllTags = functions.region('asia-south1').https.onCall(listAllTags)

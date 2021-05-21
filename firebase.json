@@ -23,5 +23,11 @@
         "type": 301
       }
     ]
+  },
+  "emulators": {
+    "functions": {
+      "host": "localhost",
+      "port": "5555"
+    }
   }
 }

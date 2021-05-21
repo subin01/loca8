@@ -14,12 +14,7 @@ function generateActivationKey() {
 }
 
 /**
- * activateTag
- * Check if the Tag ID & Activation key provided is valid or not
- * If valid, removes the key from the pool.
- * @param tid
- * @param key
- * @param uid
+ * generateTags
  */
 export async function generateTags(
   data: any,
@@ -38,7 +33,14 @@ export async function generateTags(
     if (start < 1000) return { error: true, message: 'Invalid Start', errorField: 'start' }
     if (count < 1 || count > 100) return { error: true, message: 'Invalid Count', errorField: 'count' }
     if (!uid) return { error: true, message: 'Unauthorised 1', errorField: '' }
-    if (uid !== 'lLZEzQfcFxM3l5LwWLpQKPjbRt13') return { error: true, message: 'Unauthorised 2', errorField: '' }
+
+    const usersRef = db.collection('users').doc(uid)
+    const doc = await usersRef.get()
+    if (!doc.exists) {
+      return { error: true, message: 'Unauthorised 2', errorField: '' }
+    }
+    const userData = doc.data()
+    if (!userData || userData.role !== 'admin') return { error: true, message: 'Unauthorised 3', errorField: '' }
 
     const tagIdStart = getTagPattern(series, start)
     const tagIdEnd = getTagPattern(series, start + count)
