@@ -319,7 +319,10 @@ const footer = `
 													<p
 														style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; text-align: center; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">
 
-														<span style="color: #999999;">Footnotes</span>
+														<span style="color: #999999;">
+
+
+														</span>
 
 														</p>
 												</div>

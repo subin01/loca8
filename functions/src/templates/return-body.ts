@@ -56,7 +56,7 @@ export function returnTemplate({
 
 								<p
 									style="margin: 0; font-size: 16px; line-height: 1.5; word-break: break-word; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; mso-line-height-alt: 24px; margin-top: 0; margin-bottom: 0;">
-									<span style="color: #5b42ff; font-size: 16px;"><strong>Hello ${displayName}!</strong></span>
+									<span style="color: #7ac298; font-size: 16px;"><strong>Hello ${displayName}!</strong></span>
 								</p>
 								<p
 									style="margin: 0; font-size: 34px; line-height: 1.5; word-break: break-word; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; mso-line-height-alt: 51px; margin-top: 0; margin-bottom: 0;">
