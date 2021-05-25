@@ -590,7 +590,7 @@ textarea,
   font-size: var(--font-tagId);
   letter-spacing: 0.18em;
   line-height: 1;
-  width: 8em;
+  width: 8.5em;
   padding-left: var(--spacing-l);
   padding-right: var(--spacing-l);
 }
@@ -707,7 +707,7 @@ textarea,
   .field-key {
     font-size: var(--font-tagId);
     letter-spacing: 0.18em;
-    width: 6em;
+    width: 8.5em;
     padding-left: var(--spacing-l);
     padding-right: var(--spacing-l);
   }
@@ -786,6 +786,13 @@ textarea,
 
   .cta {
     float: right;
+  }
+}
+
+.headings {
+  margin-bottom: var(--form-err-height);
+  h1 {
+    margin-bottom: 0;
   }
 }
 

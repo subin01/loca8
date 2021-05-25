@@ -5,7 +5,6 @@ import throttle from 'lodash.throttle'
 
 export default function Header() {
   const router = useRouter()
-  console.log('path', router.asPath)
   const activeRoute = (href) => {
     return router.asPath === href ? 'selected' : ''
   }

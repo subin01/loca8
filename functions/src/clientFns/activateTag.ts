@@ -2,6 +2,7 @@
 import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
 
+import { validateKeyFormat, validateTagFormat } from '../utils'
 import { TAG_STATUS_REGISTERED } from '../global_constants'
 import { htmlEmail } from '../templates'
 
@@ -23,12 +24,22 @@ export async function activateTag(
   email: string,
   displayName: string
 ): Promise<{ error: boolean; message: string; errorField?: string }> {
+  if (!validateKeyFormat(key)) {
+    functions.logger.log(`Invalid Activation Key (format): --${key}--`)
+    return { error: true, message: 'Invalid Activation Key!', errorField: 'key' }
+  }
+
+  if (!validateTagFormat(tid)) {
+    functions.logger.log(`Invalid TID Key (format): --${tid}--`)
+    return { error: true, message: 'Invalid Tag!', errorField: 'tid' }
+  }
+
   try {
-    const tagsRef = db.collection('tags').doc(tid.trim())
+    const tagsRef = db.collection('tags').doc(tid)
     const tdoc = await tagsRef.get()
 
     if (!tdoc.exists) {
-      functions.logger.log(`Invalid Tag TID: --${tid}--`)
+      functions.logger.log(`Invalid Tag TID (no entry): --${tid}--`)
       return { error: true, message: 'Invalid Tag!', errorField: 'tid' }
     }
 
@@ -44,11 +55,11 @@ export async function activateTag(
       return { error: true, message: 'Tag already in use!', errorField: 'tid' }
     }
 
-    const keysRef = db.collection('keys').doc(key.trim())
+    const keysRef = db.collection('keys').doc(key)
     const kdoc = await keysRef.get()
 
     if (!kdoc.exists) {
-      functions.logger.log(`Invalid Activation Key: --${key}--`)
+      functions.logger.log(`Invalid Activation Key (no entry): --${key}--`)
       return { error: true, message: 'Invalid Activation Key!', errorField: 'key' }
     }
 

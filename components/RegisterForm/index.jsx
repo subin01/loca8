@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
 
+import { TAG_FORMAT_REGEX } from '../../constants'
 import { updateUserProfile } from '../../db'
 import Link from 'next/link'
 import TagID from '../TagID'
@@ -19,7 +20,7 @@ export default function RegisterForm({ tid = '', user }) {
     formState: { errors },
   } = useForm({ mode: 'onChange' })
 
-  console.log('ERRORS', errors)
+  // console.log('ERRORS', errors)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [saveRes, setSaveRes] = useState(null)
 
@@ -79,15 +80,17 @@ export default function RegisterForm({ tid = '', user }) {
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
           {subStep === '3A' && (
             <>
-              <h4>
-                Register Tag
-                <TagID tid={tid} readOnly register={register} errors={errors} />
-              </h4>
-              <h1>Make sure your details are correct</h1>
-              <p className="marginBottom2">
-                So we can contact you in case of a lost & found situation. <br></br>Don't worry, it will NOT leave our
-                system!
-              </p>
+              <div className="headings">
+                <h4>
+                  Register Tag
+                  <TagID tid={tid} readOnly register={register} errors={errors} />
+                </h4>
+                <h1>Make sure your details are correct</h1>
+                <p className="marginBottom2">
+                  So we can contact you in case of a lost & found situation. <br></br>Don't worry, it will NOT leave our
+                  system!
+                </p>
+              </div>
               <fieldset>
                 <label htmlFor="phone">Phone</label>
                 <input
@@ -134,26 +137,25 @@ export default function RegisterForm({ tid = '', user }) {
 
           {subStep === '3B' && (
             <div className="loadingContainer">
-              <h4>
-                Register Tag
-                <TagID tid={tid} readOnly register={register} errors={errors} />
-              </h4>
-              <h1>New Tag details</h1>
-              <p>You need an Activation key to register this Tag to your account.</p>
+              <div className="headings">
+                <h4>
+                  Register Tag
+                  <TagID tid={tid} readOnly register={register} errors={errors} />
+                </h4>
+                <h1>New Tag details</h1>
+                <p>You need an Activation key to register this Tag to your account.</p>
+              </div>
               <div>
-                {/* <TagID tid={tid} readOnly register={register} errors={errors} /> */}
                 <input type="hidden" defaultValue={tid} {...register('newTag.tid', {})} />
                 <fieldset>
                   <label htmlFor="key">Activation Key:</label>
                   <input
                     id="key"
-                    maxLength="6"
-                    type="number"
+                    type="tel"
                     className="field-key"
                     {...register('newTag.key', {
                       required: { value: true, message: 'Activation key is required' },
-                      minLength: { value: 4, message: 'Activation key format is incorrect!' },
-                      maxLength: { value: 6, message: 'Activation key format is incorrect!' },
+                      pattern: { value: TAG_FORMAT_REGEX, message: 'Activation key format is incorrect!' },
                     })}
                   ></input>
                   <span className="inline-error">

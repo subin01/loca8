@@ -6,7 +6,7 @@ import { verifyTag } from '../../db'
 import LoadingInline from '../LoadingInline'
 import TagID from '../TagID'
 import { iTagID, iTagVerifyResponse } from '../../types'
-import { TAG_INVALID, TAG_STATUS_UNREGISTERED } from '../../global_constants'
+import { TAG_INVALID, TAG_STATUS_UNREGISTERED } from '../../constants'
 
 interface IProps {
   tid: iTagID

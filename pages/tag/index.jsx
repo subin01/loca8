@@ -9,6 +9,7 @@ import { AuthProvider } from '../../contexts/AuthContext'
 export default function Return() {
   const router = useRouter()
   const id = router.query.id
+  console.log('Query String: TID ', id)
   return (
     <>
       <Head>

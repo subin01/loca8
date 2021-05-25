@@ -22,18 +22,21 @@ export async function createUserProfile(data: any, context: any) {
     }
   }
 
-  const email = data?.email
-  const displayName = data?.displayName || 'no name'
   const uid = context.auth?.uid
+  const displayName = data?.displayName || context.auth?.token?.name || 'no name'
+  const email = context.auth?.token?.email || data?.email
+  const picture = context.auth.token.picture || null
 
   functions.logger.log(':::::createUserProfile::v1:: ', displayName, uid)
 
   if (!uid) return profileError('Account not found, Try re-login')
+  if (!email) return profileError('Email is required!')
 
   const newUserObj = {
     uid: uid,
     displayName,
     email,
+    picture,
     tags: [],
   }
 
@@ -75,14 +78,16 @@ export async function updateUserProfile(data: any, context: any) {
   }
 
   const uid = context.auth?.uid
-  const email = data?.email
-  const displayName = data?.displayName || 'no name'
+  const displayName = data?.displayName || context.auth?.token?.name || 'no name'
+  const email = context.auth?.token?.email || data?.email
+  const picture = context.auth.token.picture || null
   const phone = data?.phone
   const newTag = data?.newTag || {}
 
   functions.logger.log(':::::updateProfile::v1:: ', displayName, uid, data)
 
   if (!uid) return profileError('Account not found, Try re-login!')
+  if (!email) return profileError('Email is required!')
 
   try {
     const usersRef = db.collection('users').doc(uid)
@@ -97,8 +102,9 @@ export async function updateUserProfile(data: any, context: any) {
     const newUserObj = {
       uid,
       displayName,
-      phone,
       email,
+      picture,
+      phone,
     }
 
     let activationResponse

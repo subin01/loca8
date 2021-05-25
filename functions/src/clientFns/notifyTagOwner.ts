@@ -50,7 +50,7 @@ export async function notifyTagOwner(data: any, context: any) {
   }
 
   try {
-    const tagsRef = db.collection('tags').doc(tid.trim())
+    const tagsRef = db.collection('tags').doc(tid)
     const tdoc = await tagsRef.get()
 
     if (!tdoc.exists) {

@@ -2,7 +2,7 @@
 import { ErrorMessage } from '@hookform/error-message'
 
 import { iTagID } from '../../types'
-import { validateTagFormat } from '../../utils'
+import { TAG_FORMAT_REGEX } from '../../constants'
 
 interface IProps {
   tid: iTagID
@@ -19,17 +19,15 @@ export default function TagID({ tid, readOnly = false, errors, register }: IProp
           <label htmlFor="tagId">Tag ID:</label>
           <input
             id="tagId"
+            type="tel"
             defaultValue={tid}
-            maxLength="8"
-            type="number"
             {...register('tagId', {
-              required: { value: true, message: 'Tag ID is required!' },
-              validate: validateTagFormat,
+              required: { value: true, message: 'Tag ID is required' },
+              pattern: { value: TAG_FORMAT_REGEX, message: 'Tag ID format is incorrect!' },
             })}
           ></input>
           <span className="inline-error">
             <ErrorMessage errors={errors} name="tagId" />
-            {errors.tagId?.type === 'validate' && 'Tag ID format is incorrect!'}
           </span>
         </fieldset>
       ) : (
@@ -38,7 +36,6 @@ export default function TagID({ tid, readOnly = false, errors, register }: IProp
           {errors && (
             <span className="inline-error">
               <ErrorMessage errors={errors} name="tagId" />
-              {errors.tagId?.type === 'validate' && 'Tag ID format is incorrect!'}
             </span>
           )}
         </div>

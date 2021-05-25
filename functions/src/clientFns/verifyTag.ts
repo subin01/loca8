@@ -18,7 +18,7 @@ export async function verifyTag(data: any, context: any) {
   if (!tid) return { error: true, message: 'Invalid Tag ID!', errorType: TAG_INVALID }
 
   try {
-    const tagsRef = db.collection('tags').doc(tid.trim())
+    const tagsRef = db.collection('tags').doc(tid)
     const tdoc = await tagsRef.get()
 
     if (!tdoc.exists) {

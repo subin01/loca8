@@ -29,14 +29,14 @@ export async function listAllTags(
     const userData = doc.data()
     if (!userData || userData.role !== 'admin') return { error: true, message: 'Unauthorised 3' }
 
-    const tagsCollectionRef = db.collection('tags-test')
+    const tagsCollectionRef = db.collection('tags-test').orderBy('createdOn', 'desc')
     const tsnapshot = await tagsCollectionRef.get()
     const tagsData: any = []
     tsnapshot.forEach((tagDoc) => {
       tagsData.push({ ...tagDoc.data(), id: tagDoc.id })
     })
 
-    const keysCollectionRef = db.collection('keys-test')
+    const keysCollectionRef = db.collection('keys-test').orderBy('createdOn', 'desc')
     const ksnapshot = await keysCollectionRef.get()
     const keysData: any = []
     ksnapshot.forEach((keyDoc) => {
