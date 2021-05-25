@@ -50,7 +50,7 @@ export async function generateTags(
     const tagIdStart = getTagPattern(series, start)
     const tagIdEnd = getTagPattern(series, start + count)
 
-    const tagsCollectionRef = db.collection('tags-test')
+    const tagsCollectionRef = db.collection('tags')
     let tagsRef = tagsCollectionRef.doc(tagIdStart)
     let tdoc = await tagsRef.get()
 
@@ -66,7 +66,7 @@ export async function generateTags(
     }
 
     const batch = db.batch()
-    const keysCollectionRef = db.collection('keys-test')
+    const keysCollectionRef = db.collection('keys')
 
     for (let i = 0; i < count; ++i) {
       const tid = getTagPattern(series, start + i)
