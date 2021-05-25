@@ -9,8 +9,13 @@ const db = admin.firestore()
 function getTagPattern(series: number, sequence: number) {
   return `${series}-${sequence}`
 }
+function getRandomInt(min = 1000, max = 9999) {
+  min = Math.ceil(min)
+  max = Math.floor(max)
+  return Math.floor(Math.random() * (max - min + 1)) + min
+}
 function generateActivationKey() {
-  return `${Math.floor(Math.random() * 10000) + 1000}-${Math.floor(Math.random() * 10000) + 1000}`
+  return `${getRandomInt()}-${getRandomInt()}`
 }
 
 /**
@@ -29,8 +34,8 @@ export async function generateTags(
 
     functions.logger.log(':::::generateTags::v1:: ', uid, series, start, count)
 
-    if (series < 1000) return { error: true, message: 'Invalid Series', errorField: 'series' }
-    if (start < 1000) return { error: true, message: 'Invalid Start', errorField: 'start' }
+    if (series < 1000 || series > 9999) return { error: true, message: 'Invalid Series', errorField: 'series' }
+    if (start < 1000 || start > 9999) return { error: true, message: 'Invalid Start', errorField: 'start' }
     if (count < 1 || count > 100) return { error: true, message: 'Invalid Count', errorField: 'count' }
     if (!uid) return { error: true, message: 'Unauthorised 1', errorField: '' }
 

@@ -10,7 +10,10 @@ const db = admin.firestore()
  * Check if the Tag ID  provided is valid or not
  * If valid, Show if there's any public message associated to it.
  */
-export async function listAllTags(data: any, context: any) {
+export async function listAllTags(
+  data: any,
+  context: any
+): Promise<{ error: boolean; message: string; tagsData?: object; keysData?: object }> {
   functions.logger.log('listAllTags TEST2!')
 
   const uid = context.auth?.uid
@@ -30,14 +33,14 @@ export async function listAllTags(data: any, context: any) {
     const tsnapshot = await tagsCollectionRef.get()
     const tagsData: any = []
     tsnapshot.forEach((tagDoc) => {
-      tagsData.push(tagDoc.data())
+      tagsData.push({ ...tagDoc.data(), id: tagDoc.id })
     })
 
     const keysCollectionRef = db.collection('keys-test')
     const ksnapshot = await keysCollectionRef.get()
     const keysData: any = []
     ksnapshot.forEach((keyDoc) => {
-      keysData.push(keyDoc.data())
+      keysData.push({ ...keyDoc.data(), id: keyDoc.id })
     })
 
     return { error: false, message: 'success', tagsData, keysData }
