@@ -29,10 +29,10 @@ export async function generateTags(
     const series = parseInt(data?.series)
     const start = parseInt(data?.start)
     const count = parseInt(data?.count)
-    const type = parseInt(data?.type) || 'default'
+    const type = data?.type || 'default'
     const uid = context.auth?.uid
 
-    functions.logger.log(':::::generateTags::v1:: ', uid, series, start, count)
+    functions.logger.log(':::::generateTags::v2:: ', uid, series, start, count, type)
 
     if (series < 1000 || series > 9999) return { error: true, message: 'Invalid Series', errorField: 'series' }
     if (start < 1000 || start > 9999) return { error: true, message: 'Invalid Start', errorField: 'start' }
@@ -75,11 +75,16 @@ export async function generateTags(
         tid,
         status: TAG_STATUS_UNREGISTERED,
         type,
+        createdOn: admin.firestore.FieldValue.serverTimestamp(),
       }
       const newKeyRef = keysCollectionRef.doc(generateActivationKey())
+      const newKeyData = {
+        series,
+        createdOn: admin.firestore.FieldValue.serverTimestamp(),
+      }
       /* All DB Operations */
       batch.set(newTagRef, newTagData, { merge: true })
-      batch.set(newKeyRef, { series })
+      batch.set(newKeyRef, newKeyData)
     }
     const res = await batch.commit()
 

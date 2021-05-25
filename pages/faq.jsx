@@ -60,7 +60,7 @@ export default function Home() {
               </ul>
             </article>
             <article>
-              <h2> I got a lost item with the LOCA8 locket, how do I return it?</h2>
+              <h2> I got a lost item with the Loca8 locket, how do I return it?</h2>
               <ul>
                 <li>
                   <i>Step 1 :</i> Scan the QR code
@@ -127,12 +127,12 @@ export default function Home() {
               </ul>
             </article>
             <article>
-              <h2> What if my LOCA8 locket is stolen?</h2>
-              The privacy of the tag is intact as the QR code on the LOCA8 locket is unique and it is not transferable.
+              <h2> What if my Loca8 locket is stolen?</h2>
+              The privacy of the tag is intact as the QR code on the Loca8 locket is unique and it is not transferable.
               It is registered under your email ID.
             </article>
             <article>
-              <h2> Can I register more than 1 LOCA8 locket under one e-mail ID?</h2>
+              <h2> Can I register more than 1 Loca8 locket under one e-mail ID?</h2>
               Yes, you can register multiple tags and the dashboard displays all the Tag IDs and the status.
             </article>
           </div>

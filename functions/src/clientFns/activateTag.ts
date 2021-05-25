@@ -66,7 +66,7 @@ export async function activateTag(
     const emailData = {
       to: email,
       message: {
-        subject: 'LOCA8 | Tag activated!',
+        subject: 'Loca8 | Tag activated!',
         html: htmlEmail({ template: mailType, displayName, tid, key }),
         text: `Hello ${displayName}! Your tag (${tid}) is successfully activated!`,
       },

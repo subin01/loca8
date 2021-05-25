@@ -172,11 +172,11 @@ const header = `
 												<div class="txtTinyMce-wrapper"
 													style="font-size: 14px; line-height: 1.2; color: #555555; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
 
-													<img alt="LOCA8 Logo"
+													<img alt="Loca8 Logo"
 													border="0" class="left autowidth"
 													src="http://cdn.mcauto-images-production.sendgrid.net/423a92dded79d29d/aeb70fe4-7a82-436c-a2be-e38edaae39f9/400x160.png"
 													style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 100px; display: block;"
-													title="LOCA8 Logo" width="100"/>
+													title="Loca8 Logo" width="100"/>
 												</div>
 											</div>
 											<!--[if mso]></td></tr></table><![endif]-->
@@ -202,7 +202,7 @@ const header = `
 													<p
 														style="margin: 0; font-size: 16px; text-align: right; line-height: 1.2; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; word-break: break-word; mso-line-height-alt: 14px; margin-top: 0; margin-bottom: 0;">
 														<a href="https://loca8.me" style="outline:none" target="_blank">
-														LOCA8 Tags
+														Loca8 Tags
 														</a>
 													</p>
 												</div>
@@ -250,11 +250,11 @@ const footer = `
 												<div class="txtTinyMce-wrapper"
 													style="font-size: 14px; line-height: 1.2; color: #555555; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
 
-													<img alt="LOCA8 Logo"
+													<img alt="Loca8 Logo"
 													border="0"
 													src="http://cdn.mcauto-images-production.sendgrid.net/423a92dded79d29d/aeb70fe4-7a82-436c-a2be-e38edaae39f9/400x160.png"
 													style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 100px; display: block;"
-													title="LOCA8 Logo" width="100"/>
+													title="Loca8 Logo" width="100"/>
 
 
 												</div>

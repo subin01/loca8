@@ -6,7 +6,13 @@ import { v4 as uuidv4 } from 'uuid'
 
 import { validateTagFormat } from '../utils'
 import { iNotifyOwnerErrorTypes } from '../types'
-import { SERVER_ERROR, TAG_INVALID, TAG_STATUS_REGISTERED, TAG_STATUS_UNREGISTERED } from '../global_constants'
+import {
+  SERVER_ERROR,
+  TAG_INVALID,
+  TAG_STATUS_REGISTERED,
+  TAG_STATUS_UNREGISTERED,
+  ADMIN_EMAIL,
+} from '../global_constants'
 import { htmlEmail } from '../templates'
 
 !admin.apps.length ? admin.initializeApp() : admin.app()
@@ -99,8 +105,9 @@ export async function notifyTagOwner(data: any, context: any) {
     const mailType = 'return'
     const emailData = {
       to: ownerEmail,
+      cc: ADMIN_EMAIL,
       message: {
-        subject: 'LOCA8 | Your Tag is found!',
+        subject: 'Loca8 | Your Tag is found!',
         html: htmlEmail({ template: mailType, tid, displayName, name, email, phone, message }),
         text: `Hello! Your tag (${tid}) is reported to be found!`,
       },

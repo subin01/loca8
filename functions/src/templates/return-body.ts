@@ -60,7 +60,7 @@ export function returnTemplate({
 								</p>
 								<p
 									style="margin: 0; font-size: 34px; line-height: 1.5; word-break: break-word; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; mso-line-height-alt: 51px; margin-top: 0; margin-bottom: 0;">
-									<span style="font-size: 34px;"><strong>Someone found your LOCA8 Tag!</strong></span>
+									<span style="font-size: 34px;"><strong>Someone found your Loca8 Tag!</strong></span>
 								</p>
 								<p
 									style="margin: 0; font-size: 16px; line-height: 1.5; word-break: break-word; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; mso-line-height-alt: 24px; margin-top: 0; margin-bottom: 0;">
