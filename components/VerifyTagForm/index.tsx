@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { verifyTag } from '../../db'
+import { verifyTag, analytics } from '../../db'
 import LoadingInline from '../LoadingInline'
 import TagID from '../TagID'
 import { iTagID, iTagVerifyResponse } from '../../types'
@@ -39,6 +39,7 @@ export default function VerifyTagForm({ tid = '', updateTid, updateStep }: IProp
     setIsSubmitting(true)
     updateTid(tagId)
 
+    analytics().logEvent('verify_tag_tiggered')
     // Call DB API
     const serverRes = await verifyTag({ tid: tagId })
 

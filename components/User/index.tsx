@@ -55,7 +55,7 @@ export default function User({ updateStep }: IProps) {
     if (!currentUser) {
       return (
         <div>
-          <h1>Authenticate yourself</h1>
+          <h2>Authenticate yourself</h2>
           <p>Use one of the Sign in methods</p>
           <div className="signin-buttons">
             <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />

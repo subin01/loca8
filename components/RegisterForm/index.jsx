@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
 
 import { TAG_FORMAT_REGEX } from '../../constants'
-import { updateUserProfile } from '../../db'
+import { updateUserProfile, analytics } from '../../db'
 import Link from 'next/link'
 import TagID from '../TagID'
 import LoadingInline from '../LoadingInline'
@@ -40,6 +40,7 @@ export default function RegisterForm({ tid = '', user }) {
     console.log('Edit Profile ', data)
     const email = user?.email || ''
 
+    analytics().logEvent('register_form_submitted')
     // Call DB API
     const profileRes = await updateUserProfile({ email, displayName, newTag, phone, tags })
     console.log('Edit Profile submit', profileRes.data, profileRes.data.error)

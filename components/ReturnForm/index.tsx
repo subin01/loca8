@@ -6,7 +6,7 @@ import { ErrorMessage } from '@hookform/error-message'
 
 import LoadingInline from '../LoadingInline'
 import TagID from '../TagID'
-import { notifyOwner } from '../../db'
+import { notifyOwner, analytics } from '../../db'
 import { iTagID, iReturnForm } from '../../types'
 
 interface IProps {
@@ -31,6 +31,7 @@ export default function ReturnForm({ tid }: IProps) {
     setNotifyRes(null) // clear previous res
     setIsSubmitting(true)
 
+    analytics().logEvent('return_form_submitted')
     // Call DB API
     const serverRes = await notifyOwner({ tid, name, phone, email, message })
 

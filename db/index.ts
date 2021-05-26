@@ -2,24 +2,29 @@ import firebase from 'firebase/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import 'firebase/functions'
+import 'firebase/analytics'
 import { useDocumentData } from 'react-firebase-hooks/firestore'
 
 import { iTagID, iReturnForm } from '../types'
 
-let app, auth
-if (!firebase.apps.length) {
-  app = firebase.initializeApp({
-    apiKey: 'AIzaSyAmkO_iB6iyitJerKu4L_88VpALwi3r2oE',
-    authDomain: 'loca8me.firebaseapp.com',
-    projectId: 'loca8me',
-    storageBucket: 'loca8me.appspot.com',
-    messagingSenderId: '977760864834',
-    appId: '1:977760864834:web:a7ad767300509a31b3bbdb',
-  })
+const firebaseConfig = {
+  apiKey: 'AIzaSyAmkO_iB6iyitJerKu4L_88VpALwi3r2oE',
+  authDomain: 'loca8me.firebaseapp.com',
+  projectId: 'loca8me',
+  storageBucket: 'loca8me.appspot.com',
+  messagingSenderId: '977760864834',
+  appId: '1:977760864834:web:a7ad767300509a31b3bbdb',
+  measurementId: 'G-FTVZ4LHZRZ',
 }
 
+let app, auth
+if (!firebase.apps.length) {
+  app = firebase.initializeApp(firebaseConfig)
+}
 const functions = firebase.app().functions('asia-south1')
 const firestore = firebase.firestore()
+const analytics = (): firebase.analytics.Analytics => firebase.analytics()
+
 // const functions =functions;
 
 // if (location.hostname === 'localhost') {
@@ -73,4 +78,4 @@ function GetUser(USER_UID: string) {
   return useDocumentData(firestore.doc(`users/${USER_UID}`))
 }
 
-export { firebase, createUserProfile, updateUserProfile, verifyTag, notifyOwner, GetUser }
+export { firebase, analytics, createUserProfile, updateUserProfile, verifyTag, notifyOwner, GetUser }
