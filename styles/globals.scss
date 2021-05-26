@@ -542,6 +542,7 @@ pre {
     td {
       text-align: left;
       padding: var(--spacing-m) 0;
+      user-select: text;
     }
   }
 }

@@ -1,225 +1,149 @@
 /* eslint-disable  */
 const header = `
-	<!DOCTYPE html
-	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:o="urn:schemas-microsoft-com:office:office"
-	xmlns:v="urn:schemas-microsoft-com:vml">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<!--[if gte mso 9]><xml><o:OfficeDocumentSettings><o:AllowPNG/><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml><![endif]-->
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-	<meta content="width=device-width" name="viewport" />
-	<!--[if !mso]><!-->
-	<meta content="IE=edge" http-equiv="X-UA-Compatible" />
-	<!--<![endif]-->
-	<title></title>
-	<!--[if !mso]><!-->
-	<!--<![endif]-->
-	<style type="text/css">
-		body {
-			margin: 0;
-			padding: 0;
-		}
+<title>Loca8 Email</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-		table,
-		td,
-		tr {
-			vertical-align: top;
-			border-collapse: collapse;
-		}
+<style type="text/css">
+/* CLIENT-SPECIFIC STYLES */
+body,
+table,
+td,
+a {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+}
 
-		* {
-			line-height: inherit;
-		}
+table,
+td {
+    mso-table-lspace: 0pt;
+    mso-table-rspace: 0pt;
+}
 
-		a[x-apple-data-detectors=true] {
-			color: inherit !important;
-			text-decoration: none !important;
-		}
-	</style>
-	<style id="media-query" type="text/css">
-		@media (max-width: 520px) {
+img {
+    -ms-interpolation-mode: bicubic;
+}
 
-			.block-grid,
-			.col {
-				min-width: 320px !important;
-				max-width: 100% !important;
-				display: block !important;
-			}
+/* RESET STYLES */
+img {
+    border: 0;
+    height: auto;
+    line-height: 100%;
+    outline: none;
+    text-decoration: none;
+}
 
-			.block-grid {
-				width: 100% !important;
-			}
+table {
+    border-collapse: collapse !important;
+}
 
-			.col {
-				width: 100% !important;
-			}
+body {
+    height: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+}
 
-			.col_cont {
-				margin: 0 auto;
-			}
+/* iOS BLUE LINKS */
+a[x-apple-data-detectors] {
+    color: inherit !important;
+    text-decoration: none !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+}
 
-			img.fullwidth,
-			img.fullwidthOnMobile {
-				max-width: 100% !important;
-			}
+/* GMAIL BLUE LINKS */
+u+#body a {
+    color: inherit;
+    text-decoration: none;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
 
-			.no-stack .col {
-				min-width: 0 !important;
-				display: table-cell !important;
-			}
+/* SAMSUNG MAIL BLUE LINKS */
+#MessageViewBody a {
+    color: inherit;
+    text-decoration: none;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
 
-			.no-stack.two-up .col {
-				width: 50% !important;
-			}
+/* Embrace established conventions like underlines on links to keep emails accessible. */
+a {
+    color: #7ac298;
+    font-weight: 600;
+    text-decoration: underline;
+}
 
-			.no-stack .col.num2 {
-				width: 16.6% !important;
-			}
+a:hover {
+    color: #000000 !important;
+    text-decoration: none !important;
+}
 
-			.no-stack .col.num3 {
-				width: 25% !important;
-			}
+/* Some email clients don't properly apply media query-based styles, which is why we go mobile-first. */
+@media screen and (min-width:600px) {
+    h1 {
+        font-size: 48px !important;
+        line-height: 48px !important;
+    }
 
-			.no-stack .col.num4 {
-				width: 33% !important;
-			}
-
-			.no-stack .col.num5 {
-				width: 41.6% !important;
-			}
-
-			.no-stack .col.num6 {
-				width: 50% !important;
-			}
-
-			.no-stack .col.num7 {
-				width: 58.3% !important;
-			}
-
-			.no-stack .col.num8 {
-				width: 66.6% !important;
-			}
-
-			.no-stack .col.num9 {
-				width: 75% !important;
-			}
-
-			.no-stack .col.num10 {
-				width: 83.3% !important;
-			}
-
-			.video-block {
-				max-width: none !important;
-			}
-
-			.mobile_hide {
-				min-height: 0px;
-				max-height: 0px;
-				max-width: 0px;
-				display: none;
-				overflow: hidden;
-				font-size: 0px;
-			}
-
-			.desktop_hide {
-				display: block !important;
-				max-height: none !important;
-			}
-		}
-	</style>
-	<style id="icon-media-query" type="text/css">
-		@media (max-width: 520px) {
-			.icons-inner {
-				text-align: center;
-			}
-
-			.icons-inner td {
-				margin: 0 auto;
-			}
-		}
-	</style>
+    .intro {
+        font-size: 24px !important;
+        line-height: 36px !important;
+    }
+}
+</style>
 </head>
+ 
+<body style="margin: 0 !important; padding: 0 !important;">
+<!-- Some preview text. -->
+<div style="display: none; max-height: 0; overflow: hidden;">
 
-<body class="clean-body" style="margin: 0; padding: 0; -webkit-text-size-adjust: 100%; background-color: #f3f3f6;">
-	<!--[if IE]><div class="ie-browser"><![endif]-->
-	<table bgcolor="#f3f3f6" cellpadding="0" cellspacing="0" class="nl-container" role="presentation"
-		style="table-layout: fixed; vertical-align: top; min-width: 320px; border-spacing: 0; border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #f3f3f6; width: 100%;"
-		valign="top" width="100%">
-		<tbody>
-			<tr style="vertical-align: top;" valign="top">
-				<td style="word-break: break-word; vertical-align: top;" valign="top">
+</div>
+<!-- Get rid of unwanted preview text. -->
+<div style="display: none; max-height: 0px; overflow: hidden;">
+    &nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;
+</div>
 
+<!-- This ghost table is used to constrain the width in Outlook. The role attribute is set to presentation to prevent it from being read by screenreaders. -->
+<!--[if (gte mso 9)|(IE)]>
+<table cellspacing="0" cellpadding="0" border="0" width="600" align="center" role="presentation"><tr><td>
+<![endif]-->
+<div role="article" aria-label="Email from Loca8" lang="en" style="background-color: white; color: #2b2b2b; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; font-size: 17px; font-weight: 400; line-height: 28px; margin: 0 auto; max-width: 600px; padding: 40px 20px 40px 20px;">
 
-					<!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td align="center" style="background-color:#f3f3f6"><![endif]-->
-					<div style="background-color:transparent;">
-						<div class="block-grid two-up"
-							style="min-width: 320px; max-width: 500px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: #ffffff;">
-							<div style="border-collapse: collapse;display: table;width: 100%;background-color:#ffffff;">
-								<!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:transparent;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:500px"><tr class="layout-full-width" style="background-color:#ffffff"><![endif]-->
-								<!--[if (mso)|(IE)]><td align="center" width="250" style="background-color:#ffffff;width:250px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:0px; padding-bottom:0px;"><![endif]-->
-								<div class="col num6"
-									style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 246px; width: 250px;">
-									<div class="col_cont" style="width:100% !important;">
-										<!--[if (!mso)&(!IE)]><!-->
-										<div
-											style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:0px; padding-bottom:0px; padding-right: 0px; padding-left: 0px;">
-											<!--<![endif]-->
-											<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 30px; padding-left: 30px; padding-top: 30px; padding-bottom: 30px; font-family: Arial, sans-serif"><![endif]-->
-											<div
-												style="color:#555555;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;line-height:1.2;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;">
-												<div class="txtTinyMce-wrapper"
-													style="font-size: 14px; line-height: 1.2; color: #555555; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
-
-													<img alt="Loca8 Logo"
-													border="0" class="left autowidth"
-													src="http://cdn.mcauto-images-production.sendgrid.net/423a92dded79d29d/aeb70fe4-7a82-436c-a2be-e38edaae39f9/400x160.png"
-													style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 100px; display: block;"
-													title="Loca8 Logo" width="100"/>
-												</div>
-											</div>
-											<!--[if mso]></td></tr></table><![endif]-->
-											<!--[if (!mso)&(!IE)]><!-->
-										</div>
-										<!--<![endif]-->
-									</div>
-								</div>
-								<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-								<!--[if (mso)|(IE)]></td><td align="center" width="250" style="background-color:#ffffff;width:250px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:0px; padding-bottom:0px;"><![endif]-->
-								<div class="col num6"
-									style="display: table-cell; vertical-align: middle; max-width: 320px; min-width: 246px; width: 250px;">
-									<div class="col_cont" style="width:100% !important;">
-										<!--[if (!mso)&(!IE)]><!-->
-										<div
-											style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:0px; padding-bottom:0px; padding-right: 0px; padding-left: 0px;">
-											<!--<![endif]-->
-											<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 30px; padding-left: 30px; padding-top: 30px; padding-bottom: 30px; font-family: Arial, sans-serif"><![endif]-->
-											<div
-												style="color:#555555;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;line-height:1.2;padding-right:30px;padding-left:30px;">
-												<div class="txtTinyMce-wrapper"
-													style="font-size: 16px; line-height: 1.2; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #555555; mso-line-height-alt: 14px;">
-													<p
-														style="margin: 0; font-size: 16px; text-align: right; line-height: 1.2; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; word-break: break-word; mso-line-height-alt: 14px; margin-top: 0; margin-bottom: 0;">
-														<a href="https://loca8.me" style="outline:none" target="_blank">
-														Loca8 Tags
-														</a>
-													</p>
-												</div>
-											</div>
-											<!--[if mso]></td></tr></table><![endif]-->
-											<!--[if (!mso)&(!IE)]><!-->
-										</div>
-										<!--<![endif]-->
-									</div>
-								</div>
-								<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-								<!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
-							</div>
-						</div>
-					</div>
-
-
+<header>
+    <a href="https://loca8.me" style="height:100px;">
+    <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="50" />
+    <path
+        d="M87.7,43.43a7,7,0,0,0-2.29-1.61,4.76,4.76,0,1,0-8.35-3.11,4.71,4.71,0,0,0,1.14,3.11,8,8,0,0,0-2.34,1.66,8.43,8.43,0,0,0,6,14.38,8,8,0,0,0,6-2.48,8.27,8.27,0,0,0,2.51-5.93A8.55,8.55,0,0,0,87.7,43.43Zm-5.93-6.67a2,2,0,1,1-2,2A2,2,0,0,1,81.77,36.76Zm3.67,16.3a5.12,5.12,0,1,1,0-7.24A5.12,5.12,0,0,1,85.44,53.06Z"
+        fill="#fff" />
+    <path
+        d="M70.38,50.06v6a1.7,1.7,0,0,1-1.75,1.63,1.78,1.78,0,0,1-1.72-1.33,8,8,0,0,1-10-.92,7.64,7.64,0,0,1,0-10.83,7.92,7.92,0,0,1,10-1,1.76,1.76,0,0,1,1.72-1.36A1.72,1.72,0,0,1,70.38,44Zm-3.51,0a4.34,4.34,0,0,0-1.29-3.17,4.22,4.22,0,0,0-3.07-1.26,4.15,4.15,0,0,0-3.08,1.26,4.6,4.6,0,0,0,0,6.34,4.31,4.31,0,0,0,3.08,1.2,4.24,4.24,0,0,0,4.35-4.14.45.45,0,0,0,0-.23Z"
+        fill="#fff" />
+    <path
+        d="M47.82,58.06a7.86,7.86,0,0,1,0-15.72,7.7,7.7,0,0,1,5.24,2.08,1.63,1.63,0,1,1-2.23,2.38,4.41,4.41,0,0,0-3-1.2,4.59,4.59,0,0,0,0,9.18,4.45,4.45,0,0,0,3-1.2A1.63,1.63,0,0,1,53.06,56,7.64,7.64,0,0,1,47.82,58.06Z"
+        fill="#fff" />
+    <path
+        d="M30.57,42.34a7.86,7.86,0,1,0,7.86,7.86A7.86,7.86,0,0,0,30.57,42.34Zm0,12.38a4.54,4.54,0,1,1,4.53-4.52A4.54,4.54,0,0,1,30.53,54.72Z"
+        fill="#fff" />
+    <path
+        d="M21.85,54.88a1.71,1.71,0,0,0-1.23-.47l-6.85,0a.53.53,0,0,1-.52-.54V39.23A1.63,1.63,0,0,0,12.73,38a1.83,1.83,0,0,0-2.49,0,1.63,1.63,0,0,0-.51,1.23V56a1.72,1.72,0,0,0,.49,1.23,1.69,1.69,0,0,0,1.23.49h9.18a1.75,1.75,0,0,0,1.24-.46,1.59,1.59,0,0,0,.49-1.17A1.67,1.67,0,0,0,21.85,54.88Z"
+        fill="#fff" />
+    </svg>
+    </a>
+</header>
+<main>
 
 
 
@@ -231,122 +155,22 @@ const footer = `
 
 
 
-	<div style="background-color:transparent;">
-						<div class="block-grid two-up"
-							style="min-width: 320px; max-width: 500px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: #ffffff;">
-							<div style="border-collapse: collapse;display: table;width: 100%;background-color:#ffffff;">
-								<!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:transparent;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:500px"><tr class="layout-full-width" style="background-color:#ffffff"><![endif]-->
-								<!--[if (mso)|(IE)]><td align="center" width="250" style="background-color:#ffffff;width:250px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:0px; padding-bottom:0px;"><![endif]-->
-								<div class="col num6"
-									style="display: table-cell; vertical-align: top; max-width: 320px; min-width: 246px; width: 250px;">
-									<div class="col_cont" style="width:100% !important;">
-										<!--[if (!mso)&(!IE)]><!-->
-										<div
-											style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:0px; padding-bottom:0px; padding-right: 0px; padding-left: 0px;">
-											<!--<![endif]-->
-											<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 30px; padding-left: 30px; padding-top: 30px; padding-bottom: 30px; font-family: Arial, sans-serif"><![endif]-->
-											<div
-												style="color:#555555;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;line-height:1.2;padding-top:30px;padding-right:30px;padding-bottom:30px;padding-left:30px;">
-												<div class="txtTinyMce-wrapper"
-													style="font-size: 14px; line-height: 1.2; color: #555555; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
+</main>
+<footer>
+<div style="border-top: 2px solid #7ac298; margin: 40px 0 0 0; ">
+    <p style="color: #666666; font-weight: 400; line-height: 24px;">
+    <strong>Loca8</strong>&nbsp;‌&nbsp;‌|&nbsp;‌&nbsp;‌ www.loca8.me
+    <br />Love &amp; Peace!
+    </p>
+</div>
+</footer>
 
-													<img alt="Loca8 Logo"
-													border="0"
-													src="http://cdn.mcauto-images-production.sendgrid.net/423a92dded79d29d/aeb70fe4-7a82-436c-a2be-e38edaae39f9/400x160.png"
-													style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 100px; display: block;"
-													title="Loca8 Logo" width="100"/>
-
-
-												</div>
-											</div>
-											<!--[if mso]></td></tr></table><![endif]-->
-											<!--[if (!mso)&(!IE)]><!-->
-										</div>
-										<!--<![endif]-->
-									</div>
-								</div>
-								<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-								<!--[if (mso)|(IE)]></td><td align="center" width="250" style="background-color:#ffffff;width:250px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:0px; padding-bottom:0px;"><![endif]-->
-								<div class="col num6"
-									style="display: table-cell; vertical-align: middle; max-width: 320px; min-width: 246px; width: 250px;">
-									<div class="col_cont" style="width:100% !important;">
-										<!--[if (!mso)&(!IE)]><!-->
-										<div
-											style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:0px; padding-bottom:0px; padding-right: 0px; padding-left: 0px;">
-											<!--<![endif]-->
-											<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 30px; padding-left: 30px; padding-top: 30px; padding-bottom: 30px; font-family: Arial, sans-serif"><![endif]-->
-											<div
-												style="color:#555555;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;line-height:1.2;padding-right:30px;;padding-left:30px;">
-												<div class="txtTinyMce-wrapper"
-													style="font-size: 16px; line-height: 1.2; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; color: #555555; mso-line-height-alt: 14px;">
-													<p
-														style="margin: 0; font-size: 16px; text-align: right; line-height: 1.2; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; word-break: break-word; mso-line-height-alt: 14px; margin-top: 0; margin-bottom: 0;">
-														Love & Peace!
-													</p>
-												</div>
-											</div>
-											<!--[if mso]></td></tr></table><![endif]-->
-											<!--[if (!mso)&(!IE)]><!-->
-										</div>
-										<!--<![endif]-->
-									</div>
-								</div>
-								<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-								<!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
-							</div>
-						</div>
-					</div>
-
-
-					<div style="background-color:transparent;">
-						<div class="block-grid"
-							style="min-width: 320px; max-width: 500px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: transparent;">
-							<div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
-								<!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:transparent;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:500px"><tr class="layout-full-width" style="background-color:transparent"><![endif]-->
-								<!--[if (mso)|(IE)]><td align="center" width="500" style="background-color:transparent;width:500px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 0px; padding-left: 0px; padding-top:5px; padding-bottom:5px;"><![endif]-->
-								<div class="col num12"
-									style="min-width: 320px; max-width: 500px; display: table-cell; vertical-align: top; width: 500px;">
-									<div class="col_cont" style="width:100% !important;">
-										<!--[if (!mso)&(!IE)]><!-->
-										<div
-											style="border-top:0px solid transparent; border-left:0px solid transparent; border-bottom:0px solid transparent; border-right:0px solid transparent; padding-top:5px; padding-bottom:5px; padding-right: 0px; padding-left: 0px;">
-											<!--<![endif]-->
-											<!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 10px; font-family: Arial, sans-serif"><![endif]-->
-											<div
-												style="color:#555555;font-family:'Helvetica Neue', Helvetica, Arial, sans-serif;line-height:1.2;padding-top:10px;padding-right:10px;padding-bottom:10px;padding-left:10px;">
-												<div class="txtTinyMce-wrapper"
-													style="font-size: 14px; line-height: 1.2; color: #555555; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; mso-line-height-alt: 17px;">
-													<p
-														style="margin: 0; font-size: 14px; line-height: 1.2; word-break: break-word; text-align: center; mso-line-height-alt: 17px; margin-top: 0; margin-bottom: 0;">
-
-														<span style="color: #999999;">
-
-
-														</span>
-
-														</p>
-												</div>
-											</div>
-											<!--[if mso]></td></tr></table><![endif]-->
-											<!--[if (!mso)&(!IE)]><!-->
-										</div>
-										<!--<![endif]-->
-									</div>
-								</div>
-								<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-								<!--[if (mso)|(IE)]></td></tr></table></td></tr></table><![endif]-->
-							</div>
-						</div>
-					</div>
-
-					<!--[if (mso)|(IE)]></td></tr></table><![endif]-->
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<!--[if (IE)]></div><![endif]-->
+</div>
+<!--[if (gte mso 9)|(IE)]>
+</td></tr></table>
+<![endif]-->
+ 
 </body>
-
 </html>
 `
 
