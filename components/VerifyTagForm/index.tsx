@@ -20,7 +20,7 @@ interface IForm {
 
 export default function VerifyTagForm({ tid = '', updateTid, updateStep }: IProps) {
   const {
-    register,
+    control,
     handleSubmit,
     setError,
     formState: { errors },
@@ -68,7 +68,7 @@ export default function VerifyTagForm({ tid = '', updateTid, updateStep }: IProp
       </h1>
       <div className="form-wrap loadingContainer">
         <form className="form  tag-field-with-cta" onSubmit={handleSubmit(onSubmit)}>
-          <TagID tid={tid} register={register} errors={errors}></TagID>
+          <TagID tid={tid} control={control} errors={errors}></TagID>
           <button type="submit" className="cta" disabled={isSubmitting}>
             {isSubmitting ? 'Verifying...' : 'Verify'}
           </button>

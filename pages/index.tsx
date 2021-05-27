@@ -17,10 +17,10 @@ interface IForm {
 
 export default function Home() {
   const {
-    register,
+    control,
     handleSubmit,
     formState: { errors },
-  } = useForm<IForm>({ mode: 'onChange' })
+  } = useForm<IForm>({ mode: 'onBlur' })
   const Router = useRouter()
 
   const onSubmit = async (data: IForm) => {
@@ -49,7 +49,7 @@ export default function Home() {
             </div>
           </section>
           <form className="form tag-field-with-cta" onSubmit={handleSubmit(onSubmit)}>
-            <TagID tid={''} register={register} errors={errors} />
+            <TagID tid={''} control={control} errors={errors} />
             <button className="cta" type="submit">
               Let's Go!
             </button>

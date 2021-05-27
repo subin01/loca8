@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
+import InputMask from 'react-input-mask'
 
 import { TAG_FORMAT_REGEX } from '../../constants'
 import { updateUserProfile, analytics } from '../../db'
@@ -13,6 +14,7 @@ export default function RegisterForm({ tid = '', user }) {
 
   const {
     register,
+    control,
     handleSubmit,
     trigger,
     setError,
@@ -84,7 +86,7 @@ export default function RegisterForm({ tid = '', user }) {
               <div className="headings">
                 <h4>
                   Register Tag
-                  <TagID tid={tid} readOnly register={register} errors={errors} />
+                  <TagID tid={tid} readOnly control={control} errors={errors} />
                 </h4>
                 <h1>Make sure your details are correct</h1>
                 <p className="marginBottom2">
@@ -141,28 +143,34 @@ export default function RegisterForm({ tid = '', user }) {
               <div className="headings">
                 <h4>
                   Register Tag
-                  <TagID tid={tid} readOnly register={register} errors={errors} />
+                  <TagID tid={tid} readOnly control={control} errors={errors} />
                 </h4>
                 <h1>New Tag details</h1>
                 <p>You need an Activation key to register this Tag to your account.</p>
               </div>
               <div>
                 <input type="hidden" defaultValue={tid} {...register('newTag.tid', {})} />
+
                 <fieldset>
-                  <label htmlFor="key">Activation Key:</label>
-                  <input
-                    id="key"
-                    type="tel"
-                    className="field-key"
-                    {...register('newTag.key', {
+                  <label htmlFor={'newTag.key'}>Activation Key:</label>
+                  <Controller
+                    name={'newTag.key'}
+                    control={control}
+                    rules={{
                       required: { value: true, message: 'Activation key is required' },
                       pattern: { value: TAG_FORMAT_REGEX, message: 'Activation key format is incorrect!' },
-                    })}
-                  ></input>
+                    }}
+                    render={({ field: { onChange, value } }) => (
+                      <InputMask mask="9999-9999" value={value} maskChar={null} onChange={onChange}>
+                        {(inputProps) => <input {...inputProps} type="tel" id={'newTag.key'} className="tag-or-key" />}
+                      </InputMask>
+                    )}
+                  />
                   <span className="inline-error">
-                    <ErrorMessage errors={errors} name="newTag.key" />
+                    <ErrorMessage errors={errors} name={'newTag.key'} />
                   </span>
                 </fieldset>
+
                 <fieldset className="note">
                   <label htmlFor="newTag.notes">
                     Notes: <span>&nbsp;(Example: Apartment keyset 1)</span>

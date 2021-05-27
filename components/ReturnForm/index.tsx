@@ -17,9 +17,10 @@ interface IProps {
 export default function ReturnForm({ tid }: IProps) {
   const {
     register,
+    control,
     handleSubmit,
     formState: { errors },
-  } = useForm<iReturnForm>({ mode: 'onChange' })
+  } = useForm<iReturnForm>({ mode: 'onBlur' })
 
   console.log('ERRORS', errors)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -47,7 +48,7 @@ export default function ReturnForm({ tid }: IProps) {
             <form className="form" onSubmit={handleSubmit(onSubmit)}>
               <h4>
                 Return Tag
-                <TagID tid={tid} readOnly register={register} errors={errors} />
+                <TagID tid={tid} readOnly control={control} errors={errors} />
               </h4>
               <h1>You found a tag!</h1>
               <p className="marginBottom2">Let's return it to the rightful owner, Please add your details</p>
