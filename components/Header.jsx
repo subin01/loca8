@@ -14,6 +14,7 @@ export default function Header() {
 
   function handleDocumentScroll() {
     let scrolledTop = window.pageYOffset
+    // console.log('scrolledTop:', scrolledTop)
     setScrolledDown(previousScrollTop < scrolledTop)
     previousScrollTop = scrolledTop
   }
@@ -31,7 +32,7 @@ export default function Header() {
         <div className="inner">
           <Link href="/">
             <a className="logo">
-              <img src="/loca8-logo-light-v9.svg" alt="Loca8 Logo" width={100} height={50} />
+              <img src="/loca8-logo-v9-circle.svg" alt="Loca8 Logo" width={100} height={50} />
             </a>
           </Link>
 

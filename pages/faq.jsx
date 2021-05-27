@@ -15,11 +15,11 @@ export default function Home() {
           <h1>Questions? Look here.</h1>
           <p>Browse through the most frequently asked questions</p>
           <hr />
-          <div className="faq">
+          <devicePixelRatio>
             <article>
               <h2>How to register the tag ID purchased?</h2>
               <p>You may follow the below steps to get your tag registered</p>
-              <ul>
+              <ul className="faq">
                 <li>
                   <i>Step 1 :</i> Scan the QR code which will automatically register your tag with its ID
                 </li>
@@ -47,7 +47,7 @@ export default function Home() {
 
             <article>
               <h2> How to view my registered tags?</h2>
-              <ul>
+              <ul className="faq">
                 <li>
                   <i>Step 1 :</i> Click on the tab “Account”
                 </li>
@@ -61,7 +61,7 @@ export default function Home() {
             </article>
             <article>
               <h2> I got a lost item with the Loca8 locket, how do I return it?</h2>
-              <ul>
+              <ul className="faq">
                 <li>
                   <i>Step 1 :</i> Scan the QR code
                 </li>
@@ -82,7 +82,7 @@ export default function Home() {
             </article>
             <article>
               <h2>What if the QR code is unable to scan or doesn't scan?</h2>
-              <ul>
+              <ul className="faq">
                 <li>
                   <i>Step 1 :</i> Click on the tab “Account”
                 </li>
@@ -102,7 +102,7 @@ export default function Home() {
             </article>
             <article>
               <h2> How do I get notified if someone receives my valuables with my locket?</h2>
-              <ul>
+              <ul className="faq">
                 <li>
                   <i>Step 1 :</i> You will get an email as well as a text message
                 </li>
@@ -113,7 +113,7 @@ export default function Home() {
             </article>
             <article>
               <h2> What all things can be secured and recovered with loca8?</h2>
-              <ul>
+              <ul className="faq">
                 <li>Luggage tags </li>
                 <li>Pet’s collar </li>
                 <li>Car keys</li>
@@ -135,7 +135,7 @@ export default function Home() {
               <h2> Can I register more than 1 Loca8 locket under one e-mail ID?</h2>
               Yes, you can register multiple tags and the dashboard displays all the Tag IDs and the status.
             </article>
-          </div>
+          </devicePixelRatio>
         </main>
         <Footer></Footer>
       </div>
