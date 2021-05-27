@@ -32,7 +32,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Loca8 | Locate the owner | Home</title>
+        <title>Loca8 | Locate the owner | Home Page</title>
       </Head>
 
       <Header></Header>
@@ -43,8 +43,8 @@ export default function Home() {
             <h1>Welcome to Loca8!</h1>
             <div className="intro">
               <p>
-                Hey, thank for trusting and adding me to your closest friend list. I can stand by you and make your
-                search one step forward. A little concern from Loca8 locket may bring a smile on your face.{' '}
+                Hey, thank you for trusting and adding me to your closest friend list. Together we can make your search
+                one step forward.
               </p>
             </div>
           </section>
@@ -59,14 +59,14 @@ export default function Home() {
             <Link href="/faq/">
               <a className="card">
                 <h2>Got Questions?</h2>
-                <p>Know more about me which will make our journey easier and faster, just like me.</p>
+                <p>Know more about me which will make our journey easier and better.</p>
               </a>
             </Link>
 
             <Link href="/product/">
               <a className="card">
-                <h2>More about Product</h2>
-                <p>A simple locket comes to save your lost asset at pocket friendly and with smart persona </p>
+                <h2>About the Product</h2>
+                <p>A simple locket comes to save your lost asset, pocket friendly and with a smart persona. </p>
               </a>
             </Link>
           </div>

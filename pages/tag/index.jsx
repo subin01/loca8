@@ -6,14 +6,14 @@ import Footer from '../../components/Footer'
 import TagFlow from '../../components/TagFlow'
 import { AuthProvider } from '../../contexts/AuthContext'
 
-export default function Return() {
+export default function Tag() {
   const router = useRouter()
   const id = router.query.id
   console.log('Query String: TID ', id)
   return (
     <>
       <Head>
-        <title>Loca8 | Locate the owner | Return or Register a Tag</title>
+        <title>Loca8 | Return or Register a Tag</title>
       </Head>
 
       <Header></Header>

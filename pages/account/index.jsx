@@ -9,7 +9,7 @@ function AccountPage() {
   return (
     <>
       <Head>
-        <title>Loca8 | Locate the owner | Your Account</title>
+        <title>Loca8 | Your Account</title>
       </Head>
       <Header></Header>
       <main>
