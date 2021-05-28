@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@hookform/error-message": "^2.0.0",
-    "firebase": "8.2.9",
+    "firebase": "8.6.0",
     "lodash.throttle": "^4.1.1",
     "next": "10.2.0",
     "node-sass": "^5.0.0",

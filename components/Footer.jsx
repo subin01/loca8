@@ -5,7 +5,7 @@ export default function Footer() {
         <div className="logo-line">
           Powered by
           <span className="logo">
-            <img src="/loca8-logo-dark.svg" alt="Loca8 Logo" width={60} height={30} />
+            <img src="/Loca8-logo-dark.svg" alt="Loca8 Logo" width={60} height={30} />
           </span>
         </div>
         <div className="disclaimer">

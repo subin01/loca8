@@ -8,10 +8,23 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
-          <meta name="description" content="Locate the owner" />
-          <meta name="theme-color" content="#791aff"></meta>
+          <meta
+            name="description"
+            content="A simple traceable locket with a QR code that helps to locate your misplaced asset. Purchase this safety accessory and attach it to your assets!"
+          />
+          <meta name="keywords" content="QR, QR Code, Tags, Locket, Pet, Pet Tags, India, Lost & Found" />
+          <meta property="og:image" content="https://loca8.me/Loca8-logo-circle.png" />
+          <meta
+            property="og:description"
+            content="A simple traceable locket with a QR code that helps to locate your misplaced asset. Purchase this safety accessory and attach it to your assets!"
+          />
+          <meta property="og:title" content="Loca8 Tags" />
+          <meta property="og:locale" content="en-IN" />
+          <meta name="twitter:title" content="Loca8 Tags - A simple traceable locket with a QR code" />
+          <meta name="theme-color" content="#791aff" />
+          <meta charset="utf-8" />
           <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
           <link rel="icon" type="image/png" href="/favicon.png" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
