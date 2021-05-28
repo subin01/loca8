@@ -18,7 +18,7 @@ export default function TagID({ tid, readOnly = false, errors, control }: IProps
     <>
       {!readOnly ? (
         <fieldset>
-          <label htmlFor="tagId">Tag ID:</label>
+          <label htmlFor="tagId">Tag ID</label>
           <Controller
             name="tagId"
             control={control}
@@ -30,7 +30,7 @@ export default function TagID({ tid, readOnly = false, errors, control }: IProps
             render={({ field: { onChange, value } }) => (
               <InputMask mask="9999-9999" value={value} maskChar={null} onChange={onChange}>
                 {(inputProps) => (
-                  <input {...inputProps} type="tel" id="tagId" className="tag-or-key" autocomplete="off" />
+                  <input {...inputProps} type="tel" id="tagId" className="tag-or-key" autoComplete="off" />
                 )}
               </InputMask>
             )}

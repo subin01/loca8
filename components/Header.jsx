@@ -32,7 +32,7 @@ export default function Header() {
         <div className="inner">
           <Link href="/">
             <a className="logo">
-              <img src="/loca8-logo-v9-circle.svg" alt="Loca8 Logo" width={100} height={50} />
+              <img src="/loca8-logo-v9-circle.svg" alt="Loca8 Logo" width={100} height={100} />
             </a>
           </Link>
 
