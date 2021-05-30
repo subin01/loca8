@@ -51,6 +51,7 @@
   --header-height-offset: 16rem;
 
   --grid-width: 700px;
+  --grid-width: 62rem;
 }
 
 ::selection {
@@ -93,21 +94,10 @@ html {
   // background-size: 55vh;
 }
 
-body {
-  padding: 0;
-  margin: 0;
-  font-family: var(--font-family-default);
-  font-size: var(--font-m);
-  font-weight: var(--weight-light);
-  line-height: 1.4;
-  color: var(--color-dark);
-  overflow-y: scroll;
-}
-
 // Tab: Landscape
 @media only screen and (min-width: 1024px) and (min-height: 690px) {
   :root {
-    --grid-width: 900px;
+    --grid-width: 66rem;
   }
   html {
     font-size: 8.7px;
@@ -148,6 +138,17 @@ body {
   html {
     font-size: 14px;
   }
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-family-default);
+  font-size: var(--font-m);
+  font-weight: var(--weight-light);
+  line-height: 1.4;
+  color: var(--color-dark);
+  overflow-y: scroll;
 }
 
 main,
@@ -306,7 +307,6 @@ ul.faq {
   article {
     display: flex;
     margin-bottom: var(--spacing-xxl);
-    max-width: 62rem;
 
     h2 {
       font-size: 2.4rem;
@@ -479,7 +479,7 @@ footer {
   .disclaimer {
     margin-top: var(--spacing-m);
     text-align: center;
-    max-width: 500px;
+    max-width: var(--grid-width);
   }
 }
 
