@@ -2,6 +2,7 @@
 import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
 
+import { welcomeSMS } from './sendMessage'
 import { validateKeyFormat, validateTagFormat } from '../utils'
 import { TAG_STATUS_REGISTERED } from '../global_constants'
 import { htmlEmail } from '../templates'
@@ -21,9 +22,10 @@ export async function activateTag(
   tid: string,
   key: string,
   uid: string,
+  phone: string,
   email: string,
   displayName: string
-): Promise<{ error: boolean; message: string; errorField?: string }> {
+): Promise<{ error: boolean; message: string; errorField?: string; smsResponse?: object }> {
   if (!validateKeyFormat(key)) {
     functions.logger.log(`Invalid Activation Key (format): --${key}--`)
     return { error: true, message: 'Invalid Activation Key!', errorField: 'key' }
@@ -86,6 +88,9 @@ export async function activateTag(
       timestamp: admin.firestore.FieldValue.serverTimestamp(), // Not needed for email, only for sorting
     }
 
+    /* Send SMS notification */
+    const smsResponse = await welcomeSMS({ to: phone, tid })
+
     /* All DB Operations */
     const res = await db.runTransaction(async (transaction) => {
       transaction.set(tagsRef, updatedTagsData, { merge: true })
@@ -94,7 +99,7 @@ export async function activateTag(
     })
 
     functions.logger.log('Transaction finished: ', res)
-    return { error: false, message: 'Activation completed!' }
+    return { error: false, message: 'Activation completed!', smsResponse }
   } catch (err) {
     functions.logger.log(err)
     return { error: true, message: err }

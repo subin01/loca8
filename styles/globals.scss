@@ -2,7 +2,7 @@
   --font-family-default: 'Nunito', -apple-system, Roboto, Ubuntu, Helvetica Neue, sans-serif;
   --font-family-heading: var(--font-family-default);
 
-  --color-primary: hsl(145, 37%, 62%);
+  --color-primary: #7ac298;
   --color-highlight: var(--color-primary);
   --color-input-border: hsla(145, 30%, 40%, 0.2);
   --color-bg-default: #fff;
@@ -10,7 +10,7 @@
   --color-error: #cb132d;
   --color-info: #067db4;
 
-  --color-dark: #000;
+  --color-dark: #06121e;
   --color-dark-trans0: hsla(145, 11%, 40%, 0.07);
   --color-dark-trans1: hsla(145, 30%, 40%, 0.2);
   --color-dark-trans2: hsla(145, 30%, 40%, 0.3);
@@ -646,7 +646,7 @@ textarea,
 
   &:hover,
   &:focus {
-    background: var(--color-highlight-dark);
+    background: var(--color-dark);
     border: 2px solid transparent;
   }
 }

@@ -4,6 +4,7 @@ import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
 import { v4 as uuidv4 } from 'uuid'
 
+import { returnSMS } from './sendMessage'
 import { validateTagFormat } from '../utils'
 import { iNotifyOwnerErrorTypes } from '../types'
 import {
@@ -28,12 +29,14 @@ export async function notifyTagOwner(data: any, context: any) {
   const notifyError = (
     error: boolean,
     errorType: iNotifyOwnerErrorTypes,
-    message: string = 'Error: Please try again!'
+    message: string = 'Error: Please try again!',
+    smsResponse?: object
   ) => {
     return {
       error,
       errorType,
       message,
+      smsResponse,
     }
   }
 
@@ -81,6 +84,7 @@ export async function notifyTagOwner(data: any, context: any) {
     /* Notification Data */
     const ownerData = doc.data()
     const ownerEmail = ownerData?.email
+    const ownerMobile = ownerData?.phone
     const displayName = ownerData?.displayName
     const returns = ownerData?.returns || {}
 
@@ -116,6 +120,9 @@ export async function notifyTagOwner(data: any, context: any) {
       timestamp: admin.firestore.FieldValue.serverTimestamp(), // Not needed for email, only for sorting
     }
 
+    /* Send SMS notification */
+    const smsResponse = await returnSMS({ to: ownerMobile, tid, phone, name, email })
+
     /* All DB Operations */
     const res = await db.runTransaction(async (transaction) => {
       transaction.set(newMailRef, emailData, { merge: true })
@@ -128,6 +135,7 @@ export async function notifyTagOwner(data: any, context: any) {
     return {
       error: false,
       message: 'Successfully notified!',
+      smsResponse,
     }
   } catch (err) {
     // functions.logger.log(err)
