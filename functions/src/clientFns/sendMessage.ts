@@ -45,8 +45,8 @@ async function sendSMS(to: string, body: string) {
       to,
     })
     functions.logger.log('------ sendSMS: ', to, body, message)
-    const { status, errorCode, errorMessage, dateCreated } = message
-    return { status, errorCode, errorMessage, dateCreated }
+    const { status, errorCode } = message
+    return { status, errorCode }
   } catch (error) {
     return error
   }

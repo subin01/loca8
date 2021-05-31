@@ -27,7 +27,6 @@ export default function ReturnForm({ tid }: IProps) {
   const [notifyRes, setNotifyRes] = useState(null)
 
   const onSubmit = async (data: iReturnForm) => {
-    console.log('Edit Profile ', tid, data)
     const { name, phone, email, message } = data
     setNotifyRes(null) // clear previous res
     setIsSubmitting(true)
@@ -37,6 +36,8 @@ export default function ReturnForm({ tid }: IProps) {
     const serverRes = await notifyOwner({ tid, name, phone, email, message })
 
     setNotifyRes(serverRes?.data || null)
+    console.log('ReturnForm ', serverRes)
+
     setIsSubmitting(false)
   }
 
@@ -70,7 +71,9 @@ export default function ReturnForm({ tid }: IProps) {
               </fieldset>
 
               <fieldset>
-                <label htmlFor="phone">Phone:</label>
+                <label htmlFor="phone">
+                  Phone:<span>(No Country code!)</span>
+                </label>
                 <input
                   id="phone"
                   className="field-phone"
@@ -155,6 +158,16 @@ export default function ReturnForm({ tid }: IProps) {
                 <a className="cta">Yes, Show me options</a>
               </Link>
             </div>
+          </div>
+        </section>
+      )}
+
+      {notifyRes !== null && notifyRes?.error === true && (
+        <section className="slide-notify-success">
+          <div>
+            <h1>Oh no!</h1>
+            <h2>There was some issue with request!</h2>
+            <p>Please try again!</p>
           </div>
         </section>
       )}
