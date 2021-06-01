@@ -95,7 +95,9 @@ export default function RegisterForm({ tid = '', user }) {
                 </p>
               </div>
               <fieldset>
-                <label htmlFor="phone">Phone</label>
+                <label htmlFor="phone">
+                  Phone<span>(No Country code!)</span>
+                </label>
                 <input
                   id="phone"
                   className="field-phone"
@@ -180,7 +182,7 @@ export default function RegisterForm({ tid = '', user }) {
                     {...register('newTag.notes', {
                       required: { value: true, message: 'Notes is required!' },
                       minLength: { value: 3, message: 'Notes is too short!' },
-                      maxLength: { value: 40, message: 'Keep the notes under 40 characters!' },
+                      maxLength: { value: 25, message: 'Keep the notes under 25 characters!' },
                     })}
                   ></input>
                   <span className="inline-error">

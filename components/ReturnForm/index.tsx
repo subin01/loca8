@@ -63,6 +63,7 @@ export default function ReturnForm({ tid }: IProps) {
                   {...register('name', {
                     required: { value: true, message: 'Name is required!' },
                     minLength: { value: 3, message: 'Name format is incorrect!' },
+                    maxLength: { value: 15, message: 'Maximum 15 characters!' },
                   })}
                 ></input>
                 <span className="inline-error">
@@ -98,7 +99,7 @@ export default function ReturnForm({ tid }: IProps) {
                   type="email"
                   defaultValue={''}
                   {...register('email', {
-                    minLength: { value: 3, message: 'Email format is incorrect!' },
+                    minLength: { value: 5, message: 'Email format is incorrect!' },
                     pattern: {
                       value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
                       message: 'Email format is incorrect!',
