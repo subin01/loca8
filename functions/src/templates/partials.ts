@@ -123,7 +123,7 @@ a:hover {
 
 <header>
     <a href="https://loca8.me" style="height:100px; text-decoration: none;">
-        <img src="http://cdn.mcauto-images-production.sendgrid.net/423a92dded79d29d/24a20781-42ae-41ac-93e5-056ea007c004/417x418.png height="100" width="100 />
+        <img src="http://cdn.mcauto-images-production.sendgrid.net/423a92dded79d29d/24a20781-42ae-41ac-93e5-056ea007c004/417x418.png" height="100" width="100" />
     </a>
 </header>
 <main>
