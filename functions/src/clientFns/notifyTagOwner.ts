@@ -85,6 +85,7 @@ export async function notifyTagOwner(data: any, context: any) {
     const ownerData = doc.data()
     const ownerEmail = ownerData?.email
     const ownerMobile = ownerData?.phone
+    const tagName = ownerData?.notes
     const displayName = ownerData?.displayName
     const returns = ownerData?.returns || {}
 
@@ -121,7 +122,7 @@ export async function notifyTagOwner(data: any, context: any) {
     }
 
     /* Send SMS notification */
-    const smsResponse = await returnSMS({ to: ownerMobile, tid, phone, name, email })
+    const smsResponse = await returnSMS({ to: ownerMobile, phone, name, tagName })
 
     /* All DB Operations */
     const res = await db.runTransaction(async (transaction) => {
