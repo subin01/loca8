@@ -66,8 +66,8 @@ export default function User({ updateStep }: IProps) {
     }
     return (
       <div className="loadingContainer">
-        <div>
-          <span>
+        <div className="user-info">
+          <div>
             {user?.displayName && (
               <strong>
                 Welcome {user?.displayName}!
@@ -75,12 +75,12 @@ export default function User({ updateStep }: IProps) {
               </strong>
             )}
             You are now signed-in as <strong>{firebase.auth().currentUser?.email}</strong>
-          </span>
-          &nbsp;&nbsp;
+            <br />
+            and phone number <strong>{user.phone}</strong>
+          </div>
           <button className="cta cta-small" onClick={(e) => handleLogout(e)}>
             Sign out
           </button>
-          <hr></hr>
         </div>
 
         {loadingUser && (
@@ -127,7 +127,9 @@ export default function User({ updateStep }: IProps) {
 
           {isSubmitting && <LoadingInline>Creating Loca8 Account...</LoadingInline>}
 
-          {profileRes !== null && profileRes.error === true && <div className="message-box">{profileRes.message}</div>}
+          {profileRes !== null && profileRes.error === true && (
+            <div className="message-box icon-error">{profileRes.message}</div>
+          )}
         </div>
       )
     }
@@ -138,7 +140,7 @@ export default function User({ updateStep }: IProps) {
       {renderLogin()}
       {currentUser && renderProfile()}
       {profileRes !== null && profileRes.error === false && (
-        <div className="message-box">Loca8 Profile created for {user?.email}</div>
+        <div className="message-box icon-check">Loca8 Profile created for {user?.email}</div>
       )}
     </div>
   )

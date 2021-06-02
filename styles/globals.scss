@@ -2,13 +2,14 @@
   --font-family-default: 'Nunito', -apple-system, Roboto, Ubuntu, Helvetica Neue, sans-serif;
   --font-family-heading: var(--font-family-default);
 
-  --color-primary: #7ac298;
+  --color-primary: hsl(145, 37%, 62%);
   --color-highlight: var(--color-primary);
   --color-input-border: hsla(145, 30%, 40%, 0.2);
   --color-bg-default: #fff;
 
-  --color-error: #cb132d;
-  --color-info: #067db4;
+  --color-error: hsl(352, 83%, 44%);
+  --color-info: hsl(199, 94%, 36%);
+  --color-info-bg: hsla(207, 100%, 50%, 0.05);
 
   --color-dark: #06121e;
   --color-dark-trans0: hsla(145, 11%, 40%, 0.07);
@@ -546,7 +547,8 @@ input,
 select,
 textarea,
 .tag-or-key,
-.cta {
+.cta,
+.cta-whatsapp {
   font-family: var(--font-family-default);
   height: var(--form-field-height);
   font-size: var(--font-input1);
@@ -578,7 +580,6 @@ textarea,
 
   &:focus {
     border: 2px solid var(--color-highlight);
-    background: white;
   }
 }
 
@@ -657,6 +658,18 @@ textarea,
   margin-top: var(--spacing-s);
 }
 
+.cta-whatsapp {
+  background-color: hsl(142, 70%, 49%);
+  color: white;
+  border: none !important;
+  margin-left: var(--spacing-m);
+
+  &:hover {
+    background-color: hsla(142, 70%, 39%, 1);
+    border: none;
+  }
+}
+
 .form-wrap {
   width: 100%;
   position: relative;
@@ -667,9 +680,32 @@ textarea,
 .message-box {
   border-radius: var(--radius-s);
   color: var(--color-info);
-  background-color: rgba(0, 140, 255, 0.05);
-  padding: var(--spacing-l);
   margin-bottom: var(--spacing-l);
+  padding: var(--spacing-l);
+  background-color: var(--color-info-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 7rem;
+  width: 100%;
+
+  &.icon-info,
+  &.icon-error,
+  &.icon-check {
+    background-image: url('/images/icon-info.svg');
+    background-repeat: no-repeat;
+    background-position: var(--spacing-l) center;
+    background-size: 3rem;
+    padding: var(--spacing-m) var(--spacing-s) var(--spacing-m) 7rem;
+  }
+
+  &.icon-error {
+    background-image: url('/images/icon-warning.svg');
+  }
+
+  &.icon-check {
+    background-image: url('/images/icon-check.svg');
+  }
 
   h3 {
     color: var(--color-info);
@@ -845,6 +881,22 @@ textarea,
     margin-top: var(--form-label-height);
     margin-bottom: var(--form-err-height);
     margin-left: var(--spacing-m);
+  }
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+  border: 1px solid var(--color-dark-trans0);
+  border-left: 0;
+  border-right: 0;
+  padding: var(--spacing-l) 0;
+
+  @media only screen and (min-width: 1024px) {
+    flex-direction: row;
+    align-items: center;
   }
 }
 

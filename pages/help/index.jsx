@@ -7,15 +7,22 @@ export default function Faq() {
   return (
     <>
       <Head>
-        <title>Loca8 | FAQ - Frequently asked questions</title>
+        <title>Loca8 | Help - Frequently asked questions and other ways we can help</title>
       </Head>
 
       <Header></Header>
 
       <div>
         <main className="page-faq">
-          <h1>Questions? Look here.</h1>
-          <p>Browse through the most frequently asked questions</p>
+          <h1>Need some help?</h1>
+          <p>Browse through the most frequently asked questions below</p>
+          <hr />
+          <p>
+            Or Contact us on
+            <a href="https://wa.me/8589955968" className="cta-whatsapp" target="_blank">
+              WhatsApp
+            </a>
+          </p>
           <hr />
           <article>
             <h2>How to register the tag ID purchased?</h2>

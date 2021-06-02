@@ -191,14 +191,14 @@ export default function RegisterForm({ tid = '', user }) {
                 </fieldset>
 
                 {saveRes?.error === true && (
-                  <div className="message-box">
+                  <div className="message-box icon-error">
                     <h3>Sorry! There was some problem.</h3>
                     <p>{saveRes.message}</p>
                   </div>
                 )}
 
                 {saveRes?.error === false && saveRes?.activation?.error === true && (
-                  <div className="message-box">
+                  <div className="message-box icon-error">
                     <h3>Sorry! There was some problem with the activation.</h3>
                     <p>Please correct any errors and try again!</p>
                   </div>

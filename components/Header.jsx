@@ -43,8 +43,8 @@ export default function Header() {
               </Link>
             </li>
             <li className={activeRoute('/faq/')}>
-              <Link href="/faq/">
-                <a>FAQ</a>
+              <Link href="/help/">
+                <a>Help</a>
               </Link>
             </li>
             <li className={activeRoute('/account/')}>
