@@ -24,7 +24,7 @@ class MyDocument extends Document {
           <meta property="og:locale" content="en-IN" />
           <meta name="twitter:title" content="Loca8 Tags - A simple traceable locket with a QR code" />
           <meta name="theme-color" content="#7ac298" />
-          <meta charset="utf-8" />
+          <meta charSet="utf-8" />
           <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
           <link rel="icon" type="image/png" href="/favicon.png" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />

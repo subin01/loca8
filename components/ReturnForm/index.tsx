@@ -156,7 +156,7 @@ export default function ReturnForm({ tid }: IProps) {
                 <a>No, am good!</a>
               </Link>
               <Link href="/product/">
-                <a className="cta">Yes, Show me options</a>
+                <a className="cta">Yes, Tell me about it</a>
               </Link>
             </div>
           </div>
@@ -168,7 +168,9 @@ export default function ReturnForm({ tid }: IProps) {
           <div>
             <h1>Oh no!</h1>
             <h2>There was some issue with request!</h2>
-            <p>Please try again!</p>
+            <p>
+              <a href="javascript:location.reload();">Please try again!</a>
+            </p>
           </div>
         </section>
       )}
