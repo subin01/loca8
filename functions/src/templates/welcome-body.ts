@@ -1,5 +1,10 @@
 /* eslint-disable  */
-export function welcomeTemplate({ displayName = 'There', tid = '8888-8888', key = '00000000' }: any): string {
+export function welcomeTemplate({
+  displayName = 'There',
+  tid = '8888-8888',
+  phone = '',
+  key = '00000000',
+}: any): string {
   return `
 
 <article style="margin: 20px 0; border-bottom: 2px solid #7ac298; ">
@@ -10,7 +15,7 @@ export function welcomeTemplate({ displayName = 'There', tid = '8888-8888', key 
 </article>
 
 <article style="margin: 40px 0 20px 0; ">
-	<p>Your Tag <strong>${tid}</strong> is now activated! <br />You activation key is <strong>${key}</strong>.</p>
+	<p>Your Tag <strong>${tid}</strong> is now activated! <br />You activation key is <strong>${key}</strong> and phone number is <strong>${phone}</strong>.</p>
 
 	<p><br /></p>
 

@@ -110,7 +110,15 @@ export async function updateUserProfile(data: any, context: any) {
     let activationResponse
     let activatedTag = {}
     if (newTag !== {}) {
-      const activateFnRes = await activateTag(newTag.tid, newTag.key, uid, phone, email, displayName)
+      const activateFnRes = await activateTag({
+        tid: newTag.tid,
+        key: newTag.key,
+        notes: newTag.notes,
+        uid,
+        phone,
+        email,
+        displayName,
+      })
       if (!activateFnRes?.error) {
         // ie. Tag & Activation key was valid
         activatedTag = { [newTag.tid]: { ...newTag, activatedOn: admin.firestore.FieldValue.serverTimestamp() } }

@@ -4,8 +4,8 @@ import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
 import { v4 as uuidv4 } from 'uuid'
 
-import { returnSMS } from './sendMessage'
-import { validateTagFormat } from '../utils'
+// import { returnSMS } from './sendMessage'
+import { validateTagFormat, trimName, trimTagname } from '../utils'
 import { iNotifyOwnerErrorTypes } from '../types'
 import {
   SERVER_ERROR,
@@ -13,6 +13,11 @@ import {
   TAG_STATUS_REGISTERED,
   TAG_STATUS_UNREGISTERED,
   ADMIN_EMAIL,
+  MESSAGE_TYPE_RETURN,
+  MESSAGE_CHANNEL_EMAIL,
+  MESSAGE_CHANNEL_SMS,
+  MSGBIRD_SMS_CHANNEL,
+  MSGBIRD_SMS_SENDER,
 } from '../global_constants'
 import { htmlEmail } from '../templates'
 
@@ -30,26 +35,34 @@ export async function notifyTagOwner(data: any, context: any) {
     error: boolean,
     errorType: iNotifyOwnerErrorTypes,
     message: string = 'Error: Please try again!',
-    smsResponse?: object
+    errorField?: string
   ) => {
     return {
       error,
       errorType,
       message,
-      smsResponse,
+      errorField,
     }
   }
 
   const tid = data?.tid
-  const email = data?.email
   const name = data?.name
   const phone = data?.phone
-  const message = data?.message
+  const email = data?.email || ''
+  const message = data?.message || ''
 
-  functions.logger.log(':::::notifyTagOwner::v2:: ', data)
+  functions.logger.log(':::::notifyTagOwner:::: ', data)
 
   if (!tid || !validateTagFormat(tid)) {
-    return notifyError(true, TAG_INVALID, 'Invalid Tag Format!')
+    return notifyError(true, TAG_INVALID, 'Invalid Tag Format!', 'tid')
+  }
+
+  if (!name || name.length < 3 || name.length > 15) {
+    return notifyError(true, TAG_INVALID, 'Invalid name!', 'name')
+  }
+
+  if (!phone || phone.length !== 10) {
+    return notifyError(true, TAG_INVALID, 'Invalid phone!', 'phone')
   }
 
   try {
@@ -58,7 +71,7 @@ export async function notifyTagOwner(data: any, context: any) {
 
     if (!tdoc.exists) {
       functions.logger.log(`Invalid Tag TID: --${tid}--`)
-      return notifyError(true, TAG_INVALID, 'Invalid Tag!')
+      return notifyError(true, TAG_INVALID, 'Invalid Tag!', 'tid')
     }
 
     const tagData = tdoc.data()
@@ -85,7 +98,7 @@ export async function notifyTagOwner(data: any, context: any) {
     const ownerData = doc.data()
     const ownerEmail = ownerData?.email
     const ownerMobile = ownerData?.phone
-    const tagName = ownerData?.notes
+    const tagName = ownerData?.tags?.[tid]?.notes || tid
     const displayName = ownerData?.displayName
     const returns = ownerData?.returns || {}
 
@@ -104,42 +117,70 @@ export async function notifyTagOwner(data: any, context: any) {
       returns: { ...returns, ...newReturn },
     }
 
-    /* Email Data */
+    /* Email Notification ********************************************/
     const mailRef = db.collection('mail')
     const newMailRef = mailRef.doc()
-    const mailType = 'return'
     const emailData = {
       to: ownerEmail,
       cc: ADMIN_EMAIL,
       message: {
         subject: 'Loca8 | Your Tag is found!',
-        html: htmlEmail({ template: mailType, tid, displayName, name, email, phone, message }),
-        text: `Hello! Your tag (${tid}) is reported to be found!`,
+        html: htmlEmail({ template: MESSAGE_TYPE_RETURN, tid, displayName, name, email, phone, message }),
+        text: `Hello! Your tag (${tid}) was reported as found!`,
       },
-      type: mailType,
-      uid, // Not needed for email, only for linking
+      // Additional attributes for linking/tracking
+      uid,
+      tid,
+      messageType: MESSAGE_TYPE_RETURN,
+      messageChannel: MESSAGE_CHANNEL_EMAIL,
       timestamp: admin.firestore.FieldValue.serverTimestamp(), // Not needed for email, only for sorting
     }
 
-    /* Send SMS notification */
-    const smsResponse = await returnSMS({ to: ownerMobile, phone, name, tagName })
+    /* SMS notification ********************************************/
+    // const smsResponse = await returnSMS({ to: ownerMobile, phone, name, tagName }   // TwilioSMS
+    const tagNameTrimmed = trimTagname(tagName)
+    const nameTrimmed = trimName(name)
+
+    // prettier-ignore
+    const text =
+`Hey!
+Your Loca8 tag for "${tagNameTrimmed}" was reported as found!
+Contact "${nameTrimmed}" at ${phone}.
+Check your email for more info.`
+
+    const messageRef = db.collection('messages')
+    const newMessageRef = messageRef.doc()
+    const messageData = {
+      channelId: MSGBIRD_SMS_CHANNEL,
+      originator: MSGBIRD_SMS_SENDER,
+      type: 'text',
+      to: `+91${ownerMobile}`,
+      content: {
+        text,
+      },
+      // Additional attributes for linking/tracking
+      uid,
+      tid,
+      messageType: MESSAGE_TYPE_RETURN,
+      messageChannel: MESSAGE_CHANNEL_SMS,
+      timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    }
 
     /* All DB Operations */
-    const res = await db.runTransaction(async (transaction) => {
+    const response = await db.runTransaction(async (transaction) => {
       transaction.set(newMailRef, emailData, { merge: true })
-      // TODO: Trigger Email Admin, SMS, Message, Push notification
       transaction.set(usersRef, updatedNotifications, { merge: true })
+      transaction.set(newMessageRef, messageData, { merge: true })
     })
 
-    functions.logger.log(res)
+    functions.logger.log('Transaction finished: ', response)
 
     return {
       error: false,
       message: 'Successfully notified!',
-      smsResponse,
     }
   } catch (err) {
-    // functions.logger.log(err)
+    functions.logger.log('::::notifyTagOwner:::: ', err)
     return notifyError(true, SERVER_ERROR)
   }
 }

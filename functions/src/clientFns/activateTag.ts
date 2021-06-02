@@ -2,9 +2,16 @@
 import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
 
-import { welcomeSMS } from './sendMessage'
-import { validateKeyFormat, validateTagFormat } from '../utils'
-import { TAG_STATUS_REGISTERED } from '../global_constants'
+// import { welcomeSMS } from './sendMessage'
+import { validateKeyFormat, validateTagFormat, trimName, trimTagname } from '../utils'
+import {
+  TAG_STATUS_REGISTERED,
+  MESSAGE_TYPE_ACTIVATION,
+  MESSAGE_CHANNEL_EMAIL,
+  MESSAGE_CHANNEL_SMS,
+  MSGBIRD_SMS_CHANNEL,
+  MSGBIRD_SMS_SENDER,
+} from '../global_constants'
 import { htmlEmail } from '../templates'
 
 !admin.apps.length ? admin.initializeApp() : admin.app()
@@ -18,14 +25,23 @@ const db = admin.firestore()
  * @param key
  * @param uid
  */
-export async function activateTag(
-  tid: string,
-  key: string,
-  uid: string,
-  phone: string,
-  email: string,
+export async function activateTag({
+  tid,
+  key,
+  notes,
+  uid,
+  phone,
+  email,
+  displayName,
+}: {
+  tid: string
+  key: string
+  notes: string
+  uid: string
+  phone: string
+  email: string
   displayName: string
-): Promise<{ error: boolean; message: string; errorField?: string; smsResponse?: object }> {
+}): Promise<{ error: boolean; message: string; errorField?: string }> {
   if (!validateKeyFormat(key)) {
     functions.logger.log(`Invalid Activation Key (format): --${key}--`)
     return { error: true, message: 'Invalid Activation Key!', errorField: 'key' }
@@ -72,36 +88,64 @@ export async function activateTag(
       activatedOn: admin.firestore.FieldValue.serverTimestamp(),
     }
 
-    /* Email Notification     */
+    /* Email Notification ********************************************/
     const mailRef = db.collection('mail')
     const newMailRef = mailRef.doc()
-    const mailType = 'activation'
     const emailData = {
       to: email,
       message: {
         subject: 'Loca8 | Tag activated!',
-        html: htmlEmail({ template: mailType, displayName, tid, key }),
-        text: `Hello ${displayName}! Your tag (${tid}) is successfully activated!`,
+        html: htmlEmail({ template: MESSAGE_TYPE_ACTIVATION, displayName, phone, tid, key }),
+        text: `Hello ${displayName}! Your tag ${tid} is successfully activated!`,
       },
-      uid, // Not needed for email, only for linking
-      type: mailType,
+      // Additional attributes for linking/tracking
+      uid,
+      tid,
+      messageType: MESSAGE_TYPE_ACTIVATION,
+      messageChannel: MESSAGE_CHANNEL_EMAIL,
       timestamp: admin.firestore.FieldValue.serverTimestamp(), // Not needed for email, only for sorting
     }
 
-    /* Send SMS notification */
-    const smsResponse = await welcomeSMS({ to: phone, tid })
+    /* SMS notification ********************************************/
+    // const smsResponse = await welcomeSMS({ to: phone, tid }) // TwilioSMS
+    const nameTrimmed = trimName(displayName)
+    const tagNameTrimmed = trimTagname(notes)
+
+    // prettier-ignore
+    const text =
+`Hi ${nameTrimmed},
+Your Loca8 Tag ${tid} "${tagNameTrimmed}" is activated!`
+
+    const messageRef = db.collection('messages')
+    const newMessageRef = messageRef.doc()
+    const messageData = {
+      channelId: MSGBIRD_SMS_CHANNEL,
+      originator: MSGBIRD_SMS_SENDER,
+      type: 'text',
+      to: `+91${phone}`,
+      content: {
+        text,
+      },
+      // Additional attributes for linking/tracking
+      uid,
+      tid,
+      messageType: MESSAGE_TYPE_ACTIVATION,
+      messageChannel: MESSAGE_CHANNEL_SMS,
+      timestamp: admin.firestore.FieldValue.serverTimestamp(),
+    }
 
     /* All DB Operations */
-    const res = await db.runTransaction(async (transaction) => {
+    const response = await db.runTransaction(async (transaction) => {
       transaction.set(tagsRef, updatedTagsData, { merge: true })
       transaction.delete(keysRef)
       transaction.set(newMailRef, emailData, { merge: true })
+      transaction.set(newMessageRef, messageData, { merge: true })
     })
 
-    functions.logger.log('Transaction finished: ', res)
-    return { error: false, message: 'Activation completed!', smsResponse }
+    functions.logger.log('Transaction finished: ', response)
+    return { error: false, message: 'Activation completed!' }
   } catch (err) {
-    functions.logger.log(err)
+    functions.logger.log('::::activateTag:::: ', err)
     return { error: true, message: err }
   }
 }
