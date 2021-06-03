@@ -3,10 +3,16 @@ export default function Footer() {
     <footer>
       <div className="wrap">
         <div className="logo-line">
-          Powered by
-          <span className="logo">
-            <img src="/Loca8-logo-dark2.svg" alt="Loca8 Logo" width={60} height={30} />
-          </span>
+          Follow us on
+          <a href="https://www.instagram.com/loca8.me" target="_blank">
+            <img src="/images/icon-insta.svg" alt="Instagram" width={30} height={30} />
+          </a>
+          <a href="https://www.facebook.com/Loca8-100434038928600" target="_blank">
+            <img src="/images/icon-fb.svg" alt="Facebook" width={30} height={30} />
+          </a>
+          <a href="https://www.linkedin.com/company/loca8" target="_blank">
+            <img src="/images/icon-in.svg" alt="LinkedIn" width={30} height={30} />
+          </a>
         </div>
         <div className="disclaimer">
           <strong>Disclaimer: </strong>Loca8 is simple and reliable to trace your lost asset with Loca8 locket, if

@@ -86,7 +86,7 @@ a {
 }
 
 a:hover {
-    color: #000000 !important;
+    color: #06121e !important;
     text-decoration: none !important;
 }
 

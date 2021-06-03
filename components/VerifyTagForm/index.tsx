@@ -50,7 +50,7 @@ export default function VerifyTagForm({ tid = '', updateTid, updateStep }: IProp
       console.log('InvalidTAG')
       setError('tagId', {
         type: 'invalid',
-        message: 'Invalid Tag ID, Please check the Tag ID!',
+        message: 'Invalid Tag ID, Please check again!',
       })
     } else if (serverRes.data.error === false) {
       updateStep(2)

@@ -57,14 +57,14 @@ export default function Home() {
 
           <div className="grid">
             <Link href="/faq/">
-              <a className="card">
+              <a className="card card-faq">
                 <h2>Got Questions?</h2>
                 <p>Know more about me which will make our journey easier and better.</p>
               </a>
             </Link>
 
             <Link href="/product/">
-              <a className="card">
+              <a className="card card-product">
                 <h2>About the Product</h2>
                 <p>A simple locket comes to save your lost asset, pocket friendly and with a smart persona. </p>
               </a>
@@ -77,11 +77,3 @@ export default function Home() {
     </>
   )
 }
-
-// export const getStaticProps = () => {
-//   return {
-//     props: {
-//       buildTimestamp: Date.now(),
-//     },
-//   }
-// }

@@ -32,7 +32,7 @@ export default function Header() {
         <div className="inner">
           <Link href="/">
             <a className="logo">
-              <img src="/Loca8-logo-circle2.svg" alt="Loca8 Logo" width={100} height={100} />
+              <img src="/Loca8-logo-circle2.svg" alt="Loca8" width={100} height={100} />
             </a>
           </Link>
 
@@ -42,7 +42,7 @@ export default function Header() {
                 <a>Product</a>
               </Link>
             </li>
-            <li className={activeRoute('/faq/')}>
+            <li className={activeRoute('/help/')}>
               <Link href="/help/">
                 <a>Help</a>
               </Link>

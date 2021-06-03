@@ -76,7 +76,11 @@ export default function User({ updateStep }: IProps) {
             )}
             You are now signed-in as <strong>{firebase.auth().currentUser?.email}</strong>
             <br />
-            and phone number <strong>{user.phone}</strong>
+            {user?.phone && (
+              <>
+                Your phone number is <strong>{user?.phone}</strong>
+              </>
+            )}
           </div>
           <button className="cta cta-small" onClick={(e) => handleLogout(e)}>
             Sign out

@@ -13,7 +13,7 @@ export default function Faq() {
       <Header></Header>
 
       <div>
-        <main className="page-faq">
+        <main className="page-faq faq-steps">
           <h1>Need some help?</h1>
           <p>Browse through the most frequently asked questions below</p>
           <hr />
@@ -27,93 +27,93 @@ export default function Faq() {
           <article>
             <h2>How to register the tag ID purchased?</h2>
             <p>You may follow the below steps to get your tag registered</p>
-            <ul className="faq">
+            <ul className="faq faq-steps">
               <li>
-                <i>Step 1 :</i> Scan the QR code which will automatically register your tag with its ID
+                <i>Step 1 </i> Scan the QR code which will automatically register your tag with its ID
               </li>
               <li>
-                <i>Step 2 :</i> You will see “Register or return your tag”, give your tag id and check if it is matching
+                <i>Step 2 </i> You will see “Register or return your tag”, give your tag id and check if it is matching
               </li>
               <li>
-                <i>Step 3 :</i> Click on “verify”
+                <i>Step 3 </i> Click on “verify”
               </li>
               <li>
-                <i>Step 5 :</i> Authenticate yourself or Click on the option “Sign in with Google”
+                <i>Step 5 </i> Authenticate yourself or Click on the option “Sign in with Google”
               </li>
               <li>
-                <i>Step 6 :</i> Enter your details like Name & phone
+                <i>Step 6 </i> Enter your details like Name & phone
               </li>
               <li>
-                <i>Step 7 :</i> Enter Activation key 8 digit number activation key inside our package
+                <i>Step 7 </i> Enter Activation key 8 digit number activation key inside our package
               </li>
               <li>
-                <i>Step 8 :</i> Save details
+                <i>Step 8 </i> Save details
               </li>
             </ul>
           </article>
 
           <article>
             <h2> How to view my registered tags?</h2>
-            <ul className="faq">
+            <ul className="faq faq-steps">
               <li>
-                <i>Step 1 :</i> Click on the tab “Account”
+                <i>Step 1 </i> Click on the tab “Account”
               </li>
               <li>
-                <i>Step 2 :</i> Select the option “Sign in with Google”
+                <i>Step 2 </i> Select the option “Sign in with Google”
               </li>
               <li>
-                <i>Step 3 :</i> you will see the tags you already registered
+                <i>Step 3 </i> you will see the tags you already registered
               </li>
             </ul>
           </article>
           <article>
             <h2> I got a lost item with the Loca8 locket, how do I return it?</h2>
-            <ul className="faq">
+            <ul className="faq faq-steps">
               <li>
-                <i>Step 1 :</i> Scan the QR code
+                <i>Step 1 </i> Scan the QR code
               </li>
               <li>
-                <i>Step 2 :</i> You will see “Register or return your tag”, give your tag id and check if it is matching
+                <i>Step 2 </i> You will see “Register or return your tag”, give your tag id and check if it is matching
               </li>
               <li>
-                <i>Step 2 :</i> Enter the Tag ID and click on “Verify”
+                <i>Step 2 </i> Enter the Tag ID and click on “Verify”
               </li>
               <li>
-                <i>Step 3 :</i> When it prompts, furnish your details and type the message you want to communicate
+                <i>Step 3 </i> When it prompts, furnish your details and type the message you want to communicate
               </li>
               <li>
-                <i>Step 4 :</i> Click on “notify owner”
+                <i>Step 4 </i> Click on “notify owner”
               </li>
             </ul>
           </article>
           <article>
             <h2>What if the QR code is unable to scan or doesn't scan?</h2>
-            <ul className="faq">
+            <ul className="faq faq-steps">
               <li>
-                <i>Step 1 :</i> Click on the tab “Account”
+                <i>Step 1 </i> Click on the tab “Account”
               </li>
               <li>
-                <i>Step 2 :</i> Select the option “Sign in with Google”
+                <i>Step 2 </i> Select the option “Sign in with Google”
               </li>
               <li>
-                <i>Step 3 :</i> “Click on Create Loca8 account” (first time when you log in only)
+                <i>Step 3 </i> “Click on Create Loca8 account” (first time when you log in only)
               </li>
               <li>
-                <i>Step 4 :</i> You are all set with your account with Loca8
+                <i>Step 4 </i> You are all set with your account with Loca8
               </li>
               <li>
-                <i>Step 5 :</i> Register your tag with the number on the locket purchased
+                <i>Step 5 </i> Register your tag with the number on the locket purchased
               </li>
             </ul>
           </article>
           <article>
             <h2> How do I get notified if someone receives my valuables with my locket?</h2>
-            <ul className="faq">
+            <ul className="faq faq-steps">
               <li>
-                <i>Step 1 :</i> You will get an email as well as a text message
+                <i>Step 1 </i> You will get an email as well as a text message
               </li>
               <li>
-                <i>Step 2 :</i> You may also check the spam and promotions section of your mailbox
+                <i>Step 2 </i> You may also check the spam and promotions section of your mailbox
               </li>
             </ul>
           </article>
