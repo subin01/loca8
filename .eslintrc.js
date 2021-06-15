@@ -26,5 +26,13 @@ module.exports = {
     'max-len': ['error', { code: 120 }],
     'require-jsdoc': ['off', {}],
     'valid-jsdoc': ['off', {}],
+    overrides: [
+      {
+        files: ['*.jsx'],
+        rules: {
+          'react/react-in-jsx-scope ': 'off',
+        },
+      },
+    ],
   },
 }
