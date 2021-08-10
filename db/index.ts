@@ -51,7 +51,7 @@ interface NewTag {
 interface IUpdateProfile {
   displayName: string
   email: string
-  phone: number
+  phone: string
   tags: [Tag]
   newTag: NewTag
 }

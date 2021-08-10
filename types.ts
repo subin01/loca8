@@ -17,7 +17,7 @@ export interface iTagVerifyResponse {
 
 export interface iReturnForm {
   name: string
-  phone: number
+  phone: string
   email: string
   message?: string
 }

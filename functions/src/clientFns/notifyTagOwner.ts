@@ -51,7 +51,7 @@ export async function notifyTagOwner(data: any, context: any) {
   const email = data?.email || ''
   const message = data?.message || ''
 
-  functions.logger.log(':::::notifyTagOwner:::: ', data)
+  functions.logger.log(':::::notifyTagOwner:::: ', data, 'to:', phone)
 
   if (!tid || !validateTagFormat(tid)) {
     return notifyError(true, TAG_INVALID, 'Invalid Tag Format!', 'tid')
@@ -61,8 +61,8 @@ export async function notifyTagOwner(data: any, context: any) {
     return notifyError(true, TAG_INVALID, 'Invalid name!', 'name')
   }
 
-  if (!phone || phone.length !== 10) {
-    return notifyError(true, TAG_INVALID, 'Invalid phone!', 'phone')
+  if (!phone || phone.length < 10) {
+    return notifyError(true, TAG_INVALID, 'Invalid phone number!', 'phone')
   }
 
   try {
@@ -154,7 +154,7 @@ Check your email for more info.`
       channelId: MSGBIRD_SMS_CHANNEL,
       originator: MSGBIRD_SMS_SENDER,
       type: 'text',
-      to: `+91${ownerMobile}`,
+      to: ownerMobile,
       content: {
         text,
       },

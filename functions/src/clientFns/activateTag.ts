@@ -122,7 +122,7 @@ Your Loca8 Tag ${tid} "${tagNameTrimmed}" is activated!`
       channelId: MSGBIRD_SMS_CHANNEL,
       originator: MSGBIRD_SMS_SENDER,
       type: 'text',
-      to: `+91${phone}`,
+      to: phone,
       content: {
         text,
       },

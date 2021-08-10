@@ -96,7 +96,7 @@ export default function RegisterForm({ tid = '', user }) {
               </div>
               <fieldset>
                 <label htmlFor="phone">
-                  Phone<span>(No Country code!)</span>
+                  Phone<span>(with country code)</span>
                 </label>
                 <input
                   id="phone"
@@ -105,7 +105,6 @@ export default function RegisterForm({ tid = '', user }) {
                   defaultValue={user?.phone}
                   {...register('phone', {
                     required: { value: true, message: 'Phone number is required!' },
-                    pattern: { value: /^[789]\d{9}$/, message: 'Phone number format is incorrect!' },
                   })}
                 ></input>
                 <span className="inline-error">
