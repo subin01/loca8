@@ -1,11 +1,12 @@
 // @ts-nocheck
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, Controller } from 'react-hook-form'
 import Link from 'next/link'
 import { ErrorMessage } from '@hookform/error-message'
 
 import LoadingInline from '../LoadingInline'
 import TagID from '../TagID'
+import Phone from '../Phone'
 import { notifyOwner, analytics } from '../../db'
 import { iTagID, iReturnForm } from '../../types'
 
@@ -28,9 +29,9 @@ export default function ReturnForm({ tid }: IProps) {
 
   const onSubmit = async (data: iReturnForm) => {
     const { name, phone, email, message } = data
+
     setNotifyRes(null) // clear previous res
     setIsSubmitting(true)
-
     analytics().logEvent('return_form_submitted')
     // Call DB API
     const serverRes = await notifyOwner({ tid, name, phone, email, message })
@@ -71,23 +72,7 @@ export default function ReturnForm({ tid }: IProps) {
                 </span>
               </fieldset>
 
-              <fieldset>
-                <label htmlFor="phone">
-                  Phone:<span>(With Country code!)</span>
-                </label>
-                <input
-                  id="phone"
-                  className="field-phone"
-                  type="tel"
-                  defaultValue={''}
-                  {...register('phone', {
-                    required: { value: true, message: 'Phone number is required!' },
-                  })}
-                ></input>
-                <span className="inline-error">
-                  <ErrorMessage errors={errors} name="phone" />
-                </span>
-              </fieldset>
+              <Phone control={control} errors={errors} />
 
               <fieldset>
                 <label htmlFor="email">

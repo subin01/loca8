@@ -21,7 +21,8 @@
     "react-firebase-hooks": "3.0.1",
     "react-firebaseui": "^4.1.0",
     "react-hook-form": "^7.3.6",
-    "react-input-mask": "^2.0.4"
+    "react-input-mask": "^2.0.4",
+    "react-phone-number-input": "^3.1.25"
   },
   "devDependencies": {
     "@types/react": "^17.0.4",

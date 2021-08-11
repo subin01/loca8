@@ -44,6 +44,7 @@ export default function User({ updateStep }: IProps) {
 
   async function handleLogout(e) {
     e.preventDefault()
+    setProfileRes(null)
     try {
       await firebase.auth().signOut()
     } catch {
@@ -56,7 +57,7 @@ export default function User({ updateStep }: IProps) {
       return (
         <div>
           <h2>Authenticate yourself</h2>
-          <p>Use one of the Sign in methods</p>
+          {/* <p>Use one of the Sign in methods</p> */}
           <div className="signin-buttons">
             <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
           </div>
@@ -113,20 +114,22 @@ export default function User({ updateStep }: IProps) {
     }
     if (!user) {
       return (
-        <div className="profile-not-found loadingContainer">
-          <h2>Seems like you are here for the fist time!</h2>
-          <p>We cannot save your details without a account. So let's create one quickly!</p>
-          <button className="cta" onClick={handleCreateProfile} disabled={isSubmitting}>
-            Create Loca8 Account
-          </button>
+        <div className="loadingContainer">
+          <div className="profile-not-found">
+            <h2>Seems like you are here for the fist time!</h2>
+            <p>We cannot save your details without a account. So let's create one quickly!</p>
+            <button className="cta" onClick={handleCreateProfile} disabled={isSubmitting}>
+              Create Loca8 Account
+            </button>
+          </div>
 
-          <hr></hr>
-
-          <h2>Had a Loca8 account before?</h2>
-          <p>
-            If you had Loca8 earlier, check if you used the same account/email for authentication. <br></br>Sign out and
-            login with correct account.
-          </p>
+          <div className="message-box icon-info marginTop1 profile-wrong">
+            <h2>Had a Loca8 account before?</h2>
+            <p>
+              If you had a Loca8 account earlier, check if you are using the same account/email for authentication. Sign
+              out and login with the correct account, otherwise.
+            </p>
+          </div>
           {/* <pre>{JSON.stringify(currentUser)}</pre> */}
 
           {isSubmitting && <LoadingInline>Creating Loca8 Account...</LoadingInline>}
@@ -144,7 +147,7 @@ export default function User({ updateStep }: IProps) {
       {renderLogin()}
       {currentUser && renderProfile()}
       {profileRes !== null && profileRes.error === false && (
-        <div className="message-box icon-check">Loca8 Profile created for {user?.email}</div>
+        <div className="message-box icon-check">Yay! Loca8 Profile created for {user?.email}</div>
       )}
     </div>
   )

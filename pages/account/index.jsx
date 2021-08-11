@@ -12,7 +12,7 @@ function AccountPage() {
         <title>Loca8 | Your Account</title>
       </Head>
       <Header></Header>
-      <main>
+      <main className="page-account">
         <AuthProvider>
           <Account />
         </AuthProvider>

@@ -7,6 +7,8 @@ import { TAG_FORMAT_REGEX } from '../../constants'
 import { updateUserProfile, analytics } from '../../db'
 import Link from 'next/link'
 import TagID from '../TagID'
+import Phone from '../Phone'
+
 import LoadingInline from '../LoadingInline'
 
 export default function RegisterForm({ tid = '', user }) {
@@ -94,23 +96,9 @@ export default function RegisterForm({ tid = '', user }) {
                   system!
                 </p>
               </div>
-              <fieldset>
-                <label htmlFor="phone">
-                  Phone<span>(with country code)</span>
-                </label>
-                <input
-                  id="phone"
-                  className="field-phone"
-                  type="tel"
-                  defaultValue={user?.phone}
-                  {...register('phone', {
-                    required: { value: true, message: 'Phone number is required!' },
-                  })}
-                ></input>
-                <span className="inline-error">
-                  <ErrorMessage errors={errors} name="phone" />
-                </span>
-              </fieldset>
+
+              <Phone defaultValue={user?.phone} control={control} errors={errors} />
+
               {/* <fieldset>
                 <label htmlFor="email">Email</label>
                 <input id="email" type="email" defaultValue={user?.email}></input>
