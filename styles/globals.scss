@@ -18,6 +18,7 @@
   --color-dark-trans3: hsla(145, 30%, 0%, 0.5);
   --color-dark-trans4: hsla(145, 30%, 0%, 0.2);
   --color-light-trans3: hsla(0, 0%, 100%, 50%);
+  --color-light-trans4: hsla(0, 0%, 100%, 80%);
   --color-primary-trans: hsla(145, 37%, 40%, 0.7);
 
   // Major Third Scale
@@ -52,7 +53,6 @@
   --header-height: 12rem;
   --header-height-offset: 16rem;
 
-  --grid-width: 700px;
   --grid-width: 62rem;
 }
 
@@ -287,7 +287,7 @@ ul.faq {
   min-width: 15rem;
   overflow: hidden;
   border-radius: 15rem;
-  border: 2px solid var(--color-dark-trans1);
+  // border: 2px solid var(--color-dark-trans1);
   margin-bottom: var(--spacing-m);
   margin: 0 0 0 1.5rem;
   align-items: center !important;
@@ -392,7 +392,7 @@ header {
   top: 0;
   left: 0;
   z-index: 10;
-  background: var(--color-light-trans3);
+  background: var(--color-light-trans4);
   backdrop-filter: blur(2px);
   height: var(--header-height);
   // box-shadow: 0 0 2rem 0px white;
@@ -406,10 +406,14 @@ header {
     .links {
       a {
         // transform: scale(0.75);
-        padding: 0 var(--spacing-m);
+        margin-right: 0;
         // opacity: 0.6;
       }
     }
+  }
+
+  .wrap {
+    max-width: 86rem; // overriding
   }
 
   .inner {
@@ -459,7 +463,8 @@ header {
       height: 6rem;
       display: flex;
       align-items: center;
-      padding: 0 var(--spacing-l);
+      padding: 0 var(--spacing-m);
+      margin-right: var(--spacing-l);
       text-transform: uppercase;
       font-weight: var(--weight-bold);
       font-size: var(--font-s);
@@ -468,7 +473,7 @@ header {
       // letter-spacing: 0.08em;
       // color: rgba(0, 0, 0, 0.6);
       transform-origin: left center;
-      transition: color 300ms ease-out, padding 600ms ease-out;
+      transition: color 300ms ease-out, margin 600ms ease-out;
 
       &:hover {
         border: none;

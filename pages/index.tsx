@@ -40,7 +40,8 @@ export default function Home() {
       <div>
         <main className="page-home">
           <section className="hero">
-            <h1>Welcome to Loca8!</h1>
+            <h3>Welcome to Loca8!</h3>
+            <h1>What's to loose?</h1>
             <div className="intro">
               <p>
                 Hey, thank you for trusting and adding me to your closest friend list. Together we can make your search
