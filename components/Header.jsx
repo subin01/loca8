@@ -14,7 +14,9 @@ export default function Header() {
 
   function handleDocumentScroll() {
     let scrolledTop = window.pageYOffset
-    // console.log('scrolledTop:', scrolledTop)
+    var x = previousScrollTop - scrolledTop
+    if (scrolledTop < 20) return // avoid trigger early on
+    if (Math.abs(previousScrollTop - scrolledTop) < 5) return // avoid trigger on slight scroll
     setScrolledDown(previousScrollTop < scrolledTop)
     previousScrollTop = scrolledTop
   }
