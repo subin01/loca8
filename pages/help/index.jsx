@@ -1,7 +1,20 @@
+import { useState } from 'react'
 import Head from 'next/head'
 
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+
+const FAQItem = ({ question, children }) => {
+  const [isOpen, setIsOpen] = useState(false)
+  return (
+    <article className="faq-item">
+      <button className={`h2 ${isOpen ? 'icon-open' : 'icon-close'} `} onClick={() => setIsOpen(!isOpen)}>
+        {question}
+      </button>
+      {isOpen && <div className="faq-answer">{children}</div>}
+    </article>
+  )
+}
 
 export default function Faq() {
   return (
@@ -13,19 +26,19 @@ export default function Faq() {
       <Header></Header>
 
       <div>
-        <main className="page-faq faq-steps">
-          <h1>Need some help?</h1>
-          <p>Browse through the most frequently asked questions below</p>
-          <hr />
-          <p>
-            Or Contact us on
-            <a href="https://wa.me/8589955968" className="cta-whatsapp" target="_blank">
-              WhatsApp
-            </a>
-          </p>
-          <hr />
-          <article>
-            <h2>How to register the tag ID purchased?</h2>
+        <main className="page-faq">
+          <div className="intro">
+            <h1>Need some help?</h1>
+            <p>Browse through the most frequently asked questions below</p>
+            <hr />
+            <p>
+              Or Contact us on
+              <a href="https://wa.me/8589955968" className="cta-whatsapp" target="_blank">
+                WhatsApp
+              </a>
+            </p>
+          </div>
+          <FAQItem question="How to register the tag ID purchased?">
             <p>You may follow the below steps to get your tag registered</p>
             <ul className="faq faq-steps">
               <li>
@@ -50,10 +63,9 @@ export default function Faq() {
                 <i>Step 8 </i> Save details
               </li>
             </ul>
-          </article>
+          </FAQItem>
 
-          <article>
-            <h2> How to view my registered tags?</h2>
+          <FAQItem question="How to view my registered tags?">
             <ul className="faq faq-steps">
               <li>
                 <i>Step 1 </i> Click on the tab “Account”
@@ -65,9 +77,8 @@ export default function Faq() {
                 <i>Step 3 </i> you will see the tags you already registered
               </li>
             </ul>
-          </article>
-          <article>
-            <h2> I got a lost item with the Loca8 locket, how do I return it?</h2>
+          </FAQItem>
+          <FAQItem question="I got a lost item with the Loca8 locket, how do I return it?">
             <ul className="faq faq-steps">
               <li>
                 <i>Step 1 </i> Scan the QR code
@@ -85,9 +96,8 @@ export default function Faq() {
                 <i>Step 4 </i> Click on “notify owner”
               </li>
             </ul>
-          </article>
-          <article>
-            <h2>What if the QR code is unable to scan or doesn't scan?</h2>
+          </FAQItem>
+          <FAQItem question="What if the QR code is unable to scan or doesn't scan?">
             <ul className="faq faq-steps">
               <li>
                 <i>Step 1 </i> Click on the tab “Account”
@@ -105,9 +115,8 @@ export default function Faq() {
                 <i>Step 5 </i> Register your tag with the number on the locket purchased
               </li>
             </ul>
-          </article>
-          <article>
-            <h2> How do I get notified if someone receives my valuables with my locket?</h2>
+          </FAQItem>
+          <FAQItem question="How do I get notified if someone receives my valuables with my locket?">
             <ul className="faq faq-steps">
               <li>
                 <i>Step 1 </i> You will get an email as well as a text message
@@ -116,9 +125,8 @@ export default function Faq() {
                 <i>Step 2 </i> You may also check the spam and promotions section of your mailbox
               </li>
             </ul>
-          </article>
-          <article>
-            <h2> What all things can be secured and recovered with loca8?</h2>
+          </FAQItem>
+          <FAQItem question="What all things can be secured and recovered with loca8?">
             <ul className="faq">
               <li>Luggage tags </li>
               <li>Pet’s collar </li>
@@ -131,16 +139,14 @@ export default function Faq() {
               <li>Passport </li>
               <li>Backpacks, wallets and handbags</li>
             </ul>
-          </article>
-          <article>
-            <h2> What if my Loca8 locket is stolen?</h2>
+          </FAQItem>
+          <FAQItem question="What if my Loca8 locket is stolen?">
             The privacy of the tag is intact as the QR code on the Loca8 locket is unique and it is not transferable. It
             is registered under your email ID.
-          </article>
-          <article>
-            <h2> Can I register more than 1 Loca8 locket under one e-mail ID?</h2>
+          </FAQItem>
+          <FAQItem question="Can I register more than 1 Loca8 locket under one e-mail ID?">
             Yes, you can register multiple tags and the dashboard displays all the Tag IDs and the status.
-          </article>
+          </FAQItem>
         </main>
         <Footer></Footer>
       </div>

@@ -75,7 +75,7 @@ export default function User({ updateStep }: IProps) {
                 <br />
               </strong>
             )}
-            You are now signed-in as <strong>{firebase.auth().currentUser?.email}</strong>
+            You are signed-in as <strong>{firebase.auth().currentUser?.email}</strong>
             <br />
             {user?.phone && (
               <>

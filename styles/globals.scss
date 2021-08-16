@@ -213,7 +213,8 @@ h1,
   }
 }
 
-h2 {
+h2,
+.h2 {
   font-size: 1.8rem;
   letter-spacing: -0.02em;
   margin-bottom: var(--spacing-m);
@@ -243,8 +244,41 @@ p {
   margin: 0 0 var(--spacing-m) 0;
 }
 
+.faq-item {
+  width: 100%;
+  border-bottom: 1px solid var(--color-dark-trans0);
+
+  .h2 {
+    width: 100%;
+    border: none;
+    background: none;
+    text-align: left;
+    margin: 0;
+    padding: var(--spacing-l) 0 var(--spacing-l) 4rem;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-size: 2.5rem;
+    background-position: 0% 50%;
+
+    &:hover {
+      background-color: var(--color-light);
+    }
+  }
+
+  .icon-close {
+    background-image: url('/images/icon-plus.svg');
+  }
+  .icon-open {
+    background-image: url('/images/icon-minus.svg');
+  }
+
+  .faq-answer {
+    padding: var(--spacing-s) 0 var(--spacing-l) 4rem;
+  }
+}
+
 ul.faq {
-  padding-left: 1.2em;
+  padding-left: 1.1em;
   margin: 0 0 var(--spacing-m) 0;
 
   li {
@@ -357,8 +391,8 @@ ul.faq {
 }
 
 .page-faq {
-  article {
-    margin-bottom: var(--spacing-xl);
+  .intro {
+    margin-bottom: var(--spacing-l);
   }
 }
 
