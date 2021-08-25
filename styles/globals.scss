@@ -259,6 +259,7 @@ p {
     background-repeat: no-repeat;
     background-size: 2.5rem;
     background-position: 0% 50%;
+    font-family: var(--font-family-default);
 
     &:hover {
       background-color: var(--color-light);
@@ -433,6 +434,7 @@ header {
   z-index: 10;
   background: var(--color-bg-default-trans);
   backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   height: var(--header-height);
   // box-shadow: 0 0 2rem 0px var(--color-light);
 
@@ -670,6 +672,7 @@ textarea,
   color: var(--color-highlight);
   background: var(--color-light-trans3);
   backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
 
   &:disabled {
     opacity: 0.1;
