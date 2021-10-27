@@ -1,0 +1,115 @@
+Issues:
+channelId /VMN
+SMS rates to India
+No SMS to Aus number
+No Whats app
+
+
+
+// fb messgenger, to: subin
+{
+  channelId: '693d7ff436eb4af7a276fda03bff3666',
+  to: '4587092804634842',
+  type: 'text',
+  content: {
+    text: 'Firebase YOUR_MESSAGE_CONTENT'
+  }
+}
+
+//whatsapp
+
+{
+  channelId: '90eb064e-1402-408b-8c99-539f310e7089',
+  from: '90eb064e-1402-408b-8c99-539f310e7089',
+  originator: '+918589955968'
+  to: '+61420755777',
+  to: '+919809819829',
+  to: '+61491672652'
+  type: 'text',
+  content: {
+    text: 'Your package has been shipped. It will be delivered in 3 business days.'
+  }
+}
+
+
+{
+  channelId: '90eb064e-1402-408b-8c99-539f310e7089',
+  from: '90eb064e-1402-408b-8c99-539f310e7089',
+  originator: '+918589955968'
+  to: '+61420755777',
+  to: '+919809819829',
+  to: '+61491672652'
+  type: 'hsm',
+  content: {
+      hsm:
+      {
+          namespace: '5ba2d0b7_f2c6_433b_a66e_57b009ceb6ff',
+          templateName: 'sample_shipping_confirmation',
+          language: {
+            policy: 'deterministic',
+            code: 'en',
+          },
+          params: [{ default: 'Bob' }, { default: 'tomorrow!' }],
+      }
+    },
+  }
+}
+
+// SMS: Working
+ Aus:  Rs 2.53/-   Ind: Rs 0.48/-
+{
+  channelId: 'f4cce3001e3a442f82af178ee944a24d',
+  originator: '12053952552'
+  to: '+61420755777',
+  to: '+919900828586',
+  type: 'text',
+  content: {
+    text: 'Your package has been shipped. It will be delivered in 3 business days.'
+  }
+}
+
+
+TWILIO::
+
+//*****************  CODE
+const accountSid = 'AC539a1f15b34291bc41b530e4e23ac3fb';
+const authToken = '716d89516df1c165b544247ee5d57777';
+const client = require('twilio')(accountSid, authToken);
+
+client.messages
+      .create({
+         body: 'Testing SMS 1 from Twilio',
+         messagingServiceSid: 'MG89ff88e0a0a2fb6814dccd9e2b490a96',
+         to: '+61420755777'
+       })
+      .then(message => console.log(message.sid))
+      .done();
+
+//*****************  RESPONSE
+{
+    "sid": "SM232e620e13594e10b2e57ba6ccad00f0",
+    "date_created": "Sun, 30 May 2021 12:45:51 +0000",
+    "date_updated": "Sun, 30 May 2021 12:45:51 +0000",
+    "date_sent": null,
+    "account_sid": "AC539a1f15b34291bc41b530e4e23ac3fb",
+    "to": "+61420755777",
+    "from": null,
+    "messaging_service_sid": "MG89ff88e0a0a2fb6814dccd9e2b490a96",
+    "body": "Testing SMS 1 from Twilio",
+    "status": "accepted",
+    "num_segments": "0",
+    "num_media": "0",
+    "direction": "outbound-api",
+    "api_version": "2010-04-01",
+    "price": null,
+    "price_unit": null,
+    "error_code": null,
+    "error_message": null,
+    "uri": "/2010-04-01/Accounts/AC539a1f15b34291bc41b530e4e23ac3fb/Messages/SM232e620e13594e10b2e57ba6ccad00f0.json",
+    "subresource_uris": {
+        "media": "/2010-04-01/Accounts/AC539a1f15b34291bc41b530e4e23ac3fb/Messages/SM232e620e13594e10b2e57ba6ccad00f0/Media.json"
+    }
+}
+
+
+firebase functions:config:set twilio.account_sid="AC539a1f15b34291bc41b530e4e23ac3fb" twilio.auth_token="716d89516df1c165b544247ee5d57777"
