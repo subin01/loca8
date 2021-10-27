@@ -80,6 +80,7 @@ export async function generateTags(
       const newKeyRef = keysCollectionRef.doc(generateActivationKey())
       const newKeyData = {
         series,
+        type,
         createdOn: admin.firestore.FieldValue.serverTimestamp(),
       }
       /* All DB Operations */
