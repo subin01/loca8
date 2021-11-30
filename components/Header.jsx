@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import throttle from 'lodash.throttle'
 
-export default function Header() {
+export default function Header({ variant = 'dark' }) {
   const router = useRouter()
   const activeRoute = (href) => {
     return router.asPath === href ? 'selected' : ''
@@ -15,9 +15,8 @@ export default function Header() {
   function handleDocumentScroll() {
     let scrolledTop = window.pageYOffset
     var x = previousScrollTop - scrolledTop
-    if (scrolledTop < 20) return // avoid trigger early on
     if (Math.abs(previousScrollTop - scrolledTop) < 5) return // avoid trigger on slight scroll
-    setScrolledDown(previousScrollTop < scrolledTop)
+    setScrolledDown(scrolledTop > 80)
     previousScrollTop = scrolledTop
   }
 
@@ -33,20 +32,18 @@ export default function Header() {
       <div className="wrap">
         <div className="inner">
           <Link href="/">
-            <a className="logo">
-              <img src="/Loca8-logo-circle2.svg" alt="Loca8" width={100} height={100} />
-            </a>
+            <a className="logo">Loca8</a>
           </Link>
 
-          <ul className="links">
+          <ul className={`links ${variant}`}>
             <li className={activeRoute('/product/')}>
               <Link href="/product/">
                 <a>Product</a>
               </Link>
             </li>
-            <li className={activeRoute('/help/')}>
-              <Link href="/help/">
-                <a>Help</a>
+            <li className={activeRoute('/support/')}>
+              <Link href="/support/">
+                <a>Support</a>
               </Link>
             </li>
             <li className={activeRoute('/account/')}>

@@ -13,7 +13,6 @@ function Account() {
 
   return (
     <>
-      <h1>Your Account</h1>
       <section className="marginBottom1">
         <User updateStep={() => {}} />
       </section>

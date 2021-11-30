@@ -3,6 +3,7 @@ import Head from 'next/head'
 
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import Banner from '../../components/Banner'
 
 const FAQItem = ({ question, children }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -24,20 +25,20 @@ export default function Faq() {
       </Head>
 
       <Header></Header>
+      <Banner>
+        <h1>Need some help?</h1>
+        <p>
+          Browse through the most frequently asked <a href="#faq">questions below</a>, Or Contact us on
+          <br />
+          <a href="https://wa.me/8589955968" className="cta-whatsapp" target="_blank">
+            WhatsApp
+          </a>
+        </p>
+      </Banner>
 
       <div>
-        <main className="page-faq">
-          <div className="intro">
-            <h1>Need some help?</h1>
-            <p>Browse through the most frequently asked questions below</p>
-            <hr />
-            <p>
-              Or Contact us on
-              <a href="https://wa.me/8589955968" className="cta-whatsapp" target="_blank">
-                WhatsApp
-              </a>
-            </p>
-          </div>
+        <main className="page-faq" id="faq">
+          <div className="intro"></div>
           <FAQItem question="How to register the tag ID purchased?">
             <p>You may follow the below steps to get your tag registered</p>
             <ul className="faq faq-steps">

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import VerifyTagForm from '../VerifyTagForm'
 import ReturnForm from '../ReturnForm'
+import Banner from '../../components/Banner'
 import User from '../User'
 import TagID from '../TagID'
 import RegisterForm from '../RegisterForm'
@@ -25,12 +26,17 @@ export default function TagFlow({ id }: IProps) {
       {step === 1 && <VerifyTagForm tid={tid} updateStep={setStep} updateTid={setTid} />}
       {step === 2 && <ReturnForm tid={tid} updateStep={setStep} />}
       {step === 3 && !user && (
-        <section className="slide-user">
-          <h4>
-            Register Tag <TagID tid={tid} readOnly />
-          </h4>
-          <User updateStep={setStep} />
-        </section>
+        <>
+          <Banner>
+            <h1>Register a tag</h1>
+            <h3>
+              <TagID tid={tid} readOnly />
+            </h3>
+          </Banner>
+          <main>
+            <User updateStep={setStep} />
+          </main>
+        </>
       )}
       {step === 3 && user && <RegisterForm tid={tid} user={user} />}
     </>

@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 
 import { verifyTag, analytics } from '../../db'
 import LoadingInline from '../LoadingInline'
+import Banner from '../../components/Banner'
 import TagID from '../TagID'
 import { iTagID, iTagVerifyResponse } from '../../types'
 import { TAG_INVALID, TAG_STATUS_UNREGISTERED } from '../../constants'
@@ -40,56 +41,67 @@ export default function VerifyTagForm({ tid = '', updateTid, updateStep }: IProp
     updateTid(tagId)
 
     analytics().logEvent('verify_tag_tiggered')
-    // Call DB API
-    const serverRes = await verifyTag({ tid: tagId })
 
-    setVerifyRes(serverRes.data || null)
-    setIsSubmitting(false)
+    try {
+      // Call DB API
+      const serverRes = await verifyTag({ tid: tagId })
 
-    if (serverRes.data.error && serverRes.data.errorType === TAG_INVALID) {
-      console.log('InvalidTAG')
-      setError('tagId', {
-        type: 'invalid',
-        message: 'Invalid Tag ID, Please check again!',
-      })
-    } else if (serverRes.data.error === false) {
-      updateStep(2)
-    }
-    if (serverRes.data.errorType === TAG_STATUS_UNREGISTERED) {
-      updateStep(3)
+      setVerifyRes(serverRes.data || null)
+      setIsSubmitting(false)
+
+      if (serverRes.data.error && serverRes.data.errorType === TAG_INVALID) {
+        console.log('InvalidTAG')
+        setError('tagId', {
+          type: 'invalid',
+          message: 'Invalid Tag ID, Please check again!',
+        })
+      } else if (serverRes.data.error === false) {
+        updateStep(2)
+      }
+      if (serverRes.data.errorType === TAG_STATUS_UNREGISTERED) {
+        updateStep(3)
+      }
+    } catch (e) {
+      console.log('Error: ', e)
+      setIsSubmitting(false)
     }
   }
 
   return (
-    <section>
-      <h1>
-        Return <i>or</i> <br />
-        Register a Tag
-      </h1>
-      <div className="form-wrap loadingContainer">
-        <form className="form  tag-field-with-cta" onSubmit={handleSubmit(onSubmit)}>
-          <TagID tid={tid} control={control} errors={errors}></TagID>
-          <button type="submit" className="cta" disabled={isSubmitting}>
-            {isSubmitting ? 'Verifying...' : 'Verify'}
-          </button>
-        </form>
+    <>
+      <Banner size="tiny">
+        <h1>
+          Return <i>or</i> <br />
+          Register a Tag
+        </h1>
+      </Banner>
 
-        {verifyRes !== null && !verifyRes.error && <h2>Let's return this to the owner!</h2>}
-        {verifyRes !== null && !verifyRes.error && verifyRes.message && (
-          <div>
-            <h4>Here's some message from the owner</h4>
-            <div>"{verifyRes.message}"</div>
-          </div>
-        )}
+      <main>
+        <div className="form-wrap loadingContainer">
+          <form className="form  tag-field-with-cta" onSubmit={handleSubmit(onSubmit)}>
+            <TagID tid={tid} control={control} errors={errors}></TagID>
+            <button type="submit" className="cta" disabled={isSubmitting}>
+              {isSubmitting ? 'Verifying...' : 'Verify'}
+            </button>
+          </form>
 
-        {verifyRes !== null && verifyRes.errorType === TAG_STATUS_UNREGISTERED && (
-          <div>
-            <h3>This is an unregistered Tag, Do you want to register?</h3>
-            <p>Note: You would need an Activation Key, to complete the process </p>
-          </div>
-        )}
-        {isSubmitting && <LoadingInline>Verifying Tag details...</LoadingInline>}
-      </div>
-    </section>
+          {verifyRes !== null && !verifyRes.error && <h2>Let's return this to the owner!</h2>}
+          {verifyRes !== null && !verifyRes.error && verifyRes.message && (
+            <div>
+              <h4>Here's some message from the owner</h4>
+              <div>"{verifyRes.message}"</div>
+            </div>
+          )}
+
+          {verifyRes !== null && verifyRes.errorType === TAG_STATUS_UNREGISTERED && (
+            <div>
+              <h3>This is an unregistered Tag, Do you want to register?</h3>
+              <p>Note: You would need an Activation Key, to complete the process </p>
+            </div>
+          )}
+          {isSubmitting && <LoadingInline>Verifying Tag details...</LoadingInline>}
+        </div>
+      </main>
+    </>
   )
 }

@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import Banner from '../../components/Banner'
 import TagFlow from '../../components/TagFlow'
 import { AuthProvider } from '../../contexts/AuthContext'
 
@@ -17,13 +18,10 @@ export default function Tag() {
       </Head>
 
       <Header></Header>
-
       <div className="page-tag">
-        <main>
-          <AuthProvider>
-            <TagFlow id={id} />
-          </AuthProvider>
-        </main>
+        <AuthProvider>
+          <TagFlow id={id} />
+        </AuthProvider>
         <Footer></Footer>
       </div>
     </>

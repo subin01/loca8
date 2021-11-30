@@ -10,6 +10,7 @@ import TagID from '../TagID'
 import Phone from '../Phone'
 
 import LoadingInline from '../LoadingInline'
+import Banner from '../../components/Banner'
 
 export default function RegisterForm({ tid = '', user }) {
   const [subStep, setSubStep] = useState('3A')
@@ -80,17 +81,19 @@ export default function RegisterForm({ tid = '', user }) {
   }
 
   return (
-    <section className="slide-register">
-      <div className="form-wrap">
+    <>
+      <Banner size="tiny">
+        <h1>Register Tag </h1>
+        <h3>
+          <TagID tid={tid} readOnly control={control} errors={errors} />
+        </h3>
+      </Banner>
+      <main className="form-wrap">
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
           {subStep === '3A' && (
             <>
               <div className="headings">
-                <h4>
-                  Register Tag
-                  <TagID tid={tid} readOnly control={control} errors={errors} />
-                </h4>
-                <h1>Make sure your details are correct</h1>
+                <h2>Make sure your details are correct</h2>
                 <p className="marginBottom2">
                   So we can contact you in case of a lost & found situation. <br></br>Don't worry, it will NOT leave our
                   system!
@@ -130,11 +133,7 @@ export default function RegisterForm({ tid = '', user }) {
           {subStep === '3B' && (
             <div className="loadingContainer">
               <div className="headings">
-                <h4>
-                  Register Tag
-                  <TagID tid={tid} readOnly control={control} errors={errors} />
-                </h4>
-                <h1>New Tag details</h1>
+                <h2>New Tag details</h2>
                 <p>You need an Activation key to register this Tag to your account.</p>
               </div>
               <div>
@@ -205,7 +204,7 @@ export default function RegisterForm({ tid = '', user }) {
 
         {subStep === '3C' && (
           <section className="slide-saved">
-            <h1>Congratulations!</h1>
+            <h2>Congratulations!</h2>
             <h3>You have successfully activated your new Tag</h3>
             <br />
             <p>Do you want to see all your saved Tags?</p>
@@ -219,7 +218,7 @@ export default function RegisterForm({ tid = '', user }) {
             </div>
           </section>
         )}
-      </div>
-    </section>
+      </main>
+    </>
   )
 }
